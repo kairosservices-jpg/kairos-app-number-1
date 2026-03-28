@@ -437,8 +437,9 @@ h4,
 
 .lead-magnet-form {
   display: flex;
+  flex-direction: column;
   gap: var(--space-sm);
-  max-width: 600px;
+  max-width: 400px;
   margin: 0 auto;
 }
 

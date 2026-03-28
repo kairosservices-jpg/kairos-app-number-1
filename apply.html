@@ -62,7 +62,10 @@
                     <span class="font-heading" style="font-size: 0.8rem; letter-spacing: 0.2em; color: var(--color-red); display: block; margin-bottom: 0.5rem;">Step 3 of 12</span>
                     <h3 class="font-heading" style="font-size: 1.5rem; margin-bottom: 1.5rem;">3. How tall are you?</h3>
                     <div class="quiz-options">
-                        <input type="text" class="lead-input" placeholder="e.g. 5' 10&quot;" data-question="How tall are you?" required style="margin-bottom: 0;" />
+                        <div style="display: flex; gap: 1rem; width: 100%;">
+                            <input type="number" class="lead-input" placeholder="Feet" data-question="Height (Feet)" required style="flex: 1; margin-bottom: 0;" />
+                            <input type="number" class="lead-input" placeholder="Inches" data-question="Height (Inches)" required style="flex: 1; margin-bottom: 0;" />
+                        </div>
                         <button class="btn btn-secondary text-next-btn" data-next="quiz-step-4" style="margin-top: 1rem; width: 100%;">Next</button>
                     </div>
                     <button class="btn btn-secondary quiz-back-btn" data-prev="quiz-step-2" style="margin-top: 1.5rem; width: 100%; opacity: 0.7;">Back</button>
@@ -163,9 +166,12 @@
                 <!-- Step 11 -->
                 <div class="quiz-step" id="quiz-step-11" style="display: none;">
                     <span class="font-heading" style="font-size: 0.8rem; letter-spacing: 0.2em; color: var(--color-red); display: block; margin-bottom: 0.5rem;">Step 11 of 12</span>
-                    <h3 class="font-heading" style="font-size: 1.5rem; margin-bottom: 1.5rem;">11. What’s your first name?</h3>
+                    <h3 class="font-heading" style="font-size: 1.5rem; margin-bottom: 1.5rem;">11. What is your name?</h3>
                     <div class="quiz-options">
-                        <input type="text" class="lead-input" placeholder="Your First Name" data-question="What's your first name?" required style="margin-bottom: 0;" />
+                        <div style="display: flex; gap: 1rem; width: 100%;">
+                            <input type="text" class="lead-input" placeholder="First Name" data-question="What's your first name?" required style="flex: 1; margin-bottom: 0;" />
+                            <input type="text" class="lead-input" placeholder="Last Name" data-question="What's your last name?" required style="flex: 1; margin-bottom: 0;" />
+                        </div>
                         <button class="btn btn-secondary text-next-btn" data-next="quiz-step-email" style="margin-top: 1rem; width: 100%;">Next</button>
                     </div>
                     <button class="btn btn-secondary quiz-back-btn" data-prev="quiz-step-10" style="margin-top: 1.5rem; width: 100%; opacity: 0.7;">Back</button>
@@ -178,9 +184,9 @@
                     <p style="color: rgba(255,255,255,0.7); margin-bottom: 2rem; max-width: 500px; margin-inline: auto;">Enter your email and phone number to instantly receive <strong>The Spokane Executive's Guide to Losing 10lbs</strong> based on your answers.</p>
                     
                     <form class="lead-magnet-form" id="quiz-form">
-                        <input type="email" id="quiz-email" class="lead-input" placeholder="Enter your best email address" required style="margin-bottom: 1rem;" />
+                        <input type="email" id="quiz-email" class="lead-input" placeholder="Enter your best email address" required />
                         <input type="tel" id="quiz-phone" class="lead-input" placeholder="Enter your best phone number" required />
-                        <button type="submit" class="btn btn-primary lead-btn" style="margin-top: 1rem;">Reveal My Results & Get Guide</button>
+                        <button type="submit" class="btn btn-primary lead-btn">Reveal My Results & Get Guide</button>
                     </form>
                     <button class="btn btn-secondary quiz-back-btn" data-prev="quiz-step-11" style="margin-top: 1.5rem; width: 100%; opacity: 0.7;">Back</button>
                 </div>

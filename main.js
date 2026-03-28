@@ -231,16 +231,32 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             const currentStep = btn.closest('.quiz-step');
-            const input = currentStep.querySelector('.lead-input');
+            const inputs = currentStep.querySelectorAll('.lead-input');
             
-            if (input && input.value.trim() !== '') {
-                const questionText = input.getAttribute('data-question');
-                if (questionText) {
-                    userAnswers[questionText] = input.value.trim();
-                    if (questionText === "What's your first name?") {
-                        userAnswers['first_name'] = input.value.trim();
-                    }
+            let allValid = true;
+            inputs.forEach(input => {
+                if (input.value.trim() === '') {
+                    allValid = false;
+                    input.style.border = '1px solid var(--color-red)';
+                    setTimeout(() => {
+                        input.style.border = '';
+                    }, 2000);
                 }
+            });
+            
+            if (allValid && inputs.length > 0) {
+                inputs.forEach(input => {
+                    const questionText = input.getAttribute('data-question');
+                    if (questionText) {
+                        userAnswers[questionText] = input.value.trim();
+                        if (questionText === "What's your first name?") {
+                            userAnswers['first_name'] = input.value.trim();
+                        }
+                        if (questionText === "What's your last name?") {
+                            userAnswers['last_name'] = input.value.trim();
+                        }
+                    }
+                });
                 
                 const nextStepId = btn.getAttribute('data-next');
                 const nextStep = document.getElementById(nextStepId);
@@ -249,11 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     currentStep.style.display = 'none';
                     nextStep.style.display = 'block';
                 }
-            } else if (input) {
-                input.style.border = '1px solid var(--color-red)';
-                setTimeout(() => {
-                    input.style.border = '';
-                }, 2000);
             }
         });
     });
