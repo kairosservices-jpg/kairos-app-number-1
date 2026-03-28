@@ -17,8 +17,8 @@
         style="position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1.5rem 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05);">
         <div class="container" style="display: flex; justify-content: flex-end; align-items: center;">
             <div style="display: flex; gap: var(--space-md); align-items: center;">
-                <a href="#programs"
-                    style="color: var(--color-white); text-decoration: none; font-family: var(--font-primary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Programs</a>
+                <a href="https://kairosmealpreps.bottle.com" target="_blank"
+                    style="color: var(--color-white); text-decoration: none; font-family: var(--font-primary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Order Weekly Meals</a>
                 <a href="#ruck-club"
                     style="color: var(--color-white); text-decoration: none; font-family: var(--font-primary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Ruck Club</a>
                 <img src="/kairos_logo.png" class="logo-nav" alt="Kairos Logo" style="height: 40px; margin-left: 1rem;" />
@@ -32,11 +32,11 @@
             class="hero-video-bg" alt="Spokane executive running" />
         <div class="hero-overlay"></div>
         <div class="container hero-content" data-reveal>
-            <h1 class="hero-title">Drop 20+ lbs Without Living in the Gym</h1>
-            <p class="hero-subtitle">The fitness and nutrition system built specifically for Spokane professionals working 50+ hours a week. Get results with just three 30-minute workouts a week and meals that take minutes.</p>
+            <h1 class="hero-title">Too Busy to Track Food?</h1>
+            <p class="hero-subtitle">The done-for-you fitness and nutrition system built specifically for Spokane professionals working 50+ hours a week</p>
             <div class="hero-btns">
-                <a href="#build" class="btn btn-primary" id="btn-hero-build">Apply for Coaching</a>
-                <a href="#menu" class="btn btn-secondary" id="btn-hero-menu">See How It Works</a>
+                <a href="apply.html" class="btn btn-primary" id="btn-hero-build">Apply for Coaching</a>
+                <a href="https://kairosmealpreps.bottle.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" id="btn-hero-menu">Order Weekly Meals</a>
             </div>
         </div>
     </header>
@@ -55,233 +55,138 @@
         </div>
     </section>
 
-    <!-- Lead Magnet Section -->
-    <section class="section-padding" id="lead-magnet" style="background-color: var(--color-black);">
-        <div class="container lead-magnet-container" data-reveal>
-            <div class="lead-magnet-content quiz-container" id="lead-quiz">
 
-                <!-- Step 1 -->
-                <div class="quiz-step active" id="quiz-step-1">
-                    <span class="font-heading" style="font-size: 0.8rem; letter-spacing: 0.2em; color: var(--color-red); display: block; margin-bottom: 0.5rem;">Free Audit</span>
-                    <h2 class="font-heading" style="font-size: 2.5rem; margin-bottom: 1rem;">Find Out Exactly Why You Aren't Losing Weight</h2>
-                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 2rem; max-width: 500px; margin-inline: auto;">Take this 60-second audit to uncover the #1 reason Spokane professionals fail to drop pounds.</p>
-                    
-                    <h3 class="font-heading" style="font-size: 1.5rem; margin-bottom: 1.5rem;">1. Which of these statements do you most closely relate to:</h3>
-                    <div class="quiz-options">
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-2">I'm new to fitness</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-2">I used to work out and am trying to get back into it</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-2">I currently workout</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-2">I am a fitness enthusiast</button>
-                    </div>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="quiz-step" id="quiz-step-2" style="display: none;">
-                    <span class="font-heading" style="font-size: 0.8rem; letter-spacing: 0.2em; color: var(--color-red); display: block; margin-bottom: 0.5rem;">Step 2 of 12</span>
-                    <h3 class="font-heading" style="font-size: 1.5rem; margin-bottom: 1.5rem;">2. How long has it been since you were in great shape?</h3>
-                    <div class="quiz-options">
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-3">0-12 months</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-3">1-3 years</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-3">More than 3 years</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-3">I've never been in great shape</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-3">I'm in good shape now but want to improve</button>
-                    </div>
-                    <button class="btn btn-secondary quiz-back-btn" data-prev="quiz-step-1" style="margin-top: 1.5rem; width: 100%; opacity: 0.7;">Back</button>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="quiz-step" id="quiz-step-3" style="display: none;">
-                    <span class="font-heading" style="font-size: 0.8rem; letter-spacing: 0.2em; color: var(--color-red); display: block; margin-bottom: 0.5rem;">Step 3 of 12</span>
-                    <h3 class="font-heading" style="font-size: 1.5rem; margin-bottom: 1.5rem;">3. Has an injury or physical limitation prevented you from being able to exercise?</h3>
-                    <div class="quiz-options">
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-4">Yes</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-4">No</button>
-                    </div>
-                    <button class="btn btn-secondary quiz-back-btn" data-prev="quiz-step-2" style="margin-top: 1.5rem; width: 100%; opacity: 0.7;">Back</button>
-                </div>
-
-                <!-- Step 4 (Multi-select) -->
-                <div class="quiz-step" id="quiz-step-4" style="display: none;">
-                    <span class="font-heading" style="font-size: 0.8rem; letter-spacing: 0.2em; color: var(--color-red); display: block; margin-bottom: 0.5rem;">Step 4 of 12</span>
-                    <h3 class="font-heading" style="font-size: 1.5rem; margin-bottom: 1.5rem;">4. What is your biggest time constraint? <span style="font-size: 1rem; opacity: 0.7;font-family: var(--font-body);">(Select multiple)</span></h3>
-                    <div class="quiz-options">
-                        <button class="btn btn-secondary quiz-btn multi-select">Long work hours</button>
-                        <button class="btn btn-secondary quiz-btn multi-select">Family responsibilities</button>
-                        <button class="btn btn-secondary quiz-btn multi-select">Travel</button>
-                        <button class="btn btn-secondary quiz-btn multi-select">Lack of routine</button>
-                        <button class="btn btn-secondary quiz-btn multi-select exclusive">All of the above</button>
-                    </div>
-                    <div class="quiz-step-actions" style="margin-top: 1.5rem; display: flex; gap: 1rem; width: 100%;">
-                        <button class="btn btn-secondary quiz-back-btn" data-prev="quiz-step-3" style="flex: 1; opacity: 0.7;">Back</button>
-                        <button class="btn btn-primary next-step-btn" data-next="quiz-step-5" style="flex: 2; display: none;">Next</button>
-                    </div>
-                </div>
-
-                <!-- Step 5 -->
-                <div class="quiz-step" id="quiz-step-5" style="display: none;">
-                    <span class="font-heading" style="font-size: 0.8rem; letter-spacing: 0.2em; color: var(--color-red); display: block; margin-bottom: 0.5rem;">Step 5 of 12</span>
-                    <h3 class="font-heading" style="font-size: 1.5rem; margin-bottom: 1.5rem;">5. How many hours a week do you typically work?</h3>
-                    <div class="quiz-options">
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-6">40 - 50 Hours</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-6">50 - 60 Hours</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-6">60+ Hours (Redline)</button>
-                    </div>
-                    <button class="btn btn-secondary quiz-back-btn" data-prev="quiz-step-4" style="margin-top: 1.5rem; width: 100%; opacity: 0.7;">Back</button>
-                </div>
-
-                <!-- Step 6 -->
-                <div class="quiz-step" id="quiz-step-6" style="display: none;">
-                    <span class="font-heading" style="font-size: 0.8rem; letter-spacing: 0.2em; color: var(--color-red); display: block; margin-bottom: 0.5rem;">Step 6 of 12</span>
-                    <h3 class="font-heading" style="font-size: 1.5rem; margin-bottom: 1.5rem;">6. What's your biggest hurdle to losing weight?</h3>
-                    <div class="quiz-options">
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-7">No time for the gym</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-7">Eating out / Fast food relying</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-7">High stress & poor sleep</button>
-                    </div>
-                    <button class="btn btn-secondary quiz-back-btn" data-prev="quiz-step-5" style="margin-top: 1.5rem; width: 100%; opacity: 0.7;">Back</button>
-                </div>
-
-                <!-- Step 7 (Multi-select) -->
-                <div class="quiz-step" id="quiz-step-7" style="display: none;">
-                    <span class="font-heading" style="font-size: 0.8rem; letter-spacing: 0.2em; color: var(--color-red); display: block; margin-bottom: 0.5rem;">Step 7 of 12</span>
-                    <h3 class="font-heading" style="font-size: 1.5rem; margin-bottom: 1.5rem;">7. Do you have any dietary restrictions? <span style="font-size: 1rem; opacity: 0.7;font-family: var(--font-body);">(Select multiple)</span></h3>
-                    <div class="quiz-options">
-                        <button class="btn btn-secondary quiz-btn multi-select">Vegetarian</button>
-                        <button class="btn btn-secondary quiz-btn multi-select">Gluten-Free</button>
-                        <button class="btn btn-secondary quiz-btn multi-select">Dairy-Free</button>
-                        <button class="btn btn-secondary quiz-btn multi-select">Other</button>
-                        <button class="btn btn-secondary quiz-btn multi-select exclusive">None</button>
-                    </div>
-                    <div class="quiz-step-actions" style="margin-top: 1.5rem; display: flex; gap: 1rem; width: 100%;">
-                        <button class="btn btn-secondary quiz-back-btn" data-prev="quiz-step-6" style="flex: 1; opacity: 0.7;">Back</button>
-                        <button class="btn btn-primary next-step-btn" data-next="quiz-step-8" style="flex: 2; display: none;">Next</button>
-                    </div>
-                </div>
-
-                <!-- Step 8 (Multi-select) -->
-                <div class="quiz-step" id="quiz-step-8" style="display: none;">
-                    <span class="font-heading" style="font-size: 0.8rem; letter-spacing: 0.2em; color: var(--color-red); display: block; margin-bottom: 0.5rem;">Step 8 of 12</span>
-                    <h3 class="font-heading" style="font-size: 1.5rem; margin-bottom: 1.5rem;">8. What is your biggest challenge with nutrition? <span style="font-size: 1rem; opacity: 0.7;font-family: var(--font-body);">(Select multiple)</span></h3>
-                    <div class="quiz-options">
-                        <button class="btn btn-secondary quiz-btn multi-select">Sticking with a plan consistently</button>
-                        <button class="btn btn-secondary quiz-btn multi-select">Stress eating</button>
-                        <button class="btn btn-secondary quiz-btn multi-select">I don't know what to eat for my goals</button>
-                        <button class="btn btn-secondary quiz-btn multi-select">Meal planning and prepping</button>
-                        <button class="btn btn-secondary quiz-btn multi-select exclusive">None of the above</button>
-                    </div>
-                    <div class="quiz-step-actions" style="margin-top: 1.5rem; display: flex; gap: 1rem; width: 100%;">
-                        <button class="btn btn-secondary quiz-back-btn" data-prev="quiz-step-7" style="flex: 1; opacity: 0.7;">Back</button>
-                        <button class="btn btn-primary next-step-btn" data-next="quiz-step-9" style="flex: 2; display: none;">Next</button>
-                    </div>
-                </div>
-
-                <!-- Step 9 (Multi-select) -->
-                <div class="quiz-step" id="quiz-step-9" style="display: none;">
-                    <span class="font-heading" style="font-size: 0.8rem; letter-spacing: 0.2em; color: var(--color-red); display: block; margin-bottom: 0.5rem;">Step 9 of 12</span>
-                    <h3 class="font-heading" style="font-size: 1.5rem; margin-bottom: 1.5rem;">9. What else does success look like? <span style="font-size: 1rem; opacity: 0.7;font-family: var(--font-body);">(Select multiple)</span></h3>
-                    <div class="quiz-options">
-                        <button class="btn btn-secondary quiz-btn multi-select">Feel ready for an upcoming event (5k race, wedding, vacation, etc.)</button>
-                        <button class="btn btn-secondary quiz-btn multi-select">Build self-confidence</button>
-                        <button class="btn btn-secondary quiz-btn multi-select">Make exercise a habit</button>
-                        <button class="btn btn-secondary quiz-btn multi-select">Fit into old clothes</button>
-                        <button class="btn btn-secondary quiz-btn multi-select">Feel strong and capable in my day-to-day life</button>
-                        <button class="btn btn-secondary quiz-btn multi-select">Improve sleep</button>
-                        <button class="btn btn-secondary quiz-btn multi-select">Make eating healthy a habit</button>
-                        <button class="btn btn-secondary quiz-btn multi-select">Manage my stress better</button>
-                        <button class="btn btn-secondary quiz-btn multi-select exclusive">None of these</button>
-                    </div>
-                    <div class="quiz-step-actions" style="margin-top: 1.5rem; display: flex; gap: 1rem; width: 100%;">
-                        <button class="btn btn-secondary quiz-back-btn" data-prev="quiz-step-8" style="flex: 1; opacity: 0.7;">Back</button>
-                        <button class="btn btn-primary next-step-btn" data-next="quiz-step-10" style="flex: 2; display: none;">Next</button>
-                    </div>
-                </div>
-
-                <!-- Step 10 -->
-                <div class="quiz-step" id="quiz-step-10" style="display: none;">
-                    <span class="font-heading" style="font-size: 0.8rem; letter-spacing: 0.2em; color: var(--color-red); display: block; margin-bottom: 0.5rem;">Step 10 of 12</span>
-                    <h3 class="font-heading" style="font-size: 1.5rem; margin-bottom: 1.5rem;">10. How much weight do you want to lose?</h3>
-                    <div class="quiz-options">
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-11">5 - 10 lbs</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-11">10 - 20 lbs</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-11">20+ lbs (Total Transformation)</button>
-                    </div>
-                    <button class="btn btn-secondary quiz-back-btn" data-prev="quiz-step-9" style="margin-top: 1.5rem; width: 100%; opacity: 0.7;">Back</button>
-                </div>
-
-                <!-- Step 11 -->
-                <div class="quiz-step" id="quiz-step-11" style="display: none;">
-                    <span class="font-heading" style="font-size: 0.8rem; letter-spacing: 0.2em; color: var(--color-red); display: block; margin-bottom: 0.5rem;">Step 11 of 12</span>
-                    <h3 class="font-heading" style="font-size: 1.5rem; margin-bottom: 1.5rem;">11. If you had a system that handled your workouts, meals, and accountability… would you want help implementing it?</h3>
-                    <div class="quiz-options">
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-12">Yes, I want guidance</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-12">Maybe, depends on cost</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-12">No, I prefer to do it myself</button>
-                    </div>
-                    <button class="btn btn-secondary quiz-back-btn" data-prev="quiz-step-10" style="margin-top: 1.5rem; width: 100%; opacity: 0.7;">Back</button>
-                </div>
-
-                <!-- Step 12 -->
-                <div class="quiz-step" id="quiz-step-12" style="display: none;">
-                    <span class="font-heading" style="font-size: 0.8rem; letter-spacing: 0.2em; color: var(--color-red); display: block; margin-bottom: 0.5rem;">Step 12 of 12</span>
-                    <h3 class="font-heading" style="font-size: 1.5rem; margin-bottom: 1.5rem;">12. What would stop you from starting right now?</h3>
-                    <div class="quiz-options">
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-email">Cost</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-email">Time</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-email">Not sure if it will work</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-email">Need more information</button>
-                        <button class="btn btn-secondary quiz-btn" data-next="quiz-step-email">Nothing</button>
-                    </div>
-                    <button class="btn btn-secondary quiz-back-btn" data-prev="quiz-step-11" style="margin-top: 1.5rem; width: 100%; opacity: 0.7;">Back</button>
-                </div>
-
-                <!-- Step 13 (Email) -->
-                <div class="quiz-step" id="quiz-step-email" style="display: none;">
-                    <span class="font-heading" style="font-size: 0.8rem; letter-spacing: 0.2em; color: var(--color-red); display: block; margin-bottom: 0.5rem;">Results Ready</span>
-                    <h2 class="font-heading" style="font-size: 2.2rem; margin-bottom: 1rem;">Your Customized Plan Requires Our 30-Min Fast-Track Method.</h2>
-                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 2rem; max-width: 500px; margin-inline: auto;">Enter your email to instantly receive <strong>The Spokane Executive's Guide to Losing 10lbs</strong> based on your answers.</p>
-                    
-                    <form class="lead-magnet-form" id="quiz-form">
-                        <input type="email" class="lead-input" placeholder="Enter your best email address" required />
-                        <button type="submit" class="btn btn-primary lead-btn">Reveal My Results & Get Guide</button>
-                    </form>
-                    <button class="btn btn-secondary quiz-back-btn" data-prev="quiz-step-12" style="margin-top: 1.5rem; width: 100%; opacity: 0.7;">Back</button>
-                </div>
-                
-                <!-- Step 14 (Success) -->
-                <div class="quiz-step" id="quiz-step-success" style="display: none;">
-                    <div style="font-size: 4rem; margin-bottom: 1rem;">🎯</div>
-                    <h2 class="font-heading" style="font-size: 2.5rem; margin-bottom: 1rem;">Guide Sent!</h2>
-                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 2rem; max-width: 500px; margin-inline: auto;">Check your inbox (and spam folder) in the next 5 minutes. While you wait, let's look at doing this the easy way.</p>
-                    <a href="#build" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Book A Free Strategy Call</a>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- System Section -->
     <section class="section-padding">
         <div class="container">
-            <h2 class="font-heading" style="text-align: center; margin-bottom: var(--space-xl);" data-reveal>The System
+            <h2 class="font-heading" style="text-align: center; margin-bottom: var(--space-xl); font-size: clamp(3rem, 8vw, 6rem);" data-reveal>The System
             </h2>
             <div class="steps-grid">
                 <div class="step-item" data-reveal>
                     <span class="step-number">01</span>
                     <h3 class="font-heading">Fast Action Fitness</h3>
-                    <p style="color: rgba(255,255,255,0.6);">Custom 30-minute workouts you can do at home or a local gym. Zero wasted time.</p>
+                    <p style="color: rgba(255,255,255,0.6);">Custom workouts that fit your schedule.</p>
                 </div>
                 <div class="step-item" data-reveal>
                     <span class="step-number">02</span>
                     <h3 class="font-heading">Frictionless Nutrition</h3>
-                    <p style="color: rgba(255,255,255,0.6);">Quick-prep recipes designed for busy weeks. Optional: Done-for-you Spokane meal delivery.</p>
+                    <p style="color: rgba(255,255,255,0.6);">Done-for-you meals prepared for your goals</p>
                 </div>
                 <div class="step-item" data-reveal>
                     <span class="step-number">03</span>
                     <h3 class="font-heading">Executive Accountability</h3>
-                    <p style="color: rgba(255,255,255,0.6);">1-on-1 daily check-ins so you never fall off the wagon, even during your busiest quarters.</p>
+                    <p style="color: rgba(255,255,255,0.6);">1-on-1 check-ins and adjustments </p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <section class="section-padding testimonials-section">
+        <div class="container" style="text-align: center; margin-bottom: var(--space-xl);">
+            <h2 class="font-heading" style="font-size: clamp(3rem, 8vw, 6rem);" data-reveal>Real Results</h2>
+            <p style="color: rgba(255,255,255,0.6);" data-reveal>See what other Spokane professionals are saying.</p>
+        </div>
+        
+        <div class="marquee-container" data-reveal>
+            <div class="marquee-track">
+                <!-- Review 1 -->
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Lost 15lbs and I don't even have to think about what to eat. The meals save me 5 hours a week."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">JS</div>
+                        <div>
+                            <p class="reviewer-name">James S.</p>
+                            <p class="reviewer-title">Attorney</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 2 -->
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"The accountability check-ins push me when I would normally quit. 30min workouts fit right after dropping the kids off."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">MK</div>
+                        <div>
+                            <p class="reviewer-name">Mike K.</p>
+                            <p class="reviewer-title">Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 3 -->
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Finally a system for someone who works 60 hours a week. Simple, brutal, and effective."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">DR</div>
+                        <div>
+                            <p class="reviewer-name">David R.</p>
+                            <p class="reviewer-title">CEO</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 4 -->
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"I didn't think I had time to get in shape. Kairos proved me wrong. Best investment I've made in myself."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">AL</div>
+                        <div>
+                            <p class="reviewer-name">Amanda L.</p>
+                            <p class="reviewer-title">Executive Director</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Clones for infinite loop -->
+                <div class="review-card" aria-hidden="true">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Lost 15lbs and I don't even have to think about what to eat. The meals save me 5 hours a week."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">JS</div>
+                        <div>
+                            <p class="reviewer-name">James S.</p>
+                            <p class="reviewer-title">Attorney</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card" aria-hidden="true">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"The accountability check-ins push me when I would normally quit. 30min workouts fit right after dropping the kids off."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">MK</div>
+                        <div>
+                            <p class="reviewer-name">Mike K.</p>
+                            <p class="reviewer-title">Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card" aria-hidden="true">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Finally a system for someone who works 60 hours a week. Simple, brutal, and effective."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">DR</div>
+                        <div>
+                            <p class="reviewer-name">David R.</p>
+                            <p class="reviewer-title">CEO</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card" aria-hidden="true">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"I didn't think I had time to get in shape. Kairos proved me wrong. Best investment I've made in myself."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">AL</div>
+                        <div>
+                            <p class="reviewer-name">Amanda L.</p>
+                            <p class="reviewer-title">Executive Director</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Community Section -->
     <section class="section-padding" id="ruck-club">

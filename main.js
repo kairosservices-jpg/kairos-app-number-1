@@ -59,21 +59,79 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Chatbox Send (mock)
+  // Chatbox Send with OpenAI Integration
   const chatInput = document.querySelector('.chat-input');
   const chatSend = document.querySelector('.chat-send');
   const chatMessages = document.querySelector('.chat-messages');
 
   if (chatSend && chatInput && chatMessages) {
-    const sendMessage = () => {
+    let conversationHistory = [
+      { role: "system", content: "You are the Kairos Nutrition Advisor. You help high-performing Spokane professionals (working 50+ hours a week) achieve their fitness and nutrition goals with minimal time commitment. Be concise, motivating, and professional." }
+    ];
+
+    const sendMessage = async () => {
       const text = chatInput.value.trim();
-      if (text) {
-        const msg = document.createElement('div');
-        msg.className = 'chat-message message-user';
-        msg.textContent = text;
-        chatMessages.appendChild(msg);
-        chatInput.value = '';
+      if (!text) return;
+
+      // Add user message to DOM
+      const userMsg = document.createElement('div');
+      userMsg.className = 'chat-message message-user';
+      userMsg.textContent = text;
+      chatMessages.appendChild(userMsg);
+      chatInput.value = '';
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // Add to conversation history
+      conversationHistory.push({ role: "user", content: text });
+
+      // Add a loading message to DOM
+      const loadingMsg = document.createElement('div');
+      loadingMsg.className = 'chat-message message-bot';
+      loadingMsg.textContent = 'Thinking...';
+      chatMessages.appendChild(loadingMsg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+      if (!apiKey) {
+        loadingMsg.textContent = 'Error: Missing VITE_OPENAI_API_KEY environment variable.';
+        return;
+      }
+
+      try {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`
+          },
+          body: JSON.stringify({
+            model: "gpt-4o-mini", // Very fast, cheap model
+            messages: conversationHistory
+          })
+        });
+
+        const data = await response.json();
+
+        if (data.error) {
+          loadingMsg.textContent = `Error: ${data.error.message}`;
+          // Remove from history so retries work cleanly
+          conversationHistory.pop(); 
+          return;
+        }
+
+        const botReply = data.choices[0].message.content;
+        
+        // Update DOM with actual reply
+        loadingMsg.textContent = botReply;
+        
+        // Store in conversation history
+        conversationHistory.push({ role: "assistant", content: botReply });
         chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      } catch (err) {
+        console.error("Chat API Error:", err);
+        loadingMsg.textContent = "Sorry, I'm having trouble connecting right now.";
+        conversationHistory.pop();
       }
     };
 
@@ -130,6 +188,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Single Select Option Handling
         if (questionText) {
             userAnswers[questionText] = answerText;
+            const scoreAttr = btn.getAttribute('data-score');
+            if (scoreAttr !== null) {
+                userAnswers['score_' + questionText] = parseInt(scoreAttr, 10);
+            }
         }
         
         const nextStepId = btn.getAttribute('data-next');
@@ -164,6 +226,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    const textNextBtns = quizContainer.querySelectorAll('.text-next-btn');
+    textNextBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const currentStep = btn.closest('.quiz-step');
+            const input = currentStep.querySelector('.lead-input');
+            
+            if (input && input.value.trim() !== '') {
+                const questionText = input.getAttribute('data-question');
+                if (questionText) {
+                    userAnswers[questionText] = input.value.trim();
+                    if (questionText === "What's your first name?") {
+                        userAnswers['first_name'] = input.value.trim();
+                    }
+                }
+                
+                const nextStepId = btn.getAttribute('data-next');
+                const nextStep = document.getElementById(nextStepId);
+                
+                if (currentStep && nextStep) {
+                    currentStep.style.display = 'none';
+                    nextStep.style.display = 'block';
+                }
+            } else if (input) {
+                input.style.border = '1px solid var(--color-red)';
+                setTimeout(() => {
+                    input.style.border = '';
+                }, 2000);
+            }
+        });
+    });
+
     const backBtns = quizContainer.querySelectorAll('.quiz-back-btn');
     backBtns.forEach(backBtn => {
         backBtn.addEventListener('click', (e) => {
@@ -182,13 +276,79 @@ document.addEventListener('DOMContentLoaded', () => {
     if (quizForm) {
       quizForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const emailInput = quizForm.querySelector('input[type="email"]');
-        const email = emailInput.value;
+        const emailInput = document.getElementById('quiz-email');
+        const phoneInput = document.getElementById('quiz-phone');
+        
+        const email = emailInput ? emailInput.value.trim() : '';
+        const phone = phoneInput ? phoneInput.value.trim() : '';
         
         userAnswers['email'] = email;
+        userAnswers['phone_number'] = phone;
         
-        // TODO: Send exact data to Klaviyo/n8n/Supabase right here.
+        let totalScore = 0;
+        let hasScore = false;
+        for (const key in userAnswers) {
+            if (key.startsWith('score_')) {
+                totalScore += userAnswers[key];
+                hasScore = true;
+            }
+        }
+        if (hasScore) {
+            userAnswers['totalScore'] = totalScore;
+        }
+        
         console.log('Quiz completed. Data captured:', userAnswers);
+        
+        // Send data to Klaviyo
+        const klaviyoPublicKey = import.meta.env.VITE_KLAVIYO_PUBLIC_KEY;
+        if (klaviyoPublicKey && klaviyoPublicKey !== 'YOUR_KLAVIYO_PUBLIC_KEY_HERE') {
+            const klaviyoData = {
+                data: {
+                    type: 'event',
+                    attributes: {
+                        properties: userAnswers,
+                        metric: {
+                            data: {
+                                type: 'metric',
+                                attributes: { name: 'Completed Quiz' }
+                            }
+                        },
+                        profile: {
+                            data: {
+                                type: 'profile',
+                                attributes: {
+                                    email: email,
+                                    phone_number: phone,
+                                    first_name: userAnswers['first_name'] || '',
+                                    properties: userAnswers
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            fetch(`https://a.klaviyo.com/client/events/?company_id=${klaviyoPublicKey}`, {
+                method: 'POST',
+                headers: {
+                    accept: 'application/json',
+                    revision: '2024-02-15',
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(klaviyoData)
+            })
+            .then(async res => {
+                if (!res.ok) {
+                    const errorText = await res.text();
+                    console.error('Klaviyo API Error:', errorText);
+                } else {
+                    console.log('Successfully sent to Klaviyo');
+                }
+            })
+            .catch(err => console.error('Error sending to Klaviyo:', err));
+        } else {
+            console.warn('VITE_KLAVIYO_PUBLIC_KEY is not set or is still the placeholder. Skipping Klaviyo integration.');
+        }
         
         const currentStep = quizForm.closest('.quiz-step');
         const nextStep = document.getElementById('quiz-step-success');
