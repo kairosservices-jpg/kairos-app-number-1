@@ -269,8 +269,8 @@ h4,
   transform: translate(-50%, -50%);
   object-fit: cover;
   z-index: -1;
-  opacity: 0.5;
-  filter: none;
+  opacity: 0.15;
+  filter: grayscale(1);
 }
 
 .hero-overlay {
@@ -497,9 +497,8 @@ h4,
 }
 
 .review-card {
-  background: #121212;
-  color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--color-surface);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 12px;
   padding: var(--space-xl);
   width: 380px;
@@ -525,7 +524,7 @@ h4,
 
 .review-text {
   font-style: italic;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(0, 0, 0, 0.85);
   flex-grow: 1;
   line-height: 1.6;
   font-size: 1.05rem;
@@ -536,7 +535,7 @@ h4,
   align-items: center;
   gap: var(--space-md);
   margin-top: var(--space-sm);
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(0,0,0,0.1);
   padding-top: var(--space-md);
 }
 
@@ -660,6 +659,6 @@ h4,
     content: "✓";
 }
 /* Invert logos for light theme */
-.logo-hero {
+.logo-nav, .logo-hero, .logo-footer {
   filter: brightness(0);
 }
