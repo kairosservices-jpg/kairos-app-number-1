@@ -360,6 +360,23 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             console.warn('VITE_KLAVIYO_PUBLIC_KEY is not set or is still the placeholder. Skipping Klaviyo integration.');
         }
+
+        const makeWebhookUrl = import.meta.env.VITE_MAKE_WEBHOOK_URL;
+        if (makeWebhookUrl) {
+            fetch(makeWebhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userAnswers)
+            }).then(res => {
+                if (res.ok) {
+                    console.log('Successfully sent to Make webhook');
+                } else {
+                    console.error('Make webhook returned an error status');
+                }
+            }).catch(err => console.error('Error sending to Make webhook:', err));
+        }
         
         const currentStep = quizForm.closest('.quiz-step');
         const nextStep = document.getElementById('quiz-step-success');
