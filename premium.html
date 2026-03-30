@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kairos | Premium Program</title>
+    <meta name="description"
+        content="You qualify for our Elite 12-Week Done-For-You Fat Loss Program." />
+    <link rel="stylesheet" href="./style.css" />
+    <!-- Ensure responsive scaling on mobile without awkward zooming -->
+    <style>
+        .result-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: calc(var(--space-2xl) * 2) var(--space-md);
+            text-align: center;
+            background: radial-gradient(circle at 50% 30%, rgba(220, 38, 38, 0.1) 0%, var(--color-black) 60%);
+        }
+        .result-badge {
+            display: inline-block;
+            background: rgba(220, 38, 38, 0.2);
+            color: var(--color-red);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-md);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sticky Navigation -->
+    <nav
+        style="position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1.5rem 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="container" style="display: flex; justify-content: flex-end; align-items: center;">
+            <div style="display: flex; gap: var(--space-md); align-items: center;">
+                <a href="https://kairosmealpreps.bottle.com" target="_blank"
+                    style="color: var(--color-white); text-decoration: none; font-family: var(--font-primary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Order Weekly Meals</a>
+                <a href="/index.html"
+                    style="color: var(--color-white); text-decoration: none; font-family: var(--font-primary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Home</a>
+                <a href="/index.html"><img src="/kairos_logo.png" class="logo-nav" alt="Kairos Logo" style="height: 40px; margin-left: 1rem;" /></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Result Content -->
+    <main class="result-section">
+        <div class="container" style="max-width: 800px;">
+            <div class="result-badge">Perfect Match</div>
+            <h1 class="font-heading" style="font-size: clamp(3rem, 6vw, 5rem); line-height: 1.1; margin-bottom: var(--space-md);">
+                Ready to take your weekends back?
+            </h1>
+            <p style="font-size: 1.25rem; color: rgba(255,255,255,0.8); margin-bottom: var(--space-xl); max-width: 600px; margin-inline: auto;">
+                As a high-performing professional in Spokane, you qualify for our <strong>12-Week Done-For-You Fat Loss Program</strong>. 
+                Our team will handle your custom workouts, nutrition tracking, and weekly prepared meals so you can focus on leading your business.
+            </p>
+            
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: var(--space-xl); margin-bottom: var(--space-xl);">
+                <h3 class="font-heading" style="margin-bottom: var(--space-md); color: var(--color-red);">Book Your Strategy Call</h3>
+                <p style="color: rgba(255,255,255,0.6); margin-bottom: var(--space-lg); font-size: 0.95rem;">
+                    Schedule a 15-minute quick alignment call below to see if the logistics make sense.
+                </p>
+                <!-- Calendly Inline Widget (Placeholder) -->
+                <div class="placeholder-calendly" style="padding: var(--space-2xl) 0; border: 1px dashed rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); border-radius: 4px; margin-bottom: var(--space-md);">
+                    <p style="color: rgba(255,255,255,0.4); font-size: 0.875rem;">[ Calendly Embed Will Go Here ]</p>
+                </div>
+                <!-- Remove this button once calendly is embedded -->
+                <a href="#" class="btn btn-primary" style="width: 100%; display: block;">Book Call via Calendly</a>
+            </div>
+
+            <p style="font-size: 0.875rem; color: rgba(255,255,255,0.4);">
+                We sent a confirmation copy to the email you provided in the quiz.
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="section-padding" style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding: var(--space-xl) 0;">
+        <div class="container">
+            <img src="/kairos_logo.png" class="logo-footer" style="height: 48px; opacity: 0.5; margin-bottom: var(--space-md);" alt="Kairos Logo Small" />
+            <p style="opacity: 0.3; font-size: 0.8rem;">© 2026 KAIROS NUTRITION. SPOKANE / CDA.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="/main.js"></script>
+</body>
+</html>

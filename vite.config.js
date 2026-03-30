@@ -6,7 +6,11 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        apply: resolve(__dirname, 'apply.html')
+        apply: resolve(__dirname, 'apply.html'),
+        premium: resolve(__dirname, 'premium.html'),
+        standard: resolve(__dirname, 'standard.html'),
+        outOfRange: resolve(__dirname, 'out-of-range.html'),
+        notQualified: resolve(__dirname, 'not-qualified.html')
       }
     }
   }

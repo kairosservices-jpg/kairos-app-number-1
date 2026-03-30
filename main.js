@@ -362,7 +362,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const makeWebhookUrl = import.meta.env.VITE_MAKE_WEBHOOK_URL;
+        
+        // Show loading state
+        const submitBtn = quizForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn ? submitBtn.textContent : 'Get My Plan';
+        if (submitBtn) {
+            submitBtn.textContent = 'Processing...';
+            submitBtn.disabled = true;
+        }
+
         if (makeWebhookUrl) {
+            // Note: We use async/await inside an IIFE (Or just chain promises) to handle it cleanly without making the whole parent listener async and risking unhandled rejections
             fetch(makeWebhookUrl, {
                 method: 'POST',
                 headers: {
@@ -370,20 +380,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify(userAnswers)
             }).then(res => {
-                if (res.ok) {
-                    console.log('Successfully sent to Make webhook');
+                if (!res.ok) throw new Error('Make webhook returned an error status');
+                return res.json();
+            }).then(data => {
+                console.log('Successfully sent to Make webhook. Response:', data);
+                // Handle the routing directive from Make.com
+                if (data && data.route) {
+                    // Expecting 'premium', 'standard', 'out-of-range', or 'not-qualified'
+                    window.location.href = `/${data.route}.html`;
                 } else {
-                    console.error('Make webhook returned an error status');
+                    // Fallback if no route is provided
+                    console.warn('No route provided by Make, falling back to success screen.');
+                    showSuccessStep();
                 }
-            }).catch(err => console.error('Error sending to Make webhook:', err));
+            }).catch(err => {
+                console.error('Error sending to Make webhook:', err);
+                // Fallback on error
+                showSuccessStep();
+            }).finally(() => {
+                 if (submitBtn) {
+                    submitBtn.textContent = originalBtnText;
+                    submitBtn.disabled = false;
+                 }
+            });
+        } else {
+             console.warn('VITE_MAKE_WEBHOOK_URL is not set. Falling back to success screen.');
+             showSuccessStep();
+             if (submitBtn) {
+                 submitBtn.textContent = originalBtnText;
+                 submitBtn.disabled = false;
+             }
         }
         
-        const currentStep = quizForm.closest('.quiz-step');
-        const nextStep = document.getElementById('quiz-step-success');
-        
-        if (currentStep && nextStep) {
-            currentStep.style.display = 'none';
-            nextStep.style.display = 'block';
+        function showSuccessStep() {
+            const currentStep = quizForm.closest('.quiz-step');
+            const nextStep = document.getElementById('quiz-step-success');
+            
+            if (currentStep && nextStep) {
+                currentStep.style.display = 'none';
+                nextStep.style.display = 'block';
+            }
         }
       });
     }

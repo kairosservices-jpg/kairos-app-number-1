@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kairos | Standard Coaching</title>
+    <meta name="description"
+        content="You're a strong fit for our Standard Coaching Program designed for busy locals." />
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+        .result-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: calc(var(--space-2xl) * 2) var(--space-md);
+            text-align: center;
+            background: radial-gradient(circle at 50% 30%, rgba(59, 130, 246, 0.1) 0%, var(--color-black) 60%);
+        }
+        .result-badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-md);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sticky Navigation -->
+    <nav
+        style="position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1.5rem 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="container" style="display: flex; justify-content: flex-end; align-items: center;">
+            <div style="display: flex; gap: var(--space-md); align-items: center;">
+                <a href="https://kairosmealpreps.bottle.com" target="_blank"
+                    style="color: var(--color-white); text-decoration: none; font-family: var(--font-primary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Order Weekly Meals</a>
+                <a href="/index.html"
+                    style="color: var(--color-white); text-decoration: none; font-family: var(--font-primary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Home</a>
+                <a href="/index.html"><img src="/kairos_logo.png" class="logo-nav" alt="Kairos Logo" style="height: 40px; margin-left: 1rem;" /></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Result Content -->
+    <main class="result-section">
+        <div class="container" style="max-width: 800px;">
+            <div class="result-badge">Coaching Approved</div>
+            <h1 class="font-heading" style="font-size: clamp(3rem, 6vw, 5rem); line-height: 1.1; margin-bottom: var(--space-md);">
+                Ready to take your weekends back?
+            </h1>
+            <p style="font-size: 1.25rem; color: rgba(255,255,255,0.8); margin-bottom: var(--space-xl); max-width: 600px; margin-inline: auto;">
+                You're a strong fit for our <strong>Standard Coaching Program</strong>. Custom workouts, weekly meal delivery, and accountability built for busy locals.
+            </p>
+            
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: var(--space-xl); margin-bottom: var(--space-xl);">
+                <h3 class="font-heading" style="margin-bottom: var(--space-md);">Let's Get Started</h3>
+                <p style="color: rgba(255,255,255,0.6); margin-bottom: var(--space-lg); font-size: 0.95rem;">
+                    Grab 15 minutes on the calendar to map out your customized path forward.
+                </p>
+                <!-- Calendly Inline Widget (Placeholder) -->
+                <div class="placeholder-calendly" style="padding: var(--space-2xl) 0; border: 1px dashed rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); border-radius: 4px; margin-bottom: var(--space-md);">
+                    <p style="color: rgba(255,255,255,0.4); font-size: 0.875rem;">[ Calendly Embed Will Go Here ]</p>
+                </div>
+                <a href="#" class="btn btn-primary" style="width: 100%; display: block; border-color: #60a5fa; color: #60a5fa; background: transparent;">Pick a Time</a>
+            </div>
+
+            <p style="font-size: 0.875rem; color: rgba(255,255,255,0.4);">
+                Check your inbox. We've sent a quick summary of your quiz answers.
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="section-padding" style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding: var(--space-xl) 0;">
+        <div class="container">
+            <img src="/kairos_logo.png" class="logo-footer" style="height: 48px; opacity: 0.5; margin-bottom: var(--space-md);" alt="Kairos Logo Small" />
+            <p style="opacity: 0.3; font-size: 0.8rem;">© 2026 KAIROS NUTRITION. SPOKANE / CDA.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="/main.js"></script>
+</body>
+</html>

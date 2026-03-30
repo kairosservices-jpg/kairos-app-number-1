@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kairos | Your Fat Loss Plan</title>
+    <meta name="description"
+        content="Here is your Free Fat Loss Starter System to help you build momentum." />
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+        .result-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: calc(var(--space-2xl) * 2) var(--space-md);
+            text-align: center;
+            /* Using a muted green/gray tint for the free tier */
+            background: radial-gradient(circle at 50% 30%, rgba(34, 197, 94, 0.1) 0%, var(--color-black) 60%);
+        }
+        .result-badge {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-md);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sticky Navigation -->
+    <nav
+        style="position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1.5rem 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="container" style="display: flex; justify-content: flex-end; align-items: center;">
+            <div style="display: flex; gap: var(--space-md); align-items: center;">
+                <a href="https://kairosmealpreps.bottle.com" target="_blank"
+                    style="color: var(--color-white); text-decoration: none; font-family: var(--font-primary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Order Weekly Meals</a>
+                <a href="/index.html"
+                    style="color: var(--color-white); text-decoration: none; font-family: var(--font-primary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Home</a>
+                <a href="/index.html"><img src="/kairos_logo.png" class="logo-nav" alt="Kairos Logo" style="height: 40px; margin-left: 1rem;" /></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Result Content -->
+    <main class="result-section">
+        <div class="container" style="max-width: 800px;">
+            <div class="result-badge">Free Resources Unlocked</div>
+            <h1 class="font-heading" style="font-size: clamp(3rem, 6vw, 5rem); line-height: 1.1; margin-bottom: var(--space-md);">
+                Here is your plan!
+            </h1>
+            <p style="font-size: 1.25rem; color: rgba(255,255,255,0.8); margin-bottom: var(--space-xl); max-width: 600px; margin-inline: auto;">
+                Based on your answers, 1-on-1 coaching might not be the exact right fit at this specific moment—but we still want to see you win. 
+            </p>
+            
+            <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-lg); max-width: 600px; margin: 0 auto; text-align: left;">
+                
+                <!-- Option 1: Free Starter System -->
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: var(--space-xl);">
+                    <h3 class="font-heading" style="margin-bottom: var(--space-sm); font-size: 1.5rem; color: #4ade80;">1. The Free Fat Loss Starter System</h3>
+                    <p style="color: rgba(255,255,255,0.6); margin-bottom: var(--space-lg); font-size: 0.95rem;">
+                        A comprehensive PDF guide covering the basics of flexible dieting, simple fast-action workouts, and habit building to get your momentum started today.
+                    </p>
+                    <a href="#" class="btn btn-secondary" style="width: 100%; border-color: #4ade80; color: #4ade80;">Download PDF Guide</a>
+                </div>
+
+                <!-- Option 2: Meal Prep Only -->
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: var(--space-xl);">
+                    <h3 class="font-heading" style="margin-bottom: var(--space-sm); font-size: 1.5rem;">2. Need Help With Food?</h3>
+                    <p style="color: rgba(255,255,255,0.6); margin-bottom: var(--space-lg); font-size: 0.95rem;">
+                        Skip the grocery store and the kitchen. Order healthy, macro-friendly meals delivered fresh to your door in Spokane and Coeur d'Alene.
+                    </p>
+                    <a href="https://kairosmealpreps.bottle.com" target="_blank" class="btn btn-secondary" style="width: 100%;">Order Weekly Meals</a>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="section-padding" style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding: var(--space-xl) 0; margin-top: var(--space-2xl);">
+        <div class="container">
+            <img src="/kairos_logo.png" class="logo-footer" style="height: 48px; opacity: 0.5; margin-bottom: var(--space-md);" alt="Kairos Logo Small" />
+            <p style="opacity: 0.3; font-size: 0.8rem;">© 2026 KAIROS NUTRITION. SPOKANE / CDA.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="/main.js"></script>
+</body>
+</html>
