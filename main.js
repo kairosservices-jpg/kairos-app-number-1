@@ -372,32 +372,46 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (makeWebhookUrl) {
-            // Note: We use async/await inside an IIFE (Or just chain promises) to handle it cleanly without making the whole parent listener async and risking unhandled rejections
             fetch(makeWebhookUrl, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(userAnswers)
-            }).then(res => {
-                if (!res.ok) throw new Error('Make webhook returned an error status');
-                return res.json();
-            }).then(data => {
+            })
+            .then(async response => {
+                if (!response.ok) {
+                    throw new Error('Make webhook returned an error status: ' + response.status);
+                }
+                // Check if the response is plain text "Accepted" which make.com returns when scenario is off or fails
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('text/plain')) {
+                    const text = await response.text();
+                    if (text === "Accepted") {
+                        throw new Error("MAKE_SCENARIO_OFF");
+                    }
+                }
+                return response.json();
+            })
+            .then(data => {
                 console.log('Successfully sent to Make webhook. Response:', data);
-                // Handle the routing directive from Make.com
+                
+                // Redirect based on the route string returned by Make
                 if (data && data.route) {
-                    // Expecting 'premium', 'standard', 'out-of-range', or 'not-qualified'
                     window.location.href = `/${data.route}.html`;
                 } else {
-                    // Fallback if no route is provided
                     console.warn('No route provided by Make, falling back to success screen.');
                     showSuccessStep();
                 }
-            }).catch(err => {
-                console.error('Error sending to Make webhook:', err);
-                // Fallback on error
-                showSuccessStep();
-            }).finally(() => {
+            })
+            .catch(error => {
+                console.error('Error sending to Make webhook:', error);
+                if (error.message === "MAKE_SCENARIO_OFF") {
+                    alert("It looks like your Make.com scenario is turned OFF or failed to start! Make.com caught the data, but didn't send a URL back. Please click 'Run once' in Make.com and try again.");
+                }
+                showSuccessStep(); // Fallback if Webhook fails
+            })
+            .finally(() => {
                  if (submitBtn) {
                     submitBtn.textContent = originalBtnText;
                     submitBtn.disabled = false;
