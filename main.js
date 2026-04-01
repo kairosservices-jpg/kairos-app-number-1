@@ -311,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Quiz completed. Data captured:', userAnswers);
         
         // Send data to Klaviyo
-        const klaviyoPublicKey = import.meta.env.VITE_KLAVIYO_PUBLIC_KEY;
+        const klaviyoPublicKey = 'QWmkMT'; // Hardcoded for production
         if (klaviyoPublicKey && klaviyoPublicKey !== 'YOUR_KLAVIYO_PUBLIC_KEY_HERE') {
             const klaviyoData = {
                 data: {
@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.warn('VITE_KLAVIYO_PUBLIC_KEY is not set or is still the placeholder. Skipping Klaviyo integration.');
         }
 
-        const makeWebhookUrl = import.meta.env.VITE_MAKE_WEBHOOK_URL;
+        const makeWebhookUrl = 'https://hook.us2.make.com/2p5li29o1by9kjksn4h0lnpgghjma3qa'; // Hardcoded for production
         
         // Show loading state
         const submitBtn = quizForm.querySelector('button[type="submit"]');
