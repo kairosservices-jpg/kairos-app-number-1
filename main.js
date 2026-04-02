@@ -427,13 +427,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         function showSuccessStep() {
-            const currentStep = quizForm.closest('.quiz-step');
-            const nextStep = document.getElementById('quiz-step-success');
-            
-            if (currentStep && nextStep) {
-                currentStep.style.display = 'none';
-                nextStep.style.display = 'block';
-            }
+            console.log("Redirecting to fallback success page...");
+            window.location.href = "/non-local.html";
         }
       });
     }
