@@ -383,15 +383,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!response.ok) {
                     throw new Error('Make webhook returned an error status: ' + response.status);
                 }
-                // Check if the response is plain text "Accepted" which make.com returns when scenario is off or fails
-                const contentType = response.headers.get('content-type');
-                if (contentType && contentType.includes('text/plain')) {
-                    const text = await response.text();
-                    if (text === "Accepted") {
-                        throw new Error("MAKE_SCENARIO_OFF");
-                    }
+                
+                const text = await response.text();
+                if (text === "Accepted") {
+                    throw new Error("MAKE_SCENARIO_OFF");
                 }
-                return response.json();
+                
+                try {
+                    return JSON.parse(text);
+                } catch (e) {
+                    console.warn("Failed to parse Make webhook response as JSON:", text);
+                    return {};
+                }
             })
             .then(data => {
                 console.log('Successfully sent to Make webhook. Response:', data);
