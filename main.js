@@ -393,7 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     return JSON.parse(text);
                 } catch (e) {
                     console.warn("Failed to parse Make webhook response as JSON:", text);
-                    return {};
+                    return { __raw: text, __error: e.message };
                 }
             })
             .then(data => {
@@ -403,6 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (data && data.route) {
                     window.location.href = `/${data.route}.html`;
                 } else {
+                    alert("DEBUG INFO: Make didn't return a route. Here is EXACTLY what the browser received:\n\n" + JSON.stringify(data, null, 2) + "\n\nPlease screenshot this popup!");
                     console.warn('No route provided by Make, falling back to success screen.');
                     showSuccessStep();
                 }
@@ -411,6 +412,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error sending to Make webhook:', error);
                 if (error.message === "MAKE_SCENARIO_OFF") {
                     alert("It looks like your Make.com scenario is turned OFF or failed to start! Make.com caught the data, but didn't send a URL back. Please click 'Run once' in Make.com and try again.");
+                } else {
+                    alert("DEBUG INFO: The browser blocked the Make.com response! This is usually a CORS error, an adblocker, or network drop.\n\nError: " + error.message + "\n\nPlease screenshot this popup!");
                 }
                 showSuccessStep(); // Fallback if Webhook fails
             })
