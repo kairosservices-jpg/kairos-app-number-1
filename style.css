@@ -257,6 +257,7 @@ h4,
   justify-content: center;
   text-align: center;
   overflow: hidden;
+  padding-top: 120px; /* Offset for larger nav logo */
 }
 
 .hero-video-bg {
