@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kairos AI | Elite Nutrition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+        /* Custom Chat UI Styles isolated for preview */
+        .chat-preview-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--color-black);
+            color: var(--color-white);
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px; /* navbar offset */
+            padding-bottom: 40px;
+        }
+        
+        .chat-preview-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .chat-preview-header h1 {
+            font-size: 1.5rem;
+            letter-spacing: 0.15em;
+            font-weight: 300;
+            text-transform: uppercase;
+            font-family: var(--font-secondary);
+        }
+
+        .chat-preview-header .underline {
+            width: 150px;
+            height: 1px;
+            background-color: var(--color-white);
+            margin: 1rem auto 0;
+            position: relative;
+        }
+
+        .chat-preview-header .underline::before,
+        .chat-preview-header .underline::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            width: 1px;
+            height: 8px;
+            background-color: var(--color-white);
+        }
+        
+        .chat-preview-header .underline::before { left: 0; }
+        .chat-preview-header .underline::after { right: 0; }
+
+        .chat-interface-container {
+            width: 100%;
+            max-width: 800px;
+            background: #0a0a0a;
+            border-radius: 12px;
+            box-shadow: 0 0 60px rgba(255, 255, 255, 0.1); /* The subtle white glow */
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            height: 60vh;
+            min-height: 500px;
+            position: relative;
+            z-index: 10;
+            margin: 0 auto;
+        }
+
+        .chat-interface-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .chat-interface-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        
+        .chat-interface-title-icon {
+            color: #8892b0; /* Subtle logo color */
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-interface-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .msg-bubble {
+            max-width: 80%;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            padding: 1rem 1.2rem;
+            border-radius: 20px;
+            font-family: var(--font-secondary);
+            position: relative;
+        }
+
+        .msg-user {
+            align-self: flex-end;
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.9);
+            border-bottom-right-radius: 4px;
+        }
+
+        .msg-ai {
+            align-self: flex-start;
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 1px solid transparent;
+            color: var(--color-white);
+            border-bottom-left-radius: 4px;
+        }
+
+        .msg-timestamp {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .chat-interface-input-area {
+            padding: 1rem 1.5rem 1.5rem;
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            padding: 0.6rem 0.8rem 0.6rem 1.2rem;
+            transition: border-color var(--transition-fast), background-color var(--transition-fast);
+        }
+
+        .chat-input-wrapper:focus-within {
+            border-color: rgba(255, 255, 255, 0.4);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .chat-interface-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--color-white);
+            padding: 0.5rem;
+            font-size: 1rem;
+            outline: none;
+            font-family: var(--font-secondary);
+        }
+
+        .chat-interface-input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chat-input-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chat-action-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color var(--transition-fast), background var(--transition-fast);
+        }
+
+        .chat-action-btn:hover {
+            color: var(--color-white);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .chat-action-btn.send {
+            color: var(--color-black);
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--color-white);
+        }
+        .chat-action-btn.send:hover {
+            background: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sticky Navigation  -->
+    <nav style="position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1.5rem 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="/" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="/assets/kairos_logo.png" class="logo-nav" alt="Kairos Logo" style="height: 40px;" />
+            </a>
+            <div class="desktop-only" style="display: flex; gap: var(--space-md); align-items: center;">
+                <a href="/#programs" class="nav-link">Programs</a>
+                <a href="/#ruck-club" class="nav-link">Ruck Club</a>
+                <a href="/#build" class="btn btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.8rem; margin-left: 1rem;">Schedule Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="chat-preview-page">
+        <div class="chat-preview-header">
+            <h1>Kairos AI</h1>
+            <div class="underline"></div>
+        </div>
+
+        <div class="container">
+            <div class="chat-interface-container">
+                <div class="chat-interface-header">
+                    <div class="chat-interface-title">
+                        <span class="chat-interface-title-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </span>
+                        KAIROS AI
+                    </div>
+                    <button class="chat-action-btn" style="padding: 0;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                    </button>
+                </div>
+
+                <div class="chat-interface-messages">
+                    <div class="msg-bubble msg-user">
+                        How many work there?
+                    </div>
+                    <div class="msg-bubble msg-ai">
+                        That's not something I have specific details on. For staffing questions, feel free to reach out directly at <a href="mailto:info@kairospreps.com" style="color: white; text-decoration: underline;">info@kairospreps.com</a>.
+                        <div class="msg-timestamp">
+                            Just now 
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer; margin-left: 4px;"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer;"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-3"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-interface-input-area">
+                    <div class="chat-input-wrapper">
+                        <input type="text" class="chat-interface-input" placeholder="Message ..." />
+                        <div class="chat-input-actions">
+                            <button class="chat-action-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+                            </button>
+                            <button class="chat-action-btn send">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
