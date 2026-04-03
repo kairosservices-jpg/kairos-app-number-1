@@ -586,7 +586,7 @@ h4,
   width: 100%;
   overflow: hidden;
   position: relative;
-  padding: var(--space-xl) 0;
+  padding: var(--space-sm) 0 var(--space-xl);
   
   /* Create soft fade edges on left and right */
   -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
