@@ -8,6 +8,9 @@
     <title>Kairos | Elite Nutrition & Meal Prep</title>
     <meta name="description"
         content="Kairos builds custom nutrition plans and prepares meals for goal-driven individuals in Spokane & CDA." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css" />
 </head>
 
@@ -15,28 +18,31 @@
     <!-- Sticky Navigation -->
     <nav
         style="position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1.5rem 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05);">
-        <div class="container" style="display: flex; justify-content: flex-end; align-items: center;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="/" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="/assets/kairos_logo.png" class="logo-nav" alt="Kairos Logo" style="height: 40px;" />
+            </a>
             <div style="display: flex; gap: var(--space-md); align-items: center;">
-                <a href="https://kairosmealpreps.bottle.com" target="_blank"
-                    style="color: var(--color-white); text-decoration: none; font-family: var(--font-primary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Order Weekly Meals</a>
+                <a href="#programs"
+                    class="nav-link">Programs</a>
                 <a href="#ruck-club"
-                    style="color: var(--color-white); text-decoration: none; font-family: var(--font-primary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Ruck Club</a>
-                <img src="/kairos_logo.png" class="logo-nav" alt="Kairos Logo" style="height: 40px; margin-left: 1rem;" />
+                    class="nav-link">Ruck Club</a>
+                <a href="#build" class="btn btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.8rem; margin-left: 1rem;">Schedule Now</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <header class="hero">
-        <img src="/spokane_executive_running.png"
-            class="hero-video-bg" alt="Spokane executive running" />
+        <img src="/assets/spokane_runner_bg.png"
+            class="hero-video-bg" alt="Athlete training in Spokane" style="object-position: center 30%;" />
         <div class="hero-overlay"></div>
         <div class="container hero-content" data-reveal>
-            <h1 class="hero-title">Too Busy to Track Food?</h1>
-            <p class="hero-subtitle">The done-for-you fitness and nutrition system built specifically for Spokane professionals working 50+ hours a week</p>
+            <h1 class="hero-title font-serif">Weight Loss Without Thinking</h1>
+            <p class="hero-subtitle">Get your free meal plan made specifically for you</p>
             <div class="hero-btns">
-                <a href="apply.html" class="btn btn-primary" id="btn-hero-build">Apply for Coaching</a>
-                <a href="https://kairosmealpreps.bottle.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" id="btn-hero-menu">Order Weekly Meals</a>
+                <a href="#build" class="btn btn-primary" id="btn-hero-build">Start Your Journey</a>
+                <a href="#menu" class="btn btn-ghost" id="btn-hero-menu">Explore System</a>
             </div>
         </div>
     </header>
@@ -48,7 +54,7 @@
                 <span class="font-heading"
                     style="font-size: 1.6rem; letter-spacing: 0.2em; color: var(--color-red); margin-right: 1rem; white-space: nowrap;">TRUSTED BY</span>
                 <div style="display: flex; align-items: center; gap: 1rem; white-space: nowrap;">
-                    <img src="/Eastern_Washington_Eagles_logo.png" alt="EWU Logo" style="height: 100px; width: auto;" />
+                    <img src="/assets/Eastern_Washington_Eagles_logo.png" alt="EWU Logo" style="height: 100px; width: auto;" />
                     <span class="font-heading" style="font-size: 2.4rem; letter-spacing: 0.05em; color: #000;">EASTERN WASHINGTON FOOTBALL</span>
                 </div>
             </div>
@@ -57,25 +63,33 @@
 
 
     <!-- System Section -->
-    <section class="section-padding">
+    <section class="section-padding bg-dark-card" style="padding-top: 8rem;">
         <div class="container">
-            <h2 class="font-heading" style="text-align: center; margin-bottom: var(--space-xl); font-size: clamp(3rem, 8vw, 6rem);" data-reveal>The System
-            </h2>
-            <div class="steps-grid">
-                <div class="step-item" data-reveal>
-                    <span class="step-number">01</span>
-                    <h3 class="font-heading">Fast Action Fitness</h3>
-                    <p style="color: rgba(255,255,255,0.6);">Custom workouts that fit your schedule.</p>
+            <div style="text-align: center; margin-bottom: var(--space-xl);" data-reveal>
+                <div class="sub-heading-accent">Why Members Choose Us</div>
+                <h2 class="font-heading font-serif" style="font-size: 2.5rem; letter-spacing: 0;">The Kairos System</h2>
+            </div>
+            
+            <div class="steps-cards-grid">
+                <div class="step-card" data-reveal>
+                    <span class="step-card-number">01</span>
+                    <h3 class="step-card-title font-serif">Set Goal</h3>
+                    <p class="step-card-text">Tell us where you're going. Weight loss, performance, or longevity.</p>
                 </div>
-                <div class="step-item" data-reveal>
-                    <span class="step-number">02</span>
-                    <h3 class="font-heading">Frictionless Nutrition</h3>
-                    <p style="color: rgba(255,255,255,0.6);">Done-for-you meals prepared for your goals</p>
+                <div class="step-card" data-reveal>
+                    <span class="step-card-number">02</span>
+                    <h3 class="step-card-title font-serif">Get Plan</h3>
+                    <p class="step-card-text">Our experts build a hyper-custom nutrition strategy around your bio-data.</p>
                 </div>
-                <div class="step-item" data-reveal>
-                    <span class="step-number">03</span>
-                    <h3 class="font-heading">Executive Accountability</h3>
-                    <p style="color: rgba(255,255,255,0.6);">1-on-1 check-ins and adjustments </p>
+                <div class="step-card" data-reveal>
+                    <span class="step-card-number">03</span>
+                    <h3 class="step-card-title font-serif">Fuel Up</h3>
+                    <p class="step-card-text">Kairos prepares and delivers your meals. No prep, no cleanup, no excuses.</p>
+                </div>
+                <div class="step-card" data-reveal>
+                    <span class="step-card-number">04</span>
+                    <h3 class="step-card-title font-serif">Get Results</h3>
+                    <p class="step-card-text">Focus entirely on your training while we handle the complex fueling geometry.</p>
                 </div>
             </div>
         </div>
@@ -199,7 +213,7 @@
                 <a href="#" class="btn btn-secondary">Join The Club</a>
             </div>
             <div style="aspect-ratio: 16/9; overflow: hidden; border-radius: 8px;" data-reveal>
-                <img src="/kairos_ruck_club.png"
+                <img src="/assets/kairos_ruck_club.png"
                     style="width: 100%; height: 100%; object-fit: cover;" alt="Ruck Club" />
             </div>
         </div>
@@ -208,14 +222,16 @@
 
 
     <!-- Footer CTA -->
-    <footer class="section-padding" style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
+    <footer class="section-padding bg-dark-card" style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
         <div class="container" data-reveal>
-            <img src="/kairos_logo.png" class="logo-footer" alt="Kairos Logo Small" />
-            <h2 class="font-heading" style="font-size: 3rem; margin-bottom: var(--space-md);">Ready to take your weekends back?</h2>
-            <a href="#" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.5rem 4rem;"
-                id="btn-footer-build">Book Your Free Strategy Call</a>
-            <p style="margin-top: var(--space-lg); opacity: 0.3; font-size: 0.8rem;">© 2026 KAIROS NUTRITION. SPOKANE /
-                CDA.</p>
+            <img src="/assets/kairos_logo.png" class="logo-footer" alt="Kairos Logo Small" style="height: 120px; opacity: 1; margin-bottom: 2rem;" />
+            <h2 class="font-heading font-serif" style="font-size: 3.5rem; margin-bottom: var(--space-md); letter-spacing: 0; text-transform: none;">Ready to start feeling better?</h2>
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem;">
+                <a href="#" class="btn btn-primary" style="font-size: 1.1rem; padding: 1.2rem 3rem;"
+                    id="btn-footer-build">Call Now</a>
+                <a href="#" class="btn btn-ghost" style="font-size: 1.1rem; padding: 1.2rem 3rem;">Request Appointment</a>
+            </div>
+            <p style="margin-top: var(--space-lg); opacity: 0.4; font-size: 0.8rem;">© 2026 KAIROS FITNESS. SPOKANE / CDA.</p>
         </div>
     </footer>
 
