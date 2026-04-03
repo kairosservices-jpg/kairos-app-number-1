@@ -13,7 +13,8 @@ export default defineConfig({
         notQualified: resolve(__dirname, 'not-qualified.html'),
         qualified: resolve(__dirname, 'qualified.html'),
         localUnqualified: resolve(__dirname, 'local-unqualified.html'),
-        nonLocal: resolve(__dirname, 'non-local.html')
+        nonLocal: resolve(__dirname, 'non-local.html'),
+        about: resolve(__dirname, 'about.html')
       }
     }
   }
