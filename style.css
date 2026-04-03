@@ -251,6 +251,7 @@ h4,
 .hero {
   position: relative;
   height: 100vh;
+  min-height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -397,12 +398,28 @@ h4,
   .features-bar-container {
     flex-direction: column;
     align-items: flex-start;
+    padding: 1.5rem;
+    gap: 1.5rem;
   }
   .feature-bar-item, .feature-bar-item:nth-child(n) {
     justify-content: flex-start;
     width: 100%;
   }
+  .features-bar-section {
+    margin-top: 0;
+    padding-bottom: 2rem;
+  }
+  .desktop-only {
+    display: none !important;
+  }
+  .hero {
+    height: auto;
+    min-height: 100vh;
+    padding-top: 100px;
+    padding-bottom: 60px;
+  }
 }
+
 
 /* Trust Section */
 .trust-section {
