@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - Kairos</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header class="sticky-nav">
+        <div class="nav-container">
+            <a href="/" class="logo-link">
+                <img src="/assets/kairos_logo.png" alt="Kairos Logo" class="nav-logo" style="height: 100px;">
+            </a>
+            <nav class="main-nav">
+                <a href="https://kairosmealpreps.bottle.com" class="nav-link">ORDER WEEKLY MEALS</a>
+                <a href="/about.html" class="nav-link">ABOUT US</a>
+                <a href="#ruck-club" class="nav-link">RUCK CLUB</a>
+                <a href="/contact.html" class="nav-link">CONTACT</a>
+                <a href="#meal-plan" class="btn btn-primary" style="margin-left: 1rem;">GET MY FREE MEAL PLAN</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contact-content" style="padding-top: 150px; padding-bottom: 80px; min-height: 100vh; display: flex; align-items: center;">
+        <div class="container" style="max-width: 600px; width: 100%;">
+            <div style="background: rgba(17, 17, 17, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 3rem; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+                <h1 class="font-heading" style="font-size: 3rem; margin-bottom: 1rem; text-align: center;">Contact Us</h1>
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">Have a question? Fill out the form below and our team will get back to you shortly.</p>
+                
+                <form id="contact-form" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <label for="firstName" style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary);">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required style="padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: white; font-family: inherit; font-size: 1rem; width: 100%;">
+                        </div>
+                        <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <label for="lastName" style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary);">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required style="padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: white; font-family: inherit; font-size: 1rem; width: 100%;">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label for="email" style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary);">Email</label>
+                        <input type="email" id="email" name="email" required style="padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: white; font-family: inherit; font-size: 1rem; width: 100%;">
+                    </div>
+                    
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label for="phone" style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary);">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required style="padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: white; font-family: inherit; font-size: 1rem; width: 100%;">
+                    </div>
+                    
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label for="message" style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary);">Message</label>
+                        <textarea id="message" name="message" rows="5" required style="padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: white; font-family: inherit; font-size: 1rem; width: 100%; resize: vertical;"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem; width: 100%; margin-top: 1rem; border: none; cursor: pointer; border-radius: 8px; transition: transform 0.2s ease, opacity 0.2s ease;">Send Message</button>
+                    <div id="form-status" style="text-align: center; margin-top: 1rem; font-weight: bold; min-height: 1.5rem;"></div>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // TODO: Connect this to a backend or webhook (e.g., Make.com, Formspree)
+            const statusDiv = document.getElementById('form-status');
+            statusDiv.textContent = 'Submitting...';
+            statusDiv.style.color = 'white';
+            
+            // Simulating a network request
+            setTimeout(() => {
+                statusDiv.textContent = 'Message sent successfully! We will get back to you soon.';
+                statusDiv.style.color = '#10B981'; // Success green
+                this.reset();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

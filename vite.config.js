@@ -14,7 +14,8 @@ export default defineConfig({
         qualified: resolve(__dirname, 'qualified.html'),
         localUnqualified: resolve(__dirname, 'local-unqualified.html'),
         nonLocal: resolve(__dirname, 'non-local.html'),
-        about: resolve(__dirname, 'about.html')
+        about: resolve(__dirname, 'about.html'),
+        contact: resolve(__dirname, 'contact.html')
       }
     }
   }
