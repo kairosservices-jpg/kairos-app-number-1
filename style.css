@@ -600,7 +600,7 @@ h4,
   width: max-content;
   
   /* Scroll duration controls speed */
-  animation: scroll 35s linear infinite;
+  animation: scroll 90s linear infinite;
 }
 
 .marquee-track:hover {
