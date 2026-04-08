@@ -19,10 +19,19 @@
     <nav
         style="position: fixed; top: 0; width: 100%; z-index: 1000; padding: 0.5rem 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05);">
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <a href="/" style="display: flex; align-items: center; text-decoration: none;">
+            <a href="/" style="display: flex; align-items: center; text-decoration: none; z-index: 1001;">
                 <img src="/assets/kairos_logo.png" class="logo-nav" alt="Kairos Logo" style="height: 100px;" />
             </a>
-            <div class="desktop-only" style="display: flex; gap: var(--space-md); align-items: center;">
+            
+            <button class="mobile-menu-btn" aria-label="Toggle Navigation">
+                <svg viewBox="0 0 24 24" width="30" height="30" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+
+            <div class="nav-menu" style="display: flex; gap: var(--space-md); align-items: center;">
                 <a href="https://kairosmealpreps.bottle.com" target="_blank" rel="noopener noreferrer" class="nav-link">Order Weekly Meals</a>
                 <a href="/about.html" class="nav-link">About Us</a>
 
@@ -453,6 +462,19 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
+            if (mobileMenuBtn && navMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                });
+                document.querySelectorAll('.nav-link, .btn').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
+
             const form = document.getElementById('contact-form');
             if (form) {
                 form.addEventListener('submit', function(e) {
