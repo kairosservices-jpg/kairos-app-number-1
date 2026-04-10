@@ -317,24 +317,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 data: {
                     type: 'event',
                     attributes: {
-                        properties: userAnswers,
-                        metric: {
-                            data: {
-                                type: 'metric',
-                                attributes: { name: 'Completed Quiz' }
-                            }
-                        },
                         profile: {
-                            data: {
-                                type: 'profile',
-                                attributes: {
-                                    email: email,
-                                    phone_number: phone,
-                                    first_name: userAnswers['first_name'] || '',
-                                    properties: userAnswers
-                                }
-                            }
-                        }
+                            $email: email,
+                            $phone_number: phone,
+                            $first_name: userAnswers['first_name'] || '',
+                            $last_name: userAnswers['last_name'] || ''
+                        },
+                        metric: {
+                            name: 'Completed Quiz'
+                        },
+                        properties: userAnswers,
+                        time: new Date().toISOString()
                     }
                 }
             };
