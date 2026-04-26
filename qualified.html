@@ -28,10 +28,51 @@
 
     <section class="section-padding" style="background-color: var(--color-gray-100); padding-top: var(--space-lg);">
         <div class="container">
-            <div style="background-color: var(--color-white); border: 2px solid var(--color-red); border-radius: 12px; padding: var(--space-xl); max-width: 900px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+            <style>
+                .main-feature-box {
+                    background-color: var(--color-white); 
+                    border: 2px solid var(--color-red); 
+                    border-radius: 12px; 
+                    padding: var(--space-xl); 
+                    max-width: 900px; 
+                    margin: 0 auto; 
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+                }
+                .main-feature-title {
+                    color: var(--color-black); 
+                    font-size: 2.5rem; 
+                    margin-bottom: var(--space-md); 
+                    text-transform: none;
+                }
+                .what-you-get-box {
+                    background-color: var(--color-gray-100); 
+                    padding: var(--space-lg); 
+                    border-radius: 8px;
+                }
+                @media (max-width: 768px) {
+                    .main-feature-box {
+                        padding: var(--space-lg);
+                    }
+                    .main-feature-title {
+                        font-size: 2rem;
+                    }
+                }
+                @media (max-width: 480px) {
+                    .main-feature-box {
+                        padding: var(--space-md);
+                    }
+                    .main-feature-title {
+                        font-size: 1.75rem;
+                    }
+                    .what-you-get-box {
+                        padding: var(--space-md);
+                    }
+                }
+            </style>
+            <div class="main-feature-box">
                 <div style="color: var(--color-red); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: var(--space-sm);">WHY THE FFP FITS YOUR LIFE</div>
                 
-                <h2 class="font-heading" style="color: var(--color-black); font-size: 2.5rem; margin-bottom: var(--space-md); text-transform: none;">Done-For-You Health and Fitness</h2>
+                <h2 class="font-heading main-feature-title">Done-For-You Health and Fitness</h2>
                 
                 <p style="color: rgba(0,0,0,0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: var(--space-xl);">
                     Since Kairos began, we’ve served people with demanding lives.<br><br>
@@ -43,7 +84,7 @@
                     A simple yet effective system that helps Spokane's busiest people lose weight.
                 </p>
                 
-                <div style="background-color: var(--color-gray-100); padding: var(--space-lg); border-radius: 8px;">
+                <div class="what-you-get-box">
                     <div style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(0,0,0,0.5); margin-bottom: var(--space-md);">WHAT YOU GET IN THE FINALLY FIT PROJECT:</div>
                     
                     <div style="display: flex; flex-direction: column; gap: var(--space-md);">
