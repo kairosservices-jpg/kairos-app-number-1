@@ -974,6 +974,8 @@ h4,
 .compare-row {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
     padding: var(--space-sm) 0;
     border-bottom: 1px solid rgba(0,0,0,0.05);
     font-size: 1rem;
@@ -988,6 +990,7 @@ h4,
 .compare-price {
     font-weight: 700;
     color: var(--color-red);
+    flex-shrink: 0;
 }
 
 .card-result {
