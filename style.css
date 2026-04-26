@@ -927,6 +927,18 @@ h4,
     .comparison-container {
         grid-template-columns: 1fr;
     }
+    .comparison-card {
+        padding: var(--space-lg);
+    }
+    .comparison-card.highlight {
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .comparison-card {
+        padding: var(--space-md) var(--space-sm) !important;
+    }
 }
 
 .comparison-card {
@@ -983,6 +995,12 @@ h4,
     text-align: left;
 }
 
+.compare-row span:first-child {
+    flex: 1;
+    text-align: left;
+    padding-right: 8px;
+}
+
 .compare-row:last-child {
     border-bottom: none;
 }
@@ -991,6 +1009,7 @@ h4,
     font-weight: 700;
     color: var(--color-red);
     flex-shrink: 0;
+    text-align: right;
 }
 
 .card-result {
