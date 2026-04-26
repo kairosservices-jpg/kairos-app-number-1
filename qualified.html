@@ -161,7 +161,30 @@
         <div class="container">
             <h2 class="font-heading" style="color: var(--color-black); text-align: center; font-size: 2.5rem; margin-bottom: var(--space-xl);">See What Others Are Saying</h2>
             
-            <div class="reviews-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-md);">
+            <style>
+                .reviews-grid {
+                    display: flex !important;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: var(--space-md);
+                }
+                .reviews-grid > div {
+                    flex: 1 1 300px;
+                    max-width: calc(33.333% - var(--space-md));
+                    min-width: 300px;
+                }
+                @media (max-width: 992px) {
+                    .reviews-grid > div {
+                        max-width: calc(50% - var(--space-md));
+                    }
+                }
+                @media (max-width: 650px) {
+                    .reviews-grid > div {
+                        max-width: 100%;
+                    }
+                }
+            </style>
+            <div class="reviews-grid">
                 <!-- Review 1 -->
                 <div style="background-color: var(--color-gray-100); padding: var(--space-md); border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
                     <div style="color: #FFD700; margin-bottom: 12px; font-size: 1.2rem;">★★★★★</div>
