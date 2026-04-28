@@ -392,14 +392,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 console.log('Successfully sent to Make webhook. Response:', data);
                 
-                // Redirect based on the route string returned by Make
-                if (data && data.route) {
-                    window.location.href = `/${data.route}.html`;
-                } else {
-                    alert("DEBUG INFO: Make didn't return a route. Here is EXACTLY what the browser received:\n\n" + JSON.stringify(data, null, 2) + "\n\nPlease screenshot this popup!");
-                    console.warn('No route provided by Make, falling back to success screen.');
-                    showSuccessStep();
-                }
+                // TEMPORARY: Redirect everyone to finally-fit landing page
+                window.location.href = "/finally-fit.html";
             })
             .catch(error => {
                 console.error('Error sending to Make webhook:', error);
@@ -427,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         function showSuccessStep() {
             console.log("Redirecting to fallback success page...");
-            window.location.href = "/non-local.html";
+            window.location.href = "/finally-fit.html";
         }
       });
     }
