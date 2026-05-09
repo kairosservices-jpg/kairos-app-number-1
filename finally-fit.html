@@ -111,7 +111,8 @@
                     They need a system that works for those putting in 50+ hours a week.<br><br>
                     After a long day, you feel exhausted but still want to be there for everything else in life.<br><br>
                     That’s exactly who we built The Finally Fit Project for.<br><br>
-                    A simple yet effective system that helps Spokane's busiest people lose weight.
+                    A simple yet effective system that helps Spokane's busiest people lose weight.<br><br>
+                    <strong>Sign up for 6 weeks upfront and save up to $240 on Kairos meals!</strong>
                 </p>
                 
                 <div class="what-you-get-box">
@@ -151,9 +152,44 @@
                     </div>
                     
                     <!-- SMS CTA -->
-                    <div class="sms-cta-box">
-                        <p class="sms-cta-title">Want to Get More Information?</p>
-                        <p class="sms-cta-text">Text <strong style="color: var(--color-red);">"Interested"</strong> to <a href="sms:5095120844" style="color: var(--color-red); font-weight: bold; text-decoration: none;">(509) 512-0844</a>!</p>
+                    <style>
+                        .quick-info-form .form-row {
+                            display: flex;
+                            gap: 10px;
+                            margin-bottom: 10px;
+                        }
+                        .quick-info-form input {
+                            flex: 1;
+                            padding: 12px;
+                            border: 1px solid #e2e8f0;
+                            border-radius: 8px;
+                            font-family: var(--font-body);
+                            font-size: 1rem;
+                            width: 100%;
+                            box-sizing: border-box;
+                        }
+                        @media (max-width: 600px) {
+                            .quick-info-form .form-row {
+                                flex-direction: column;
+                            }
+                        }
+                    </style>
+                    <div class="sms-cta-box" style="padding: 2rem;">
+                        <p class="font-heading" style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--color-black);">Want to Get More Information?</p>
+                        <p style="font-size: 0.95rem; margin-bottom: 1.5rem; color: rgba(0,0,0,0.6);">Fill out this quick form and we'll reach out to you with details!</p>
+                        <form class="quick-info-form">
+                            <div class="form-row">
+                                <input type="text" name="first_name" placeholder="First Name" required>
+                                <input type="text" name="last_name" placeholder="Last Name" required>
+                            </div>
+                            <div class="form-row" style="margin-bottom: 15px;">
+                                <input type="email" name="email" placeholder="Email Address" required>
+                                <input type="tel" name="phone_number" placeholder="Phone Number" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer;">Send Me Info</button>
+                            <p class="form-success-msg" style="display: none; color: #16a34a; font-weight: 600; margin-top: 15px; font-size: 0.95rem;">Thanks! We'll be in touch soon.</p>
+                            <p class="form-error-msg" style="display: none; color: #dc2626; font-weight: 600; margin-top: 15px; font-size: 0.95rem;">Oops! Something went wrong. Please try again.</p>
+                        </form>
                     </div>
 
                 </div>
@@ -235,9 +271,22 @@
     <section class="section-padding" style="padding-top: var(--space-sm);">
         <div class="container">
             <!-- SMS CTA -->
-            <div class="sms-cta-box" style="margin-top: 0; margin-bottom: var(--space-xl);">
-                <p class="sms-cta-title">Want to Get More Information?</p>
-                <p class="sms-cta-text">Text <strong style="color: var(--color-red);">"Interested"</strong> to <a href="sms:5095120844" style="color: var(--color-red); font-weight: bold; text-decoration: none;">(509) 512-0844</a>!</p>
+            <div class="sms-cta-box" style="padding: 2rem; margin-top: 0; margin-bottom: var(--space-xl);">
+                <p class="font-heading" style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--color-black);">Want to Get More Information?</p>
+                <p style="font-size: 0.95rem; margin-bottom: 1.5rem; color: rgba(0,0,0,0.6);">Fill out this quick form and we'll reach out to you with details!</p>
+                <form class="quick-info-form">
+                    <div class="form-row">
+                        <input type="text" name="first_name" placeholder="First Name" required>
+                        <input type="text" name="last_name" placeholder="Last Name" required>
+                    </div>
+                    <div class="form-row" style="margin-bottom: 15px;">
+                        <input type="email" name="email" placeholder="Email Address" required>
+                        <input type="tel" name="phone_number" placeholder="Phone Number" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer;">Send Me Info</button>
+                    <p class="form-success-msg" style="display: none; color: #16a34a; font-weight: 600; margin-top: 15px; font-size: 0.95rem;">Thanks! We'll be in touch soon.</p>
+                    <p class="form-error-msg" style="display: none; color: #dc2626; font-weight: 600; margin-top: 15px; font-size: 0.95rem;">Oops! Something went wrong. Please try again.</p>
+                </form>
             </div>
 
             <h2 class="font-heading" style="color: var(--color-black); text-align: center; font-size: 2.5rem; margin-bottom: var(--space-xl);">See What Others Are Saying</h2>
@@ -332,6 +381,58 @@
         </div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const forms = document.querySelectorAll('.quick-info-form');
+            forms.forEach(form => {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    const btn = form.querySelector('button[type="submit"]');
+                    const successMsg = form.querySelector('.form-success-msg');
+                    const errorMsg = form.querySelector('.form-error-msg');
+                    const originalBtnText = btn.textContent;
+                    
+                    btn.textContent = 'Sending...';
+                    btn.disabled = true;
+                    successMsg.style.display = 'none';
+                    errorMsg.style.display = 'none';
+                    
+                    const formData = new FormData(form);
+                    const data = {
+                        first_name: formData.get('first_name'),
+                        last_name: formData.get('last_name'),
+                        email: formData.get('email'),
+                        phone_number: formData.get('phone_number'),
+                        source: 'Finally Fit Info Request'
+                    };
+                    
+                    try {
+                        const response = await fetch('https://hook.us2.make.com/2p5li29o1by9kjksn4h0lnpgghjma3qa', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        });
+                        
+                        if (response.ok) {
+                            form.reset();
+                            successMsg.style.display = 'block';
+                        } else {
+                            throw new Error('Network response was not ok.');
+                        }
+                    } catch (error) {
+                        console.error('Submission error:', error);
+                        errorMsg.style.display = 'block';
+                    } finally {
+                        btn.textContent = originalBtnText;
+                        btn.disabled = false;
+                    }
+                });
+            });
+        });
+    </script>
     <script type="module" src="/main.js"></script>
 </body>
 </html>
