@@ -112,6 +112,27 @@ h4,
 }
 
 /* Logo Styles */
+.header-cta-btn {
+  background-color: var(--color-red);
+  color: var(--color-white);
+  padding: 0.6rem 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  margin-left: 1rem;
+  transition: all 0.3s ease;
+}
+@media (hover: hover) {
+  .header-cta-btn:hover {
+    background-color: #ef233c;
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(217, 4, 41, 0.6);
+  }
+}
+
 .logo-nav {
   height: 40px;
   width: auto;
@@ -445,6 +466,12 @@ h4,
     transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
+  }
+
+  .header-cta-btn {
+    width: 100%;
+    margin-top: 1rem;
+    margin-left: 0;
   }
 
   .desktop-only {
