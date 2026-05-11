@@ -469,7 +469,9 @@
                 });
                 document.querySelectorAll('.nav-link, .btn').forEach(link => {
                     link.addEventListener('click', () => {
-                        navMenu.classList.remove('active');
+                        setTimeout(() => {
+                            navMenu.classList.remove('active');
+                        }, 150);
                     });
                 });
             }
