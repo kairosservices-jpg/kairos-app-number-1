@@ -89,11 +89,13 @@ h4,
   box-shadow: 0 0 0 rgba(217, 4, 41, 0);
 }
 
-.btn-primary:hover {
-  background-color: #ef233c;
-  transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(217, 4, 41, 0.6);
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+@media (hover: hover) {
+  .btn-primary:hover {
+    background-color: #ef233c;
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(217, 4, 41, 0.6);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
 }
 
 .btn-secondary {
@@ -442,7 +444,7 @@ h4,
   .nav-menu.active {
     transform: translateY(0);
     opacity: 1;
-    pointer-events: all;
+    pointer-events: auto;
   }
 
   .desktop-only {
