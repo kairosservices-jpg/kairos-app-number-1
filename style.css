@@ -446,26 +446,28 @@ h4,
   }
   
   .nav-menu {
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 0;
     left: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.95);
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.98);
     flex-direction: column;
-    padding: 2rem;
+    padding: 130px 2rem 2rem 2rem; /* Give room for the header */
+    justify-content: flex-start;
+    align-items: center;
     gap: 1.5rem !important;
-    transform: translateY(-150%);
+    transform: translateX(100%);
     opacity: 0;
-    pointer-events: none;
+    visibility: hidden;
     transition: all 0.3s ease;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 999;
+    z-index: 999; /* header is 1000 */
   }
   
   .nav-menu.active {
-    transform: translateY(0);
+    transform: translateX(0);
     opacity: 1;
-    pointer-events: auto;
+    visibility: visible;
   }
 
   .header-cta-btn {

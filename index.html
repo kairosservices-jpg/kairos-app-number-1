@@ -467,13 +467,6 @@
                 mobileMenuBtn.addEventListener('click', () => {
                     navMenu.classList.toggle('active');
                 });
-                document.querySelectorAll('.nav-link').forEach(link => {
-                    link.addEventListener('click', () => {
-                        setTimeout(() => {
-                            navMenu.classList.remove('active');
-                        }, 150);
-                    });
-                });
             }
 
             const form = document.getElementById('contact-form');
