@@ -1,4 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+  // Mobile Menu Toggle
+  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+  const navMenu = document.querySelector('.nav-menu');
+  const mainNav = document.getElementById('main-nav');
+  
+  if (mobileMenuBtn && navMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      if (mainNav) mainNav.classList.toggle('menu-open');
+    });
+
+    // Auto-close menu when a link is clicked
+    const navLinks = navMenu.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        if (mainNav) mainNav.classList.remove('menu-open');
+      });
+    });
+  }
+
+
+
   // Intersection Observer for scroll reveal animations
   const revealElements = document.querySelectorAll('[data-reveal]');
 

@@ -81,6 +81,8 @@ h4,
   border: none;
   position: relative;
   overflow: hidden;
+  z-index: 99;
+  pointer-events: auto;
 }
 
 .btn-primary {
@@ -157,10 +159,11 @@ h4,
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  z-index: 1000;
+  z-index: 900;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  pointer-events: none; /* Prevent invisible box from eating clicks */
 }
 
 .chat-button {
@@ -174,6 +177,7 @@ h4,
   cursor: pointer;
   box-shadow: 0 10px 30px rgba(217, 4, 41, 0.4);
   transition: var(--transition-slow);
+  pointer-events: auto; /* Restore clicks for button */
 }
 
 .chat-button:hover {
@@ -304,12 +308,17 @@ h4,
   height: 100%;
   background: radial-gradient(circle at center, transparent 0%, var(--color-black) 100%);
   z-index: 0;
+  pointer-events: none; /* Prevent invisible box from eating clicks */
 }
 
 .hero-content {
   position: relative;
-  z-index: 10;
+  z-index: 50;
+  text-align: center;
   max-width: 900px;
+  pointer-events: auto; /* Allow interactions */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .hero-pill {
@@ -457,17 +466,26 @@ h4,
     justify-content: flex-start;
     align-items: center;
     gap: 1.5rem !important;
-    transform: translateX(100%);
+    transform: translate3d(100%, 0, 0);
     opacity: 0;
     visibility: hidden;
+    pointer-events: none; /* Make absolutely sure this doesn't block when closed */
     transition: all 0.3s ease;
     z-index: 999; /* header is 1000 */
   }
   
   .nav-menu.active {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
+  }
+  
+  .nav-menu .nav-link {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
   }
 
   .header-cta-btn {
@@ -1359,4 +1377,35 @@ h4,
 
 .chat-action-btn.send:hover {
     background: rgba(255,255,255,0.3);
+}
+/* Main Navigation */
+.main-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.main-nav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.main-nav.menu-open {
+  border-bottom: none;
+}
+
+.main-nav.menu-open::before {
+  opacity: 0;
 }
