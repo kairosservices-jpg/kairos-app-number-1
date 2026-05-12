@@ -433,6 +433,11 @@ h4,
   cursor: pointer;
   padding: 0.5rem;
   z-index: 1001;
+  position: relative;
+}
+
+.mobile-menu-btn svg {
+  pointer-events: none;
 }
 
 @media (max-width: 900px) {
@@ -466,6 +471,7 @@ h4,
     justify-content: flex-start;
     align-items: center;
     gap: 1.5rem !important;
+    -webkit-transform: translate3d(100%, 0, 0);
     transform: translate3d(100%, 0, 0);
     opacity: 0;
     visibility: hidden;
@@ -475,6 +481,7 @@ h4,
   }
   
   .nav-menu.active {
+    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     opacity: 1;
     visibility: visible;
