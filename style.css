@@ -664,14 +664,14 @@ h4,
   text-align: center;
 }
 
-.height-inputs-container {
+.split-inputs-container {
   display: flex;
   gap: 1rem;
   width: 100%;
 }
 
 @media (max-width: 768px) {
-  .height-inputs-container {
+  .split-inputs-container {
     flex-direction: column;
   }
 }
