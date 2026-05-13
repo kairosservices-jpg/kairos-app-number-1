@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kairos Links</title>
+    <link rel="stylesheet" href="/style.css" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        .links-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+        .links-logo {
+            width: 120px;
+            margin: 0 auto 2rem;
+            display: block;
+        }
+        .link-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            background: transparent;
+            color: var(--color-white);
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: var(--transition-fast);
+            border-radius: 4px;
+        }
+        .link-btn:hover {
+            background: var(--color-white);
+            color: var(--color-black);
+            transform: translateY(-2px);
+        }
+        .form-section {
+            margin-top: 3rem;
+            text-align: left;
+        }
+        .form-section h3 {
+            font-family: var(--font-primary);
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+            color: var(--color-white);
+            text-align: center;
+        }
+        .links-input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            border: none;
+            font-family: var(--font-secondary);
+            font-size: 1rem;
+            background: #fff;
+            color: #000;
+        }
+        .links-submit {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--color-red);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            margin-bottom: 1.5rem;
+        }
+        .links-submit:hover {
+            background-color: #d31e1e;
+        }
+        .links-disclaimer {
+            font-family: var(--font-secondary);
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body style="background-color: var(--color-black); color: var(--color-white); min-height: 100vh;">
+
+    <div class="links-container">
+        <!-- Logo -->
+        <a href="/">
+            <img src="/assets/kairos_logo.png" alt="Kairos Fitness" class="links-logo" />
+        </a>
+
+        <!-- Links -->
+        <a href="/apply" class="link-btn">Receive Your FREE Fat Loss Meal Plan + Grocery List</a>
+        <a href="/finally-fit" class="link-btn">Join the Finally Fit Project</a>
+        <a href="https://kairosmealpreps.bottle.com" class="link-btn">Order Weekly Meals</a>
+        <a href="/about" class="link-btn">About Kairos Meal Preps</a>
+
+        <!-- Form Section -->
+        <div class="form-section">
+            <h3>Sign up to receive information about new offers, services, and events for Kairos</h3>
+            
+            <!-- Replace YOUR_KAIROS_GMAIL@gmail.com with your actual email -->
+            <form action="https://formsubmit.co/YOUR_KAIROS_GMAIL@gmail.com" method="POST">
+                
+                <!-- Anti-spam honeypot (optional, highly recommended) -->
+                <input type="text" name="_honey" style="display:none">
+                <!-- Disable Captcha (optional) -->
+                <input type="hidden" name="_captcha" value="false">
+                <!-- Success Page Redirect (optional, sending them back to /links or a thank you page) -->
+                <input type="hidden" name="_next" value="https://kairosmealpreps.com/links?success=true">
+
+                <input type="text" name="First Name" class="links-input" placeholder="Enter your first name..." required />
+                <input type="email" name="Email" class="links-input" placeholder="Enter your email address..." required />
+                <input type="tel" name="Phone" class="links-input" placeholder="Enter your phone number..." required />
+                
+                <p class="links-disclaimer">
+                    By clicking SUBMIT, you agree to receive marketing text messages from Kairos 
+                    at the number provided. Consent is not a condition of any purchase. 
+                    Message and data rates may apply.
+                </p>
+
+                <button type="submit" class="links-submit">Submit</button>
+
+                <p class="links-disclaimer">
+                    I will never share your information with anyone. I can't stand it when other people do that either.
+                </p>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
