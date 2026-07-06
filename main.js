@@ -1,76 +1,3 @@
-const INGREDIENTS = {
-    // Proteins
-    'sirloin': { name: "Sirloin Steak", category: "protein", price_per_oz: 0.650, protein_per_oz: 7.0, carbs_per_oz: 0, fat_per_oz: 2.0, calories_per_oz: 46, yield_ratio: 0.708 },
-    'ground_turkey': { name: "Turkey Meatballs", category: "protein", price_per_oz: 0.271, protein_per_oz: 7.0, carbs_per_oz: 0, fat_per_oz: 2.5, calories_per_oz: 51, yield_ratio: 1.000 },
-    'chicken_breast': { name: "Chicken Breast", category: "protein", price_per_oz: 0.165, protein_per_oz: 8.5, carbs_per_oz: 0, fat_per_oz: 1.0, calories_per_oz: 43, yield_ratio: 0.769 },
-    'chicken_thigh': { name: "Chicken Thigh", category: "protein", price_per_oz: 0.107, protein_per_oz: 7.0, carbs_per_oz: 0, fat_per_oz: 3.0, calories_per_oz: 55, yield_ratio: 0.727 },
-    'eggs': { name: "Scrambled Eggs", category: "protein", price_per_oz: 0.180, protein_per_oz: 3.6, carbs_per_oz: 0.3, fat_per_oz: 2.8, calories_per_oz: 41, yield_ratio: 1.000 },
-    'greek_yogurt': { name: "Vanilla Greek Yogurt", category: "protein", price_per_oz: 0.150, protein_per_oz: 3.0, carbs_per_oz: 1.0, fat_per_oz: 0, calories_per_oz: 16, yield_ratio: 1.000 },
-    'cottage_cheese': { name: "Cottage Cheese", category: "protein", price_per_oz: 0.120, protein_per_oz: 3.5, carbs_per_oz: 1.0, fat_per_oz: 0.5, calories_per_oz: 23, yield_ratio: 1.000 },
-    'lean_meat': { name: "Lean Meat", category: "protein", price_per_oz: 0.300, protein_per_oz: 7.5, carbs_per_oz: 0, fat_per_oz: 1.5, calories_per_oz: 45, yield_ratio: 1.000 },
-
-    // Carbs
-    'mashed_potato': { name: "Garlic Mashed Potato", category: "carb", price_per_oz: 0.103, protein_per_oz: 0.6, carbs_per_oz: 5.0, fat_per_oz: 1.0, calories_per_oz: 31, yield_ratio: 1.000 },
-    'sweet_potato': { name: "Mashed Sweet Potato", category: "carb", price_per_oz: 0.083, protein_per_oz: 0.6, carbs_per_oz: 6.0, fat_per_oz: 0, calories_per_oz: 26, yield_ratio: 1.000 },
-    'jasmine_rice': { name: "Jasmine Rice", category: "carb", price_per_oz: 0.021, protein_per_oz: 0.7, carbs_per_oz: 8.0, fat_per_oz: 0, calories_per_oz: 35, yield_ratio: 1.000 },
-    'fried_rice': { name: "Fried Rice Mix", category: "carb", price_per_oz: 0.045, protein_per_oz: 1.0, carbs_per_oz: 8.0, fat_per_oz: 0.5, calories_per_oz: 40, yield_ratio: 1.000 },
-    'pasta': { name: "Pasta Noodles", category: "carb", price_per_oz: 0.036, protein_per_oz: 1.5, carbs_per_oz: 8.0, fat_per_oz: 0.2, calories_per_oz: 40, yield_ratio: 1.000 },
-    'granola': { name: "Granola", category: "carb", price_per_oz: 0.100, protein_per_oz: 0.5, carbs_per_oz: 6.0, fat_per_oz: 1.0, calories_per_oz: 35, yield_ratio: 1.000 },
-    'pretzel': { name: "Pretzel Sticks", category: "carb", price_per_oz: 0.080, protein_per_oz: 0.8, carbs_per_oz: 7.0, fat_per_oz: 0.2, calories_per_oz: 33, yield_ratio: 1.000 },
-
-    // Veggies / Others
-    'broccoli': { name: "Broccoli", category: "veg", price_per_oz: 0.133, protein_per_oz: 0.8, carbs_per_oz: 2.0, fat_per_oz: 0, calories_per_oz: 11, yield_ratio: 1.000 },
-    'green_beans': { name: "Green Beans", category: "veg", price_per_oz: 0.099, protein_per_oz: 0.5, carbs_per_oz: 2.0, fat_per_oz: 0, calories_per_oz: 10, yield_ratio: 1.000 },
-    'mixed_veg': { name: "Mixed Vegetables", category: "veg", price_per_oz: 0.110, protein_per_oz: 0.6, carbs_per_oz: 2.0, fat_per_oz: 0.1, calories_per_oz: 11, yield_ratio: 1.000 }
-};
-
-const MEAL_TEMPLATES = {
-    'Steak and Eggs': { protein_id: 'sirloin', carb_id: 'mashed_potato', veg_id: 'green_beans', category: 'breakfast' },
-    'Loaded Breakfast Bowl': { protein_id: 'eggs', carb_id: 'mashed_potato', veg_id: 'broccoli', category: 'breakfast' },
-    'Yogurt Parfait': { protein_id: 'greek_yogurt', carb_id: 'granola', veg_id: 'green_beans', category: 'breakfast' },
-    'Honey Sweet Cottage Cheese': { protein_id: 'cottage_cheese', carb_id: 'granola', veg_id: 'green_beans', category: 'breakfast' },
-    'Steak n Mash': { protein_id: 'sirloin', carb_id: 'mashed_potato', veg_id: 'green_beans', category: 'lunch' },
-    'Chicken Fried Rice': { protein_id: 'chicken_breast', carb_id: 'fried_rice', veg_id: 'green_beans', category: 'lunch' },
-    'Chile Margarita': { protein_id: 'chicken_breast', carb_id: 'jasmine_rice', veg_id: 'mixed_veg', category: 'lunch' },
-    'Asian Zing': { protein_id: 'chicken_thigh', carb_id: 'jasmine_rice', veg_id: 'mixed_veg', category: 'lunch' },
-    'BBQ Chicken Thigh': { protein_id: 'chicken_thigh', carb_id: 'sweet_potato', veg_id: 'green_beans', category: 'dinner' },
-    'Spaghetti and Meatballs': { protein_id: 'ground_turkey', carb_id: 'pasta', veg_id: 'broccoli', category: 'dinner' },
-    'Roasted Ranch': { protein_id: 'chicken_thigh', carb_id: 'jasmine_rice', veg_id: 'mixed_veg', category: 'lunch' },
-    'Mashed Buffalo': { protein_id: 'chicken_breast', carb_id: 'mashed_potato', veg_id: 'mixed_veg', category: 'lunch' },
-    'Chipotle Burrito Bowl': { protein_id: 'chicken_breast', carb_id: 'jasmine_rice', veg_id: 'mixed_veg', category: 'lunch' },
-    'Pesto Chicken Pasta': { protein_id: 'chicken_breast', carb_id: 'pasta', veg_id: 'broccoli', category: 'dinner' },
-    'Teriyaki Chicken': { protein_id: 'chicken_breast', carb_id: 'jasmine_rice', veg_id: 'broccoli', category: 'lunch' },
-    'Sweet Chili Chicken Thigh': { protein_id: 'chicken_thigh', carb_id: 'jasmine_rice', veg_id: 'green_beans', category: 'dinner' },
-    'Buttery Chicken': { protein_id: 'chicken_breast', carb_id: 'jasmine_rice', veg_id: 'broccoli', category: 'lunch' },
-    'Chicken Alfredo': { protein_id: 'chicken_breast', carb_id: 'pasta', veg_id: 'broccoli', category: 'dinner' }
-};
-
-const BASE_PREP_FEE = 5.00;
-const INGREDIENT_MARKUP = 1.0;
-
-function calculateMealPortionsAndPricing(mealName, targetMealProtein, targetMealCarbs, targetMealFat) {
-    const template = MEAL_TEMPLATES[mealName];
-    if (!template) {
-        return { name: mealName, detailsHtml: "Standard Portion" };
-    }
-
-    const pIng = INGREDIENTS[template.protein_id];
-    const cIng = INGREDIENTS[template.carb_id];
-    const vIng = INGREDIENTS[template.veg_id];
-
-    let pOz = Math.round(targetMealProtein / pIng.protein_per_oz);
-    let cOz = Math.round(targetMealCarbs / cIng.carbs_per_oz);
-    let vOz = 2; // standard 2 oz veg
-
-    pOz = Math.max(4, Math.min(8, pOz));
-    cOz = Math.max(3, Math.min(10, cOz));
-
-    return {
-        name: mealName,
-        detailsHtml: `${pOz}oz ${pIng.name}, ${cOz}oz ${cIng.name}, ${vOz}oz ${vIng.name}`
-    };
-}
-
 document.addEventListener('DOMContentLoaded', () => {
 
   // Mobile Menu Toggle
@@ -461,94 +388,13 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
         }
 
-        // BMR/TDEE/Calories/Macros calculations on client side
-        const weightLbs = parseFloat(userAnswers["What is your current weight?"]) || 150;
-        const ageVal = parseInt(userAnswers["How old are you?"]) || 30;
-        const feetVal = parseInt(userAnswers["Height (Feet)"]) || 5;
-        const inchesVal = parseInt(userAnswers["Height (Inches)"]) || 6;
-        const genderVal = userAnswers["3. Are you:"] || 'Female';
-        const activityText = userAnswers["6. Which best describes your activity level?"] || 'Lightly active';
-
-        // Convert metric
-        const weightKg = weightLbs * 0.45359237;
-        const totalHeightInches = (feetVal * 12) + inchesVal;
-        const heightCm = totalHeightInches * 2.54;
-
-        // BMR
-        let BMR = 0;
-        if (genderVal === 'Male') {
-            BMR = (10 * weightKg) + (6.25 * heightCm) - (5 * ageVal) + 5;
-        } else {
-            BMR = (10 * weightKg) + (6.25 * heightCm) - (5 * ageVal) - 161;
-        }
-
-        // Activity Multiplier
-        let activityMultiplier = 1.375;
-        if (activityText.includes('sitting') || activityText.includes('desk')) {
-            activityMultiplier = 1.2;
-        } else if (activityText.includes('Lightly')) {
-            activityMultiplier = 1.375;
-        } else if (activityText.includes('Moderately')) {
-            activityMultiplier = 1.55;
-        } else if (activityText.includes('Very') || activityText.includes('Heavy')) {
-            activityMultiplier = 1.725;
-        }
-
-        const TDEE = Math.round(BMR * activityMultiplier);
-
-        // Deficit calorie budget
-        let targetCalories = Math.round(TDEE - 500);
-        if (genderVal === 'Female' && targetCalories < 1200) targetCalories = 1200;
-        if (genderVal === 'Male' && targetCalories < 1500) targetCalories = 1500;
-
-        // Protein
-        let proteinGrams = Math.round(weightLbs);
-        if (genderVal === 'Male') {
-            if (proteinGrams > 220) proteinGrams = 220;
-        } else {
-            if (proteinGrams > 160) proteinGrams = 160;
-        }
-        if (proteinGrams * 4 > targetCalories * 0.4) {
-            proteinGrams = Math.round((targetCalories * 0.4) / 4);
-        }
-
-        // Fat (27.5%)
-        const fatGrams = Math.round((targetCalories * 0.275) / 9);
-
-        // Carbs (Remaining)
-        const proteinCal = proteinGrams * 4;
-        const fatCal = fatGrams * 9;
-        const carbCal = targetCalories - proteinCal - fatCal;
-        const carbGrams = Math.max(20, Math.round(carbCal / 4));
-
-        // Portion sizes for the 4 meals
-        const mealTargetP = proteinGrams / 4;
-        const mealTargetC = carbGrams / 4;
-        const mealTargetF = fatGrams / 4;
-
-        const eggsDetails = calculateMealPortionsAndPricing('Steak and Eggs', mealTargetP, mealTargetC, mealTargetF);
-        const chickenDetails = calculateMealPortionsAndPricing('Teriyaki Chicken', mealTargetP, mealTargetC, mealTargetF);
-        const steakDetails = calculateMealPortionsAndPricing('Steak n Mash', mealTargetP, mealTargetC, mealTargetF);
-
-        const payload = {
-            ...userAnswers,
-            calories: targetCalories,
-            protein: proteinGrams,
-            carbs: carbGrams,
-            fat: fatGrams,
-            eggs_meal_portions: eggsDetails.detailsHtml,
-            chicken_meal_portions: chickenDetails.detailsHtml,
-            steak_meal_portions: steakDetails.detailsHtml,
-            goal: "Fat Loss"
-        };
-
         if (makeWebhookUrl) {
             fetch(makeWebhookUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(payload)
+                body: JSON.stringify(userAnswers)
             })
             .then(async response => {
                 if (!response.ok) {
@@ -570,8 +416,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 console.log('Successfully sent to Make webhook. Response:', data);
                 
-                // TEMPORARY: Redirect everyone to finally-fit landing page
-                window.location.href = "/finally-fit.html";
+                // Redirect to Bottle checkout
+                window.location.href = "https://kairosmealpreps.bottle.com";
             })
             .catch(error => {
                 console.error('Error sending to Make webhook:', error);
@@ -599,7 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         function showSuccessStep() {
             console.log("Redirecting to fallback success page...");
-            window.location.href = "/finally-fit.html";
+            window.location.href = "https://kairosmealpreps.bottle.com";
         }
       });
     }
