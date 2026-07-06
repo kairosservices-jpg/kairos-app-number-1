@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Nutrition Audit & Plan | Kairos</title>
+    <meta name="description" content="Calculate your personalized daily macros, calories, and get a tailored 7-day clean meal plan in 60 seconds." />
+    <!-- Outfit Font for premium geometric sans-serif aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css" />
+    
+    <style>
+        :root {
+            --font-primary: 'Outfit', sans-serif;
+            --color-glass-bg: rgba(10, 10, 10, 0.7);
+            --color-glass-border: rgba(255, 255, 255, 0.08);
+            --color-glass-glow: rgba(225, 29, 72, 0.15);
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: #030303;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(225, 29, 72, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 40%);
+        }
+
+        /* Nav Adjustment */
+        .main-nav {
+            background-color: rgba(3, 3, 3, 0.8) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Quiz Container */
+        .quiz-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 60px;
+        }
+
+        .quiz-card {
+            width: 100%;
+            max-width: 620px;
+            background: var(--color-glass-bg);
+            border: 1px solid var(--color-glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 40px var(--color-glass-glow);
+            position: relative;
+            animation: cardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes cardEntrance {
+            from { opacity: 0; transform: translateY(30px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Custom Progress Bar */
+        .quiz-progress-wrapper {
+            margin-bottom: 35px;
+        }
+
+        .quiz-progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .quiz-progress-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .quiz-progress-fill {
+            height: 100%;
+            width: 8%;
+            background: linear-gradient(90deg, #e11d48, #ef4444);
+            border-radius: 10px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(225, 29, 72, 0.5);
+        }
+
+        /* Quiz Steps */
+        .quiz-step {
+            display: none;
+        }
+
+        .quiz-step.active {
+            display: block;
+            animation: stepFadeIn 0.5s ease-out;
+        }
+
+        @keyframes stepFadeIn {
+            from { opacity: 0; transform: translateX(15px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .quiz-step h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0 0 10px 0;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 30%, rgba(255, 255, 255, 0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .quiz-step p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0 0 30px 0;
+        }
+
+        .quiz-step h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 0 25px 0;
+            color: #ffffff;
+        }
+
+        /* Inputs & Options */
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .quiz-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.85);
+            padding: 16px 24px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quiz-btn::after {
+            content: '→';
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.25s ease;
+            color: #e11d48;
+        }
+
+        .quiz-btn:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(225, 29, 72, 0.4);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .quiz-btn:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .quiz-btn.selected {
+            background: rgba(225, 29, 72, 0.1);
+            border-color: #e11d48;
+            color: #ffffff;
+        }
+
+        /* Text Input Styling */
+        .lead-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 1.1rem;
+            color: #ffffff;
+            outline: none;
+            box-sizing: border-box;
+            transition: all 0.25s ease;
+            font-family: var(--font-primary);
+        }
+
+        .lead-input:focus {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: #e11d48;
+            box-shadow: 0 0 15px rgba(225, 29, 72, 0.25);
+        }
+
+        .split-inputs-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        /* Action Buttons */
+        .quiz-nav-btns {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .quiz-back-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: var(--font-primary);
+            flex: 1;
+            text-align: center;
+        }
+
+        .quiz-back-btn:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .quiz-next-btn {
+            background: linear-gradient(135deg, #e11d48, #be123c);
+            border: none;
+            color: #ffffff;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: var(--font-primary);
+            flex: 2;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(225, 29, 72, 0.3);
+        }
+
+        .quiz-next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(225, 29, 72, 0.4);
+            filter: brightness(1.1);
+        }
+
+        /* Form styling */
+        .lead-magnet-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        /* Footer styling */
+        .footer-logo-wrap {
+            margin-top: auto;
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-logo-wrap img {
+            height: 36px;
+            opacity: 0.4;
+            margin-bottom: 10px;
+        }
+
+        .footer-logo-wrap p {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sticky Navigation -->
+    <nav id="main-nav" class="main-nav">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%; padding: 0 20px;">
+            <a href="/" style="text-decoration: none; display: flex; align-items: center;">
+                <img src="/assets/kairos_logo.png" class="logo-nav" alt="Kairos Logo" style="height: 40px;" />
+            </a>
+            <div style="display: flex; gap: 20px; align-items: center; margin-left: auto;">
+                <a href="https://kairosmealpreps.bottle.com" target="_blank"
+                    style="color: var(--color-white); text-decoration: none; font-family: var(--font-primary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500;">Order Weekly Meals</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Quiz Wrapper -->
+    <section class="quiz-section">
+        <div class="quiz-card" id="lead-quiz">
+            
+            <!-- Progress Bar -->
+            <div class="quiz-progress-wrapper">
+                <div class="quiz-progress-text">
+                    <span id="step-counter-text">Step 1 of 12</span>
+                    <span id="progress-percentage">8%</span>
+                </div>
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- STEP 1: Intro & Zip -->
+            <div class="quiz-step active" id="quiz-step-1" data-step="1">
+                <h2>Free Fat Loss & Macro Plan</h2>
+                <p>Take this quick 60-second assessment to calculate your personalized macro targets and download a custom 7-day meal plan tailored to your busy schedule.</p>
+                
+                <h3>1. What’s your Spokane/CDA ZIP code?</h3>
+                <div class="quiz-options">
+                    <input type="text" id="input-zip" class="lead-input" placeholder="e.g. 99201" data-question="What's your ZIP code?" required />
+                    <div class="quiz-nav-btns">
+                        <button class="quiz-next-btn btn-action-next" data-next="quiz-step-2">Begin Audit</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: Age -->
+            <div class="quiz-step" id="quiz-step-2" data-step="2">
+                <h3>2. How old are you?</h3>
+                <div class="quiz-options">
+                    <input type="number" id="input-age" class="lead-input" placeholder="e.g. 35" data-question="How old are you?" required />
+                    <div class="quiz-nav-btns">
+                        <button class="quiz-back-btn btn-action-back" data-prev="quiz-step-1">Back</button>
+                        <button class="quiz-next-btn btn-action-next" data-next="quiz-step-3">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3: Gender -->
+            <div class="quiz-step" id="quiz-step-3" data-step="3">
+                <h3>3. Select your gender:</h3>
+                <div class="quiz-options">
+                    <button class="quiz-btn select-option-btn" data-question="3. Are you:" data-value="Male" data-next="quiz-step-4">Male</button>
+                    <button class="quiz-btn select-option-btn" data-question="3. Are you:" data-value="Female" data-next="quiz-step-4">Female</button>
+                </div>
+                <div class="quiz-nav-btns">
+                    <button class="quiz-back-btn btn-action-back" data-prev="quiz-step-2">Back</button>
+                </div>
+            </div>
+
+            <!-- STEP 4: Height -->
+            <div class="quiz-step" id="quiz-step-4" data-step="4">
+                <h3>4. How tall are you?</h3>
+                <div class="quiz-options">
+                    <div class="split-inputs-container">
+                        <input type="number" id="input-height-ft" class="lead-input" placeholder="Feet (e.g. 5)" data-question="Height (Feet)" required />
+                        <input type="number" id="input-height-in" class="lead-input" placeholder="Inches (e.g. 10)" data-question="Height (Inches)" required />
+                    </div>
+                    <div class="quiz-nav-btns">
+                        <button class="quiz-back-btn btn-action-back" data-prev="quiz-step-3">Back</button>
+                        <button class="quiz-next-btn btn-action-next" data-next="quiz-step-5">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 5: Current Weight -->
+            <div class="quiz-step" id="quiz-step-5" data-step="5">
+                <h3>5. What is your current weight?</h3>
+                <div class="quiz-options">
+                    <input type="number" id="input-weight" class="lead-input" placeholder="Weight in lbs (e.g. 185)" data-question="What is your current weight?" required />
+                    <div class="quiz-nav-btns">
+                        <button class="quiz-back-btn btn-action-back" data-prev="quiz-step-4">Back</button>
+                        <button class="quiz-next-btn btn-action-next" data-next="quiz-step-6">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 6: Activity Level -->
+            <div class="quiz-step" id="quiz-step-6" data-step="6">
+                <h3>6. Which best describes your activity level?</h3>
+                <div class="quiz-options">
+                    <button class="quiz-btn select-option-btn" data-question="6. Which best describes your activity level?" data-value="1.2" data-label="Mostly sitting / desk job" data-next="quiz-step-7">Mostly sitting / desk job</button>
+                    <button class="quiz-btn select-option-btn" data-question="6. Which best describes your activity level?" data-value="1.375" data-label="Lightly active" data-next="quiz-step-7">Lightly active</button>
+                    <button class="quiz-btn select-option-btn" data-question="6. Which best describes your activity level?" data-value="1.55" data-label="Moderately active" data-next="quiz-step-7">Moderately active</button>
+                    <button class="quiz-btn select-option-btn" data-question="6. Which best describes your activity level?" data-value="1.725" data-label="Very active" data-next="quiz-step-7">Very active</button>
+                </div>
+                <div class="quiz-nav-btns">
+                    <button class="quiz-back-btn btn-action-back" data-prev="quiz-step-5">Back</button>
+                </div>
+            </div>
+
+            <!-- STEP 7: Goal Target Weight Loss -->
+            <div class="quiz-step" id="quiz-step-7" data-step="7">
+                <h3>7. How much weight would you like to lose?</h3>
+                <div class="quiz-options">
+                    <button class="quiz-btn select-option-btn" data-question="7. How much weight would you like to lose?" data-value="1-10" data-label="1-10 lbs" data-next="quiz-step-8">1-10 lbs</button>
+                    <button class="quiz-btn select-option-btn" data-question="7. How much weight would you like to lose?" data-value="10-20" data-label="10-20 lbs" data-next="quiz-step-8">10-20 lbs</button>
+                    <button class="quiz-btn select-option-btn" data-question="7. How much weight would you like to lose?" data-value="20-30" data-label="20-30 lbs" data-next="quiz-step-8">20-30 lbs</button>
+                    <button class="quiz-btn select-option-btn" data-question="7. How much weight would you like to lose?" data-value="30+" data-label="30+ lbs" data-next="quiz-step-8">30+ lbs</button>
+                </div>
+                <div class="quiz-nav-btns">
+                    <button class="quiz-back-btn btn-action-back" data-prev="quiz-step-6">Back</button>
+                </div>
+            </div>
+
+            <!-- STEP 8: Work Hours -->
+            <div class="quiz-step" id="quiz-step-8" data-step="8">
+                <h3>8. How many hours do you work each week?</h3>
+                <div class="quiz-options">
+                    <button class="quiz-btn select-option-btn" data-question="8. How many hours do you work each week?" data-value="Under 40" data-next="quiz-step-9">Under 40</button>
+                    <button class="quiz-btn select-option-btn" data-question="8. How many hours do you work each week?" data-value="40-50" data-next="quiz-step-9">40-50</button>
+                    <button class="quiz-btn select-option-btn" data-question="8. How many hours do you work each week?" data-value="50-60" data-next="quiz-step-9">50-60</button>
+                    <button class="quiz-btn select-option-btn" data-question="8. How many hours do you work each week?" data-value="60+" data-next="quiz-step-9">60+</button>
+                </div>
+                <div class="quiz-nav-btns">
+                    <button class="quiz-back-btn btn-action-back" data-prev="quiz-step-7">Back</button>
+                </div>
+            </div>
+
+            <!-- STEP 9: Importance -->
+            <div class="quiz-step" id="quiz-step-9" data-step="9">
+                <h3>9. How important is achieving this goal to you?</h3>
+                <div class="quiz-options">
+                    <button class="quiz-btn select-option-btn" data-question="10. How important is losing this weight to you right now?" data-value="1" data-next="quiz-step-10">1 - Not very important</button>
+                    <button class="quiz-btn select-option-btn" data-question="10. How important is losing this weight to you right now?" data-value="2" data-next="quiz-step-10">2 - I know I should, but not fully ready</button>
+                    <button class="quiz-btn select-option-btn" data-question="10. How important is losing this weight to you right now?" data-value="3" data-next="quiz-step-10">3 - I want to make a change</button>
+                    <button class="quiz-btn select-option-btn" data-question="10. How important is losing this weight to you right now?" data-value="4" data-next="quiz-step-10">4 - I'm serious about this</button>
+                    <button class="quiz-btn select-option-btn" data-question="10. How important is losing this weight to you right now?" data-value="5" data-next="quiz-step-10">5 - I absolutely need to do this now</button>
+                </div>
+                <div class="quiz-nav-btns">
+                    <button class="quiz-back-btn btn-action-back" data-prev="quiz-step-8">Back</button>
+                </div>
+            </div>
+
+            <!-- STEP 10: Struggles -->
+            <div class="quiz-step" id="quiz-step-10" data-step="10">
+                <h3>10. What is your biggest struggle right now?</h3>
+                <div class="quiz-options">
+                    <button class="quiz-btn select-option-btn" data-question="11. What is your biggest struggle right now?" data-value="I don't have time" data-next="quiz-step-11">I don't have time</button>
+                    <button class="quiz-btn select-option-btn" data-question="11. What is your biggest struggle right now?" data-value="I can't stay consistent" data-next="quiz-step-11">I can't stay consistent</button>
+                    <button class="quiz-btn select-option-btn" data-question="11. What is your biggest struggle right now?" data-value="I don't know what to eat" data-next="quiz-step-11">I don't know what to eat</button>
+                    <button class="quiz-btn select-option-btn" data-question="11. What is your biggest struggle right now?" data-value="I'm too tired after work" data-next="quiz-step-11">I'm too tired after work</button>
+                    <button class="quiz-btn select-option-btn" data-question="11. What is your biggest struggle right now?" data-value="I lose weight, then gain it back" data-next="quiz-step-11">I lose weight, then gain it back</button>
+                </div>
+                <div class="quiz-nav-btns">
+                    <button class="quiz-back-btn btn-action-back" data-prev="quiz-step-9">Back</button>
+                </div>
+            </div>
+
+            <!-- STEP 11: Name -->
+            <div class="quiz-step" id="quiz-step-11" data-step="11">
+                <h3>11. What is your name?</h3>
+                <div class="quiz-options">
+                    <div class="split-inputs-container">
+                        <input type="text" id="input-first-name" class="lead-input" placeholder="First Name" data-question="What's your first name?" required />
+                        <input type="text" id="input-last-name" class="lead-input" placeholder="Last Name" data-question="What's your last name?" required />
+                    </div>
+                    <div class="quiz-nav-btns">
+                        <button class="quiz-back-btn btn-action-back" data-prev="quiz-step-10">Back</button>
+                        <button class="quiz-next-btn btn-action-next" data-next="quiz-step-email">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 12: Email / Phone (Submit) -->
+            <div class="quiz-step" id="quiz-step-email" data-step="12">
+                <h2>Your Macro Plan is Ready!</h2>
+                <p>Enter your contact details to instantly calculate your personal macros and unlock your 7-day clean meal plan.</p>
+                
+                <form class="lead-magnet-form" id="meal-quiz-form">
+                    <input type="email" id="quiz-email" class="lead-input" placeholder="Enter your best email address" required />
+                    <input type="tel" id="quiz-phone" class="lead-input" placeholder="Enter your best phone number" required />
+                    
+                    <div class="quiz-nav-btns">
+                        <button type="button" class="quiz-back-btn btn-action-back" data-prev="quiz-step-11">Back</button>
+                        <button type="submit" class="quiz-next-btn" style="flex: 2;">Get My Calorie & Macro Plan</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer logo -->
+    <footer class="footer-logo-wrap">
+        <img src="/assets/kairos_logo.png" alt="Kairos Logo" />
+        <p>© 2026 KAIROS NUTRITION. SPOKANE / CDA.</p>
+    </footer>
+
+    <!-- Quiz logic and math -->
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', () => {
+            const steps = document.querySelectorAll('.quiz-step');
+            const totalSteps = 12;
+            const userAnswers = {};
+
+            // Update progress bar
+            function updateProgress(stepNum) {
+                const stepText = document.getElementById('step-counter-text');
+                const percentText = document.getElementById('progress-percentage');
+                const fill = document.getElementById('progress-fill');
+                
+                if (stepText && percentText && fill) {
+                    const percentage = Math.round((stepNum / totalSteps) * 100);
+                    stepText.textContent = `Step ${stepNum} of ${totalSteps}`;
+                    percentText.textContent = `${percentage}%`;
+                    fill.style.width = `${percentage}%`;
+                }
+            }
+
+            // Show active step
+            function showStep(stepId) {
+                steps.forEach(step => {
+                    step.classList.remove('active');
+                });
+                
+                const targetStep = document.getElementById(stepId);
+                if (targetStep) {
+                    targetStep.classList.add('active');
+                    const stepNum = parseInt(targetStep.getAttribute('data-step'), 10);
+                    if (!isNaN(stepNum)) {
+                        updateProgress(stepNum);
+                    }
+                }
+            }
+
+            // Input Validation Helpers
+            function validateStepInputs(stepElement) {
+                const inputs = stepElement.querySelectorAll('.lead-input');
+                let isValid = true;
+                
+                inputs.forEach(input => {
+                    if (input.value.trim() === '') {
+                        isValid = false;
+                        input.style.borderColor = '#e11d48';
+                        setTimeout(() => { input.style.borderColor = ''; }, 2000);
+                    } else {
+                        // Store values
+                        const question = input.getAttribute('data-question');
+                        userAnswers[question] = input.value.trim();
+                    }
+                });
+                
+                return isValid;
+            }
+
+            // Next actions
+            const nextActionBtns = document.querySelectorAll('.btn-action-next');
+            nextActionBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const currentStep = btn.closest('.quiz-step');
+                    if (validateStepInputs(currentStep)) {
+                        const nextId = btn.getAttribute('data-next');
+                        showStep(nextId);
+                    }
+                });
+            });
+
+            // Back actions
+            const backActionBtns = document.querySelectorAll('.btn-action-back');
+            backActionBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const prevId = btn.getAttribute('data-prev');
+                    showStep(prevId);
+                });
+            });
+
+            // Button choices actions
+            const optionBtns = document.querySelectorAll('.select-option-btn');
+            optionBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    const currentStep = btn.closest('.quiz-step');
+                    const question = btn.getAttribute('data-question');
+                    const value = btn.getAttribute('data-value');
+                    const label = btn.getAttribute('data-label') || value;
+                    
+                    // Save choices
+                    userAnswers[question] = label;
+                    userAnswers[question + '_raw'] = value;
+                    
+                    // Add selected visual
+                    currentStep.querySelectorAll('.select-option-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    
+                    setTimeout(() => {
+                        const nextId = btn.getAttribute('data-next');
+                        showStep(nextId);
+                    }, 200); // Small delay to show selection click animation
+                });
+            });
+
+            // Submit and Macro Calculations
+            const quizForm = document.getElementById('meal-quiz-form');
+            if (quizForm) {
+                quizForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    const email = document.getElementById('quiz-email').value.trim();
+                    const phone = document.getElementById('quiz-phone').value.trim();
+                                    userAnswers['Email'] = email;
+                    userAnswers['Phone'] = phone;
+                    userAnswers['First Name'] = document.getElementById('input-first-name').value.trim();
+                    userAnswers['Last Name'] = document.getElementById('input-last-name').value.trim();
+                    userAnswers['Age'] = parseInt(document.getElementById('input-age').value.trim(), 10);
+                    userAnswers['Weight'] = parseFloat(document.getElementById('input-weight').value.trim());
+                    userAnswers['Height Feet'] = parseInt(document.getElementById('input-height-ft').value.trim(), 10);
+                    userAnswers['Height Inches'] = parseInt(document.getElementById('input-height-in').value.trim(), 10);
+                    userAnswers['ZIP Code'] = document.getElementById('input-zip').value.trim();
+                    userAnswers['Gender_raw'] = userAnswers['3. Are you:_raw'];
+                    userAnswers['Activity Level_raw'] = userAnswers['6. Which best describes your activity level?_raw'];
+
+                    // Populate exact duplicate keys to match your original quiz/Make scenario perfectly:
+                    userAnswers['email'] = email;
+                    userAnswers['phone_number'] = phone;
+                    userAnswers["What's your first name?"] = userAnswers['First Name'];
+                    userAnswers["What's your last name?"] = userAnswers['Last Name'];
+                    userAnswers["What's your ZIP code?"] = userAnswers['ZIP Code'];
+                    userAnswers["How old are you?"] = userAnswers['Age'];
+                    userAnswers["What is your current weight?"] = userAnswers['Weight'];
+                    userAnswers["Height (Feet)"] = userAnswers['Height Feet'];
+                    userAnswers["Height (Inches)"] = userAnswers['Height Inches'];
+
+                    // Mifflin-St Jeor Macro Equations
+                    const weightLbs = userAnswers['Weight'];
+                    const heightFt = userAnswers['Height Feet'];
+                    const heightIn = userAnswers['Height Inches'];
+                    const age = userAnswers['Age'];
+                    const gender = userAnswers['Gender_raw']; // 'Male' or 'Female'
+                    const activityMultiplier = parseFloat(userAnswers['Activity Level_raw']); // e.g. 1.2, 1.375...75...
+
+
+                    // Conversions
+                    const weightKg = weightLbs * 0.45359237;
+                    const totalHeightInches = (heightFt * 12) + heightIn;
+                    const heightCm = totalHeightInches * 2.54;
+
+                    // Calculate Basal Metabolic Rate (BMR)
+                    let BMR = 0;
+                    if (gender === 'Male') {
+                        BMR = (10 * weightKg) + (6.25 * heightCm) - (5 * age) + 5;
+                    } else {
+                        BMR = (10 * weightKg) + (6.25 * heightCm) - (5 * age) - 161;
+                    }
+
+                    // Total Daily Energy Expenditure (TDEE)
+                    const TDEE = Math.round(BMR * activityMultiplier);
+
+                    // Daily Calorie Budget based on Goal (Always high-protein fat loss deficit for clean-eating blueprint)
+                    let targetCalories = Math.round(TDEE - 500);
+
+                    // Minimum calorie check for safety
+                    if (gender === 'Female' && targetCalories < 1200) targetCalories = 1200;
+                    if (gender === 'Male' && targetCalories < 1500) targetCalories = 1500;
+
+                    // High Protein macro distribution targets
+                    // Protein: 1.0g per lb of bodyweight (4 kcal/g)
+                    let proteinGrams = Math.round(weightLbs); 
+                    
+                    // Cap protein at 40% of calories if weight is very high to avoid excess stress
+                    if (proteinGrams * 4 > targetCalories * 0.4) {
+                        proteinGrams = Math.round((targetCalories * 0.4) / 4);
+                    }
+
+                    // Fat: 27.5% of total calories (9 kcal/g)
+                    const fatGrams = Math.round((targetCalories * 0.275) / 9);
+
+                    // Carbs: Remaining calories (4 kcal/g)
+                    const proteinCalories = proteinGrams * 4;
+                    const fatCalories = fatGrams * 9;
+                    const carbCalories = targetCalories - proteinCalories - fatCalories;
+                    const carbGrams = Math.max(20, Math.round(carbCalories / 4)); // absolute minimum of 20g carb
+
+                    // Determine Tier Category (S: Small/Cut, L: Large/Maintain, XL: Extra Large/Build)
+                    let calculatedTier = 'S';
+                    if (targetCalories > 2400) {
+                        calculatedTier = 'XL';
+                    } else if (targetCalories >= 1800) {
+                        calculatedTier = 'L';
+                    }
+
+                    // Package calculations
+                    const calculatedPlan = {
+                        calories: targetCalories,
+                        protein: proteinGrams,
+                        carbs: carbGrams,
+                        fat: fatGrams,
+                        bmr: Math.round(BMR),
+                        tdee: TDEE,
+                        tier: calculatedTier
+                    };
+
+                    // Persist locally for dashboard loading
+                    localStorage.setItem('kairos_user_answers', JSON.stringify(userAnswers));
+                    localStorage.setItem('kairos_macro_plan', JSON.stringify(calculatedPlan));
+
+                    console.log('Calculation complete:', calculatedPlan);
+
+                    // Send data to Klaviyo Integration
+                    const klaviyoPublicKey = 'QWmkMT';
+                    const klaviyoData = {
+                        data: {
+                            type: 'event',
+                            attributes: {
+                                profile: {
+                                    $email: email,
+                                    $phone_number: phone,
+                                    $first_name: userAnswers['First Name'] || '',
+                                    $last_name: userAnswers['Last Name'] || ''
+                                },
+                                metric: {
+                                    name: 'Completed Macro Quiz'
+                                },
+                                properties: {
+                                    ...userAnswers,
+                                    ...calculatedPlan
+                                },
+                                time: new Date().toISOString()
+                            }
+                        }
+                    };
+
+                    fetch(`https://a.klaviyo.com/client/events/?company_id=${klaviyoPublicKey}`, {
+                        method: 'POST',
+                        headers: {
+                            accept: 'application/json',
+                            revision: '2024-02-15',
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(klaviyoData)
+                    }).catch(err => console.error('Klaviyo event fail:', err));
+
+                    // Send data to Make.com Webhook
+                    const makeWebhookUrl = 'https://hook.us2.make.com/mfuqqh8yq36i66yimegjm4xgn9dl1wj1';
+                    
+                    const submitBtn = quizForm.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        submitBtn.textContent = 'Calculating Plan...';
+                        submitBtn.disabled = true;
+                    }
+
+                    fetch(makeWebhookUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ ...userAnswers, ...calculatedPlan })
+                    })
+                    .then(() => {
+                        window.location.href = './meal-plan-dashboard.html';
+                    })
+                    .catch(err => {
+                        console.error('Webhook error, redirecting anyway:', err);
+                        // Fallback redirect
+                        window.location.href = './meal-plan-dashboard.html';
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

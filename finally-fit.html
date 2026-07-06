@@ -3,429 +3,2520 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Qualified | Kairos Nutrition</title>
+    <title>Finally Fit Project | Kairos Nutrition</title>
+    
+    <!-- Premium Typography: Swoop Scoop displays Lilita One, Montserrat, Outfit and Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Montserrat:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="./style.css" />
+
+    <style>
+        /* ==========================================================================
+           SWOOP SCOOP INSPIRED DESIGN SYSTEM FOR FINALLY FIT
+           ========================================================================== */
+        
+        :root {
+            --ffp-red: #D90429;
+            --ffp-red-hover: #EF233C;
+            --ffp-slate: #0F172A;
+            --ffp-slate-light: #1E293B;
+            --ffp-cream: #FDFBF7;
+            --ffp-dark: #121212;
+            --ffp-border: #121212;
+            --ffp-gray: #F1F5F9;
+            --ffp-gold: #FFB000;
+            --ffp-font-display: 'Lilita One', cursive;
+            --ffp-font-heading: 'Montserrat', sans-serif;
+            --ffp-font-body: 'Inter', sans-serif;
+        }
+
+        body.ffp-mockup {
+            background-color: var(--ffp-cream);
+            color: var(--ffp-dark);
+            font-family: var(--ffp-font-body);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Re-style core typography to match Swoop Scoop friendly-bold look */
+        .ffp-mockup h1, 
+        .ffp-mockup h2, 
+        .ffp-mockup h3, 
+        .ffp-mockup h4 {
+            font-family: var(--ffp-font-display);
+            text-transform: none;
+            letter-spacing: normal;
+            font-weight: 400;
+            color: var(--ffp-dark);
+            margin: 0;
+        }
+
+        .ffp-mockup h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.05;
+        }
+
+        .ffp-mockup h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.1;
+        }
+
+        .ffp-mockup h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            line-height: 1.2;
+        }
+
+        .ffp-mockup p {
+            font-family: var(--ffp-font-body);
+            line-height: 1.6;
+            color: rgba(18, 18, 18, 0.8);
+            font-size: 1.05rem;
+        }
+
+        /* Neo-Brutalist Layout Components */
+        .brutalist-card {
+            background: #ffffff;
+            border: 3px solid var(--ffp-border);
+            border-radius: 16px;
+            box-shadow: 6px 6px 0px var(--ffp-border);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .brutalist-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0px var(--ffp-border);
+        }
+
+        /* Top Announcement Bar */
+        .ffp-topbar {
+            background-color: var(--ffp-red);
+            color: #ffffff;
+            padding: 10px 20px;
+            text-align: center;
+            font-family: var(--ffp-font-heading);
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            z-index: 1000;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .ffp-topbar span {
+            color: var(--ffp-gold);
+            text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+        }
+
+        /* Brand Navigation Header */
+        .ffp-header {
+            background-color: #ffffff;
+            border-bottom: 3px solid var(--ffp-border);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            padding: 12px 0;
+        }
+
+        .ffp-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .ffp-logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 10px;
+        }
+
+        .ffp-logo-text {
+            font-family: var(--ffp-font-display);
+            font-size: 1.8rem;
+            color: var(--ffp-dark);
+            letter-spacing: -0.5px;
+            display: flex;
+            flex-direction: column;
+            line-height: 0.9;
+        }
+
+        .ffp-logo-text span.sub-logo {
+            font-family: var(--ffp-font-heading);
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--ffp-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .ffp-nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .ffp-nav-link {
+            text-decoration: none;
+            color: var(--ffp-dark);
+            font-family: var(--ffp-font-heading);
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            position: relative;
+            padding: 6px 0;
+        }
+
+        .ffp-nav-link:hover {
+            color: var(--ffp-red);
+        }
+
+        .ffp-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--ffp-red);
+            transition: width 0.2s ease;
+        }
+
+        .ffp-nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Brand Navigation CTA Button */
+        .ffp-cta-btn {
+            background-color: var(--ffp-red);
+            color: #ffffff;
+            font-family: var(--ffp-font-heading);
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 10px 20px;
+            border: 3px solid var(--ffp-border);
+            border-radius: 8px;
+            box-shadow: 3px 3px 0px var(--ffp-border);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .ffp-cta-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px var(--ffp-border);
+            background-color: var(--ffp-red-hover);
+        }
+
+        /* Mobile Nav Toggle */
+        .ffp-mobile-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .ffp-mobile-btn svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--ffp-dark);
+            stroke-width: 2.5;
+        }
+
+        /* Main Hero Section */
+        .ffp-hero {
+            padding: 80px 20px;
+            background-color: var(--ffp-cream);
+            border-bottom: 3px solid var(--ffp-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ffp-hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: radial-gradient(var(--ffp-border) 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .ffp-hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .ffp-hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            border: 2px solid var(--ffp-border);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-family: var(--ffp-font-heading);
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: var(--ffp-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 2px 2px 0px var(--ffp-border);
+            margin-bottom: 24px;
+        }
+
+        .ffp-hero-pill-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--ffp-red);
+            animation: pulse-dot 1.5s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0% { transform: scale(0.9); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.6; }
+        }
+
+        .ffp-hero-content h1 {
+            margin-bottom: 20px;
+        }
+
+        .ffp-hero-content h1 span {
+            color: var(--ffp-red);
+        }
+
+        .ffp-hero-content p {
+            font-size: 1.15rem;
+            color: rgba(18,18,18,0.75);
+            margin-bottom: 30px;
+            max-width: 620px;
+        }
+
+        /* Swoop Scoop Inspired ZIP CODE checker widget */
+        .zip-widget-container {
+            max-width: 500px;
+            margin-bottom: 25px;
+        }
+
+        .zip-widget-label {
+            font-family: var(--ffp-font-heading);
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            color: var(--ffp-dark);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .zip-checker-bar {
+            display: flex;
+            background: #ffffff;
+            border: 3px solid var(--ffp-border);
+            border-radius: 12px;
+            padding: 6px;
+            box-shadow: 4px 4px 0px var(--ffp-border);
+            transition: focus-within 0.2s;
+        }
+
+        .zip-checker-bar input {
+            flex: 1;
+            border: none;
+            padding: 12px 16px;
+            font-family: var(--ffp-font-heading);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--ffp-dark);
+            outline: none;
+            background: transparent;
+            min-width: 0;
+        }
+
+        .zip-checker-bar input::placeholder {
+            color: #a1a1aa;
+        }
+
+        .zip-checker-bar button {
+            background-color: var(--ffp-red);
+            color: #ffffff;
+            border: 2px solid var(--ffp-border);
+            border-radius: 8px;
+            padding: 10px 24px;
+            font-family: var(--ffp-font-heading);
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .zip-checker-bar button:hover {
+            background-color: var(--ffp-red-hover);
+            transform: scale(0.98);
+        }
+
+        /* Play Walkthrough button */
+        .play-walkthrough-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--ffp-dark);
+            font-family: var(--ffp-font-heading);
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .play-walkthrough-btn:hover {
+            color: var(--ffp-red);
+        }
+
+        .play-icon-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--ffp-red);
+            border: 2px solid var(--ffp-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 2px 2px 0px var(--ffp-border);
+            transition: all 0.2s;
+        }
+
+        .play-walkthrough-btn:hover .play-icon-circle {
+            transform: scale(1.1);
+            background-color: var(--ffp-red-hover);
+        }
+
+        .play-icon-circle svg {
+            width: 18px;
+            height: 18px;
+            fill: #ffffff;
+            margin-left: 2px;
+        }
+
+        /* Hero Image/Mockup Showcase Column */
+        .ffp-hero-showcase {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ffp-showcase-bg-ring {
+            position: absolute;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            border: 3px dashed rgba(18, 18, 18, 0.15);
+            animation: rotate-dashed 40s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes rotate-dashed {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .ffp-showcase-card {
+            background-color: #ffffff;
+            border: 3px solid var(--ffp-border);
+            border-radius: 20px;
+            padding: 20px;
+            width: 320px;
+            box-shadow: 8px 8px 0px var(--ffp-border);
+            z-index: 2;
+            position: relative;
+        }
+
+        .showcase-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--ffp-gray);
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+
+        .showcase-brand {
+            font-family: var(--ffp-font-display);
+            font-size: 1.25rem;
+            color: var(--ffp-red);
+        }
+
+        .showcase-badge {
+            background-color: var(--ffp-slate);
+            color: #ffffff;
+            font-size: 0.7rem;
+            font-family: var(--ffp-font-heading);
+            font-weight: 800;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .showcase-image-container {
+            border: 2.5px solid var(--ffp-border);
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background-color: var(--ffp-gray);
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        /* Floating features badge */
+        .showcase-floating-badge {
+            position: absolute;
+            background: #ffffff;
+            border: 2px solid var(--ffp-border);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-family: var(--ffp-font-heading);
+            font-weight: 800;
+            font-size: 0.8rem;
+            box-shadow: 3px 3px 0px var(--ffp-border);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge-meals {
+            bottom: -15px;
+            left: -25px;
+            transform: rotate(-5deg);
+        }
+
+        .badge-workouts {
+            top: 20px;
+            right: -25px;
+            transform: rotate(5deg);
+        }
+
+        .showcase-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .stat-box {
+            border: 2px solid var(--ffp-border);
+            border-radius: 8px;
+            padding: 10px;
+            background: var(--ffp-gray);
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: var(--ffp-font-display);
+            font-size: 1.5rem;
+            color: var(--ffp-dark);
+            margin-bottom: 2px;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            font-family: var(--ffp-font-heading);
+            font-weight: 700;
+            color: rgba(18, 18, 18, 0.6);
+            text-transform: uppercase;
+        }
+
+        /* Custom Promise Section (Swoop Scoop 3 core values) */
+        .ffp-promise-section {
+            padding: 100px 20px;
+            background-color: #ffffff;
+            border-bottom: 3px solid var(--ffp-border);
+        }
+
+        .ffp-section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px auto;
+        }
+
+        .ffp-section-header span {
+            font-family: var(--ffp-font-heading);
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: var(--ffp-red);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .ffp-section-header h2 {
+            margin-bottom: 15px;
+        }
+
+        .ffp-promise-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .promise-card {
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .promise-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--ffp-cream);
+            border: 3px solid var(--ffp-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px auto;
+            box-shadow: 4px 4px 0px var(--ffp-border);
+        }
+
+        .promise-icon-wrapper svg {
+            width: 44px;
+            height: 44px;
+            stroke: var(--ffp-dark);
+            stroke-width: 2.5;
+        }
+
+        .promise-card h3 {
+            margin-bottom: 15px;
+        }
+
+        .promise-card p {
+            font-size: 0.95rem;
+            color: rgba(18, 18, 18, 0.7);
+            margin: 0;
+        }
+
+        /* Narrative About Section */
+        .ffp-about-section {
+            padding: 100px 20px;
+            background-color: var(--ffp-gray);
+            border-bottom: 3px solid var(--ffp-border);
+            position: relative;
+        }
+
+        .ffp-about-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .ffp-about-image-card {
+            border: 3px solid var(--ffp-border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 8px 8px 0px var(--ffp-border);
+            aspect-ratio: 16/13;
+            background-color: #ffffff;
+            position: relative;
+        }
+
+        .ffp-about-content h2 {
+            margin-bottom: 20px;
+        }
+
+        .ffp-about-content p {
+            font-size: 1.1rem;
+            color: rgba(18, 18, 18, 0.75);
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        /* Alternating Feature/Services Sections (Residential/Commercial structure) */
+        .ffp-features-alternating {
+            padding: 100px 20px;
+            background-color: var(--ffp-cream);
+            border-bottom: 3px solid var(--ffp-border);
+        }
+
+        .ffp-alt-row {
+            max-width: 1200px;
+            margin: 0 auto 100px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .ffp-alt-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .ffp-alt-row.reverse {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .ffp-alt-row.reverse .ffp-alt-col-image {
+            order: -1;
+        }
+
+        .ffp-alt-col-image-wrapper {
+            position: relative;
+        }
+
+        .ffp-alt-image-box {
+            border: 3px solid var(--ffp-border);
+            border-radius: 20px;
+            background-color: #ffffff;
+            box-shadow: 8px 8px 0px var(--ffp-border);
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+
+        .ffp-alt-col-text h2 {
+            margin-bottom: 25px;
+        }
+
+        /* Custom list style */
+        .ffp-custom-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .ffp-custom-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--ffp-dark);
+        }
+
+        .ffp-check-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: rgba(217, 4, 41, 0.1);
+            border: 2px solid var(--ffp-border);
+            color: var(--ffp-red);
+            font-weight: 900;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Urgent Promo Banner Section */
+        .ffp-promo-section {
+            padding: 80px 20px;
+            background-color: var(--ffp-slate);
+            color: #ffffff;
+            border-bottom: 3px solid var(--ffp-border);
+            position: relative;
+        }
+
+        .ffp-promo-section::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+            pointer-events: none;
+        }
+
+        .ffp-promo-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .promo-urgency-badge {
+            background-color: var(--ffp-red);
+            color: #ffffff;
+            display: inline-block;
+            font-family: var(--ffp-font-heading);
+            font-weight: 900;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 6px 16px;
+            border: 2px solid #ffffff;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            box-shadow: 2px 2px 0px var(--ffp-border);
+        }
+
+        .ffp-promo-inner h2 {
+            color: #ffffff;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 15px;
+        }
+
+        .ffp-promo-inner p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.15rem;
+            margin-bottom: 30px;
+            font-family: var(--ffp-font-heading);
+            font-weight: 500;
+        }
+
+        .promo-coupon-code {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--ffp-slate-light);
+            border: 2px dashed #ffffff;
+            border-radius: 8px;
+            padding: 10px 24px;
+            font-family: var(--ffp-font-heading);
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--ffp-gold);
+            margin-bottom: 35px;
+        }
+
+        /* 7-Minute Ticker countdown */
+        .countdown-timer-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background-color: var(--ffp-red);
+            border: 3px solid var(--ffp-border);
+            border-radius: 12px;
+            padding: 12px 24px;
+            box-shadow: 4px 4px 0px var(--ffp-border);
+            margin-bottom: 40px;
+        }
+
+        .timer-text {
+            font-family: var(--ffp-font-heading);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .timer-digits {
+            font-family: var(--ffp-font-display);
+            font-size: 2.2rem;
+            color: var(--ffp-gold);
+            line-height: 1;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 0px var(--ffp-border);
+        }
+
+        /* Original Side-By-Side Comparison Section */
+        .ffp-compare-section {
+            padding: 100px 20px;
+            background-color: #ffffff;
+            border-bottom: 3px solid var(--ffp-border);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .compare-card {
+            border: 3px solid var(--ffp-border);
+            border-radius: 20px;
+            padding: 40px 30px;
+            background-color: #ffffff;
+            box-shadow: 5px 5px 0px var(--ffp-border);
+        }
+
+        .compare-card.featured {
+            background-color: var(--ffp-slate);
+            color: #ffffff;
+            box-shadow: 8px 8px 0px var(--ffp-border);
+            position: relative;
+            transform: scale(1.02);
+        }
+
+        .compare-card.featured::before {
+            content: 'Recommended';
+            position: absolute;
+            top: -15px;
+            right: 25px;
+            background-color: var(--ffp-red);
+            color: #ffffff;
+            border: 2.5px solid var(--ffp-border);
+            border-radius: 4px;
+            padding: 4px 10px;
+            font-family: var(--ffp-font-heading);
+            font-weight: 800;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            box-shadow: 2px 2px 0px var(--ffp-border);
+        }
+
+        .compare-title {
+            font-family: var(--ffp-font-display);
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .compare-subtitle {
+            font-family: var(--ffp-font-heading);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: rgba(18, 18, 18, 0.4);
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        .compare-card.featured .compare-subtitle {
+            color: var(--ffp-gold);
+        }
+
+        .compare-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .compare-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .compare-card:not(.featured) .compare-row {
+            color: rgba(18, 18, 18, 0.5);
+            text-decoration: line-through;
+        }
+
+        .compare-row-icon {
+            font-weight: 900;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .compare-card.featured .compare-row-icon {
+            color: var(--ffp-red);
+        }
+
+        .compare-card:not(.featured) .compare-row-icon {
+            color: #dc2626;
+        }
+
+        /* Locations Serviced Section */
+        .ffp-locations-section {
+            padding: 100px 20px;
+            background-color: var(--ffp-gray);
+            border-bottom: 3px solid var(--ffp-border);
+        }
+
+        .locations-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .location-card {
+            padding: 25px 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .location-pin-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            border: 2px solid var(--ffp-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 2px 2px 0px var(--ffp-border);
+            margin-bottom: 15px;
+            transition: all 0.2s;
+        }
+
+        .location-card:hover .location-pin-icon {
+            transform: scale(1.1) rotate(10deg);
+            background-color: var(--ffp-red);
+            color: #ffffff;
+        }
+
+        .location-card:hover .location-pin-icon svg {
+            fill: #ffffff;
+        }
+
+        .location-pin-icon svg {
+            width: 26px;
+            height: 26px;
+            fill: var(--ffp-red);
+            transition: fill 0.2s;
+        }
+
+        .location-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .location-card p {
+            font-size: 0.75rem;
+            font-family: var(--ffp-font-heading);
+            font-weight: 700;
+            color: rgba(18, 18, 18, 0.5);
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        /* Testimonials sliding carousel */
+        .ffp-reviews-section {
+            padding: 100px 20px;
+            background-color: #ffffff;
+            border-bottom: 3px solid var(--ffp-border);
+            position: relative;
+        }
+
+        .carousel-outer {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            padding: 20px 5px;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 30px;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            width: 100%;
+        }
+
+        .carousel-card {
+            min-width: calc(33.333% - 20px);
+            max-width: calc(33.333% - 20px);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-sizing: border-box;
+        }
+
+        .carousel-card .stars {
+            color: var(--ffp-gold);
+            font-size: 1.25rem;
+            letter-spacing: 1px;
+        }
+
+        .carousel-card .review-body {
+            font-style: italic;
+            font-size: 0.95rem;
+            color: rgba(18, 18, 18, 0.8);
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .carousel-card .reviewer-name {
+            font-family: var(--ffp-font-heading);
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: var(--ffp-red);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-top: 1.5px solid var(--ffp-gray);
+            padding-top: 12px;
+            margin-top: 5px;
+        }
+
+        /* Navigation Arrows */
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .carousel-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 3px solid var(--ffp-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 3px 3px 0px var(--ffp-border);
+            transition: all 0.2s;
+        }
+
+        .carousel-btn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px var(--ffp-border);
+            background-color: var(--ffp-gray);
+        }
+
+        .carousel-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px var(--ffp-border);
+        }
+
+        .carousel-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--ffp-dark);
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(18, 18, 18, 0.2);
+            cursor: pointer;
+            border: 1px solid var(--ffp-border);
+            transition: background-color 0.2s;
+        }
+
+        .carousel-dot.active {
+            background-color: var(--ffp-red);
+            width: 14px;
+            border-radius: 8px;
+        }
+
+        /* Community / Giving back section */
+        .ffp-community-section {
+            padding: 100px 20px;
+            background-color: var(--ffp-cream);
+            border-bottom: 3px solid var(--ffp-border);
+        }
+
+        /* Footer */
+        .ffp-footer {
+            background-color: var(--ffp-slate);
+            color: #ffffff;
+            padding: 80px 20px;
+            border-top: 3px solid var(--ffp-border);
+        }
+
+        .ffp-footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 30px;
+        }
+
+        .ffp-footer-logo {
+            font-family: var(--ffp-font-display);
+            font-size: 2.2rem;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            line-height: 0.9;
+        }
+
+        .ffp-footer-logo span {
+            color: var(--ffp-red);
+            font-family: var(--ffp-font-heading);
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .ffp-footer-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            margin: 20px 0;
+            padding: 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .ffp-footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-family: var(--ffp-font-heading);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .ffp-footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .ffp-footer-copyright {
+            font-size: 0.8rem;
+            font-family: var(--ffp-font-heading);
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Glassmorphic Consultation Popup Modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-container {
+            background-color: #ffffff;
+            border: 4px solid var(--ffp-border);
+            border-radius: 20px;
+            max-width: 550px;
+            width: 100%;
+            padding: 40px;
+            box-shadow: 10px 10px 0px var(--ffp-border);
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-sizing: border-box;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: scale(1);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 2.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--ffp-dark);
+            line-height: 1;
+            padding: 5px;
+        }
+
+        .modal-close-btn:hover {
+            color: var(--ffp-red);
+        }
+
+        .modal-header-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: rgba(217, 4, 41, 0.1);
+            border: 2.5px solid var(--ffp-border);
+            color: var(--ffp-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 3px 3px 0px var(--ffp-border);
+        }
+
+        .modal-header-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .modal-container h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .modal-container p.modal-subtext {
+            color: rgba(18, 18, 18, 0.6);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        /* Lead Capture Form */
+        .ffp-lead-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-row-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .ffp-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .ffp-input-group label {
+            font-family: var(--ffp-font-heading);
+            font-weight: 800;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: rgba(18, 18, 18, 0.6);
+        }
+
+        .ffp-lead-form input {
+            border: 2px solid var(--ffp-border);
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-family: var(--ffp-font-body);
+            font-size: 0.95rem;
+            color: var(--ffp-dark);
+            outline: none;
+            background-color: var(--ffp-gray);
+            box-shadow: 2px 2px 0px var(--ffp-border);
+            transition: all 0.2s;
+        }
+
+        .ffp-lead-form input:focus {
+            background-color: #ffffff;
+            box-shadow: 4px 4px 0px var(--ffp-border);
+        }
+
+        .ffp-lead-form button[type="submit"] {
+            margin-top: 10px;
+            background-color: var(--ffp-red);
+            color: #ffffff;
+            border: 3px solid var(--ffp-border);
+            border-radius: 8px;
+            padding: 14px;
+            font-family: var(--ffp-font-heading);
+            font-weight: 800;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 3px 3px 0px var(--ffp-border);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .ffp-lead-form button[type="submit"]:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px var(--ffp-border);
+            background-color: var(--ffp-red-hover);
+        }
+
+        /* Success & Fail alert overlay */
+        .form-feedback-alert {
+            display: none;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid var(--ffp-border);
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-top: 15px;
+            box-shadow: 3px 3px 0px var(--ffp-border);
+        }
+
+        .form-feedback-alert.success {
+            background-color: #dcfce7;
+            color: #15803d;
+        }
+
+        .form-feedback-alert.error {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+
+        /* Interactive Tour slides */
+        .tour-slide-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .tour-graphic {
+            border: 3px solid var(--ffp-border);
+            border-radius: 12px;
+            width: 100%;
+            height: 180px;
+            background-color: var(--ffp-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 4px 4px 0px var(--ffp-border);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .tour-slide-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 10px;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .ffp-hero-inner {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+            .ffp-hero-pill {
+                justify-content: center;
+            }
+            .zip-widget-container {
+                margin: 0 auto 25px auto;
+            }
+            .play-walkthrough-btn {
+                justify-content: center;
+            }
+            .ffp-hero-showcase {
+                order: -1;
+            }
+            .ffp-promise-grid {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+            }
+            .ffp-about-inner {
+                grid-template-columns: 1fr;
+            }
+            .ffp-alt-row {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .ffp-alt-row.reverse .ffp-alt-col-image {
+                order: 0;
+            }
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                max-width: 480px;
+            }
+            .compare-card.featured {
+                transform: scale(1);
+            }
+            .locations-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .carousel-card {
+                min-width: calc(50% - 15px);
+                max-width: calc(50% - 15px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .ffp-nav-menu {
+                display: none;
+            }
+            .ffp-mobile-btn {
+                display: block;
+            }
+            .locations-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .carousel-card {
+                min-width: 100%;
+                max-width: 100%;
+            }
+            .form-row-split {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .locations-grid {
+                grid-template-columns: 1fr;
+            }
+            .zip-checker-bar {
+                flex-direction: column;
+                gap: 10px;
+                border: none;
+                box-shadow: none;
+                background: transparent;
+                padding: 0;
+            }
+            .zip-checker-bar input {
+                background: #ffffff;
+                border: 3px solid var(--ffp-border);
+                border-radius: 12px;
+                padding: 14px;
+                box-shadow: 4px 4px 0px var(--ffp-border);
+            }
+            .zip-checker-bar button {
+                padding: 14px;
+                box-shadow: 4px 4px 0px var(--ffp-border);
+            }
+        }
+    </style>
 </head>
-<body class="page-light">
-    <!-- Top Navigation -->
-    <div style="background-color: var(--color-white); padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.05); width: 100%;">
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <a href="/" style="display: flex; align-items: center; text-decoration: none;">
-                <img src="/assets/kairos_logo.png" alt="Kairos Logo" style="height: 50px; filter: invert(1);" />
+<body class="ffp-mockup">
+
+    <!-- URGENT TOP BAR: Save $240 offer countdown -->
+    <div class="ffp-topbar" id="nav-countdown-bar">
+        Claim Your FREE Consultation & Save Up to <span>$240 on Chef-Prepared Meals</span> Today! Offers Expires In <span id="nav-timer">07:00</span>
+    </div>
+
+    <!-- MAIN BRAND HEADER -->
+    <header class="ffp-header">
+        <div class="ffp-nav-container">
+            <a href="/" class="ffp-logo-link">
+                <img src="/assets/kairos_logo.png" alt="Kairos Logo" style="height: 38px; filter: invert(1); border: 2px solid var(--ffp-border); border-radius: 6px; padding: 2px; background: #fff;" />
+                <div class="ffp-logo-text">
+                    KAIROS
+                    <span class="sub-logo">Finally Fit Project</span>
+                </div>
             </a>
+            
+            <ul class="ffp-nav-menu">
+                <li><a href="#promises" class="ffp-nav-link">Our Promises</a></li>
+                <li><a href="#about" class="ffp-nav-link">How it Works</a></li>
+                <li><a href="#features" class="ffp-nav-link">Services</a></li>
+                <li><a href="#comparison" class="ffp-nav-link">FFP vs Standard</a></li>
+                <li><a href="#locations" class="ffp-nav-link">Locations</a></li>
+                <li><a href="#reviews" class="ffp-nav-link">Success Stories</a></li>
+            </ul>
+
             <div style="display: flex; gap: 15px; align-items: center;">
-                <a href="/" style="color: var(--color-black); font-weight: 600; font-size: 0.95rem; text-decoration: none;">Home</a>
-                <a href="https://kairosmealpreps.bottle.com" target="_blank" rel="noopener noreferrer" style="background-color: var(--color-red); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: background-color 0.2s;">Order Weekly Meals</a>
+                <button class="ffp-cta-btn desktop-only" onclick="openConsultationModal('', true)">Free Consult</button>
+                <button class="ffp-mobile-btn" id="mobile-hamburger" aria-label="Toggle Navigation">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M4 6H20M4 12H20M4 18H20" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="modal-overlay" id="mobile-menu-overlay" style="z-index: 998; background: var(--ffp-cream);">
+        <div class="modal-container" style="background: var(--ffp-cream); border: none; box-shadow: none; max-width: 100vw; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 30px;">
+            <button class="modal-close-btn" id="mobile-menu-close">&times;</button>
+            <a href="#promises" class="ffp-nav-link" style="font-size: 1.8rem;" onclick="toggleMobileMenu()">Our Promises</a>
+            <a href="#about" class="ffp-nav-link" style="font-size: 1.8rem;" onclick="toggleMobileMenu()">How it Works</a>
+            <a href="#features" class="ffp-nav-link" style="font-size: 1.8rem;" onclick="toggleMobileMenu()">Services</a>
+            <a href="#comparison" class="ffp-nav-link" style="font-size: 1.8rem;" onclick="toggleMobileMenu()">FFP vs Standard</a>
+            <a href="#locations" class="ffp-nav-link" style="font-size: 1.8rem;" onclick="toggleMobileMenu()">Locations</a>
+            <a href="#reviews" class="ffp-nav-link" style="font-size: 1.8rem;" onclick="toggleMobileMenu()">Success Stories</a>
+            <button class="ffp-cta-btn" style="font-size: 1.3rem; margin-top: 20px; padding: 15px 40px;" onclick="toggleMobileMenu(); openConsultationModal('', true)">Free Consult</button>
+        </div>
+    </div>
+
+    <!-- MAIN HERO SECTION -->
+    <section class="ffp-hero">
+        <div class="ffp-hero-inner">
+            <div class="ffp-hero-content">
+                <div class="ffp-hero-pill">
+                    <div class="ffp-hero-pill-dot"></div>
+                    Trusted by 500+ Spokane & CDA Locals
+                </div>
+                <h1>Get <span>Finally Fit</span>. Without the Stress of Planning or Cooking.</h1>
+                <p>The only all-in-one health and fitness concierge system. We deliver fresh, chef-cooked meals customized to your macros, design high-impact workouts that take under 30 minutes, and keep you 100% accountable on your phone.</p>
+                
+                <!-- Zip verification input widget -->
+                <div class="zip-widget-container">
+                    <span class="zip-widget-label">Check Availability & Claim Save Up to $240:</span>
+                    <div class="zip-checker-bar">
+                        <input type="text" placeholder="Enter Local Zip Code (e.g. 99201)" id="hero-zip-input" maxlength="5" />
+                        <button id="hero-zip-submit">Check Area</button>
+                    </div>
+                </div>
+
+                <div class="play-walkthrough-btn" onclick="openWalkthroughModal()">
+                    <div class="play-icon-circle">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span>Watch how FFP works</span>
+                </div>
+            </div>
+
+            <!-- Showcase Mockup Card column -->
+            <div class="ffp-hero-showcase">
+                <div class="ffp-showcase-bg-ring"></div>
+                <div class="ffp-showcase-card brutalist-card">
+                    <div class="showcase-header">
+                        <span class="showcase-brand">KAIROS APP</span>
+                        <span class="showcase-badge">ACTIVE</span>
+                    </div>
+                    <div class="showcase-image-container">
+                        <!-- Custom high fidelity phone dashboard layout -->
+                        <div style="background-color: var(--ffp-slate); width: 100%; height: 100%; padding: 12px; display: flex; flex-direction: column; gap: 10px; color: #fff;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; font-family: var(--ffp-font-heading); font-weight: 700;">
+                                <span>TODAY'S PLAN</span>
+                                <span style="color: var(--ffp-gold);">★ 94% COMPLETED</span>
+                            </div>
+                            
+                            <!-- Diet Progress bar -->
+                            <div style="border: 2px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 8px; background: rgba(255,255,255,0.05); display: flex; flex-direction: column; gap: 4px;">
+                                <div style="display:flex; justify-content:space-between; font-size:0.65rem; font-weight: 700;">
+                                    <span>CHEF PREPPED DIET</span>
+                                    <span>1,950 / 2,100 kcal</span>
+                                </div>
+                                <div style="width:100%; height:8px; border-radius:4px; background: rgba(255,255,255,0.1); overflow:hidden;">
+                                    <div style="width: 85%; height: 100%; background: var(--ffp-red); border-radius:4px;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Workout box -->
+                            <div style="border: 2px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 8px; background: rgba(255,255,255,0.05); display: flex; gap: 8px; align-items: center;">
+                                <div style="width: 32px; height: 32px; border-radius: 6px; background-color: var(--ffp-red); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                                    <svg viewBox="0 0 24 24" style="width:18px; height:18px; fill:#fff;"><path d="M20.57 14.86L22 13.43l-3-3-1.43 1.43 3 3M11 2v20h2V2h-2m-7.57 8L2 11.43l3 3 1.43-1.43-3-3M8 10h8v4H8v-4z"/></svg>
+                                </div>
+                                <div style="display:flex; flex-direction:column; gap:2px; font-size:0.65rem;">
+                                    <span style="font-weight: 800; font-family: var(--ffp-font-heading);">TODAY'S WORKOUT</span>
+                                    <span style="opacity: 0.7;">30-Min Fat Burn Session</span>
+                                </div>
+                            </div>
+
+                            <!-- Accountability Check -->
+                            <div style="border: 2px solid var(--ffp-border); border-radius: 8px; padding: 6px; background: var(--ffp-gold); color: var(--ffp-dark); font-weight: 800; font-size: 0.65rem; text-align:center; font-family:var(--ffp-font-heading);">
+                                ✓ Trainer Checked: Macros Met!
+                            </div>
+                        </div>
+
+                        <!-- Floating dynamic badges -->
+                        <div class="showcase-floating-badge badge-meals">
+                            🍳 Chefs Cook
+                        </div>
+                        <div class="showcase-floating-badge badge-workouts">
+                            ⚡ 30-Min Gym
+                        </div>
+                    </div>
+                    <div class="showcase-stats">
+                        <div class="stat-box">
+                            <div class="stat-num">6 Wks</div>
+                            <div class="stat-label">Duration</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-num">-$240</div>
+                            <div class="stat-label">Save Today</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CUSTOM PROMISE SECTION (Swoop Scoop 3 Core Promises) -->
+    <section class="ffp-promise-section" id="promises">
+        <div class="ffp-section-header">
+            <span>Our Customer Promise</span>
+            <h2>The Finally Fit Three-Way Guarantee</h2>
+            <p>We believe getting in shape shouldn't feel like a second job. That's why we handle all the heavy lifting, planning, cooking, and monitoring for you.</p>
+        </div>
+
+        <div class="ffp-promise-grid">
+            <div class="promise-card brutalist-card">
+                <div class="promise-icon-wrapper">
+                    <!-- Custom clean chef / meals SVG icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>Done-For-You Nutrition</h3>
+                <p>No grocery shopping. No macro-calculating. No cooking. Healthy chef-cooked high-protein meals delivered fresh to your door, ready to eat in 2 minutes.</p>
+            </div>
+            
+            <div class="promise-card brutalist-card">
+                <div class="promise-icon-wrapper">
+                    <!-- Custom high energy lightning bolt workout SVG -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>Fast 30-Minute Workouts</h3>
+                <p>No wasting hours wandering around the gym. We design efficient, high-impact, and fully customized training sessions that burn fat and respect your busy schedule.</p>
+            </div>
+
+            <div class="promise-card brutalist-card">
+                <div class="promise-icon-wrapper">
+                    <!-- Custom shield satisfaction / results SVG -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>100% Results Guaranteed</h3>
+                <p>At FFP, your success is guaranteed. Follow our simple integrated system, check in daily, and if you don't feel better and drop weight in 6 weeks, we keep working for free.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NARRATIVE ABOUT SECTION -->
+    <section class="ffp-about-section" id="about">
+        <div class="ffp-about-inner">
+            <div class="ffp-about-image-card">
+                <!-- Custom design: stylized clocktower / spokane aesthetic vector representation -->
+                <div style="background-color: var(--ffp-slate); width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; padding: 40px; text-align: center;">
+                    <div style="width: 70px; height: 70px; border-radius: 50%; background: var(--ffp-red); border: 3px solid #fff; display:flex; align-items:center; justify-content:center; box-shadow: 4px 4px 0px var(--ffp-border); margin-bottom: 25px;">
+                        <svg viewBox="0 0 24 24" style="width: 36px; height: 36px; fill:#fff;"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1 10h-2V7h2v5zm0 4h-2v-2h2v2z"/></svg>
+                    </div>
+                    <span style="font-family: var(--ffp-font-display); font-size: 1.8rem; margin-bottom: 8px;">KAIROS NUTRITION HQ</span>
+                    <span style="font-family: var(--ffp-font-heading); font-weight: 800; font-size: 0.75rem; color: var(--ffp-gold); letter-spacing: 1px; text-transform: uppercase;">Spokane / CDA</span>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-top: 15px; line-height: 1.5;">Built locally to serve demanding professionals working 50+ hours a week who deserve a stress-free route to a healthy lifestyle.</p>
+                </div>
+            </div>
+            
+            <div class="ffp-about-content">
+                <span>Done-For-You Health</span>
+                <h2>Our Health & Fitness Concierge Company</h2>
+                <p>The Finally Fit Project was founded with a single goal: to improve the health and lives of Spokane and Coeur d'Alene's busiest people. Over the past few years, we've helped hundreds of doctors, business owners, executives, and busy moms lose weight without forcing them to spend hours in the kitchen or gym.</p>
+                <p>We handle all the friction elements—grocery shopping, meal prep, meal cooking, macro calculations, training design, and tracking schedules—leaving you only with the simple execution. It's the ultimate done-for-you healthy lifestyle solution.</p>
+                <button class="ffp-cta-btn" onclick="openConsultationModal('', true)">Claim Meal Savings</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALTERNATING SERVICES DETAILED GRID (Residential/Commercial structure) -->
+    <section class="ffp-features-alternating" id="features">
+        
+        <!-- Row 1: Meals (Residential adaptation) -->
+        <div class="ffp-alt-row">
+            <div class="ffp-alt-col-text">
+                <span>Service Tier 1</span>
+                <h2>Personalized Chef-Prepped Meal Delivery</h2>
+                <p>Ditch the cooking, the calorie counting, and the dirty dishes. Our culinary team prepares fresh, portion-controlled, high-protein meals formulated exactly to your macronutrient profile. We deliver them fresh to your home weekly.</p>
+                <ul class="ffp-custom-list">
+                    <li>
+                        <div class="ffp-check-icon">✓</div>
+                        Flexible service options: 10, 15, or 20 fresh chef meals per week.
+                    </li>
+                    <li>
+                        <div class="ffp-check-icon">✓</div>
+                        Chef-prepared, using high-quality local ingredients (never frozen).
+                    </li>
+                    <li>
+                        <div class="ffp-check-icon">✓</div>
+                        Fully optimized to match your daily calorie and protein burn goals.
+                    </li>
+                </ul>
+                <button class="ffp-cta-btn" onclick="openConsultationModal('', true)">Order Chef Meals</button>
+            </div>
+            
+            <div class="ffp-alt-col-image">
+                <div class="ffp-alt-col-image-wrapper">
+                    <div class="ffp-alt-image-box">
+                        <div style="background-color: var(--ffp-slate); width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; font-family: var(--ffp-font-display); font-size: 2.5rem; text-align: center; padding: 20px;">
+                            🍛
+                            <div style="font-size: 1.5rem; margin-top: 10px; font-family: var(--ffp-font-heading); font-weight: 800;">FRESH MEAL MENU</div>
+                            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.7); font-family: var(--ffp-font-body); max-width: 300px; margin-top: 5px; font-weight: 500;">Chef-Prepared and Macro-Optimized Protein Bowls</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2: Workouts (Commercial adaptation) -->
+        <div class="ffp-alt-row reverse">
+            <div class="ffp-alt-col-text">
+                <span>Service Tier 2</span>
+                <h2>High-Impact 30-Minute Gym Coaching</h2>
+                <p>You don't need to live in the gym. Our expert trainers map out a comprehensive workout calendar containing fast, high-intensity exercise routines designed around your fitness level and schedule. It gets you in, out, and fat-burning in less than 30 minutes.</p>
+                <ul class="ffp-custom-list">
+                    <li>
+                        <div class="ffp-check-icon">✓</div>
+                        Custom-tailored workout calendars built to match your calendar.
+                    </li>
+                    <li>
+                        <div class="ffp-check-icon">✓</div>
+                        Centralized phone app tracks your exercises, reps, and weights.
+                    </li>
+                    <li>
+                        <div class="ffp-check-icon">✓</div>
+                        Ongoing body composition checkups and regular routine adjustments.
+                    </li>
+                </ul>
+                <button class="ffp-cta-btn" onclick="openConsultationModal('', true)">Build Workout Plan</button>
+            </div>
+            
+            <div class="ffp-alt-col-image">
+                <div class="ffp-alt-col-image-wrapper">
+                    <div class="ffp-alt-image-box">
+                        <div style="background-color: var(--ffp-slate); width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; font-family: var(--ffp-font-display); font-size: 2.5rem; text-align: center; padding: 20px;">
+                            🏋️‍♂️
+                            <div style="font-size: 1.5rem; margin-top: 10px; font-family: var(--ffp-font-heading); font-weight: 800;">30-MIN FAT BURN</div>
+                            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.7); font-family: var(--ffp-font-body); max-width: 300px; margin-top: 5px; font-weight: 500;">High-Impact Training Calendar & Accountability Check</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- URGENT PROMO SECTION: 7-Minute countdown banner -->
+    <section class="ffp-promo-section">
+        <div class="ffp-promo-inner">
+            <div class="promo-urgency-badge">Limited Time Offer</div>
+            <h2>Claim Your FREE Consult & Save $240!</h2>
+            <p>Join Finally Fit Project for 6 weeks, and we'll credit up to $240 directly towards your chef-prepared Kairos meal delivery. See if we service your neighborhood to get started!</p>
+            
+            <div class="promo-coupon-code">
+                COUPON: FINALLYFIT240
+            </div>
+
+            <div>
+                <div class="countdown-timer-box">
+                    <span class="timer-text">Urgent Offer Expires In:</span>
+                    <span class="timer-digits" id="promo-timer">07:00</span>
+                </div>
+            </div>
+
+            <!-- Zip checker input inside promo section -->
+            <div class="zip-widget-container" style="max-width: 450px;">
+                <div class="zip-checker-bar" style="box-shadow: 4px 4px 0px rgba(0,0,0,0.5);">
+                    <input type="text" placeholder="Enter Zip Code (e.g. 83814)" id="promo-zip-input" maxlength="5" />
+                    <button id="promo-zip-submit">Save $240</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIDE-BY-SIDE CARD COMPARISON -->
+    <section class="ffp-compare-section" id="comparison">
+        <div class="ffp-section-header">
+            <span>The Unified System</span>
+            <h2>Why The FFP Fits Your Demanding Schedule</h2>
+            <p>How our all-in-one approach compares to standard, stressful fitness methods.</p>
+        </div>
+
+        <div class="comparison-grid">
+            <!-- Left Card: Standard -->
+            <div class="compare-card brutalist-card">
+                <h3 class="compare-title">STANDARD FITNESS APPROACH</h3>
+                <div class="compare-subtitle">Multiple Subscriptions, Apps & Chores</div>
+                <div class="compare-rows">
+                    <div class="compare-row">
+                        <span class="compare-row-icon">✕</span>
+                        <span>Generic, exhausting workout plans</span>
+                    </div>
+                    <div class="compare-row">
+                        <span class="compare-row-icon">✕</span>
+                        <span>Hours spent grocery shopping & cooking meals</span>
+                    </div>
+                    <div class="compare-row">
+                        <span class="compare-row-icon">✕</span>
+                        <span>Tracking stats across 3 separate buggy apps</span>
+                    </div>
+                    <div class="compare-row">
+                        <span class="compare-row-icon">✕</span>
+                        <span>Struggling to stay accountable on your own</span>
+                    </div>
+                    <div class="compare-row">
+                        <span class="compare-row-icon">✕</span>
+                        <span>Trying to plan meals around a hectic schedule</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Card: FFP -->
+            <div class="compare-card brutalist-card featured">
+                <h3 class="compare-title" style="color: #ffffff;">THE FINALLY FIT PROJECT</h3>
+                <div class="compare-subtitle">One Simple Integrated Concierge</div>
+                <div class="compare-rows">
+                    <div class="compare-row">
+                        <span class="compare-row-icon">✓</span>
+                        <span>Personalized workouts built around your life</span>
+                    </div>
+                    <div class="compare-row">
+                        <span class="compare-row-icon">✓</span>
+                        <span>Delicious, cooked chef meals delivered fresh</span>
+                    </div>
+                    <div class="compare-row">
+                        <span class="compare-row-icon">✓</span>
+                        <span>Centralized tracking and daily app checks</span>
+                    </div>
+                    <div class="compare-row">
+                        <span class="compare-row-icon">✓</span>
+                        <span>Direct 1-on-1 text messaging & accountability</span>
+                    </div>
+                    <div class="compare-row">
+                        <span class="compare-row-icon">✓</span>
+                        <span>Everything done-for-you to save 6+ hours a week</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATIONS SERVICED GRID SECTION -->
+    <section class="ffp-locations-section" id="locations">
+        <div class="ffp-section-header">
+            <span>Local Service Area</span>
+            <h2>Serviced Spokane & CDA Locations</h2>
+            <p>Our fitness concierge meal deliveries and physical coaching are active across these Northwest regions.</p>
+        </div>
+
+        <div class="locations-grid">
+            <div class="location-card brutalist-card" onclick="openConsultationModal('99201')">
+                <div class="location-pin-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                </div>
+                <h3>Spokane, WA</h3>
+                <p>HQ & MEALS</p>
+            </div>
+            
+            <div class="location-card brutalist-card" onclick="openConsultationModal('99206')">
+                <div class="location-pin-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                </div>
+                <h3>Spokane Valley</h3>
+                <p>COACHING & DIET</p>
+            </div>
+            
+            <div class="location-card brutalist-card" onclick="openConsultationModal('83814')">
+                <div class="location-pin-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                </div>
+                <h3>Coeur d'Alene</h3>
+                <p>DELIVERY ZONE</p>
+            </div>
+
+            <div class="location-card brutalist-card" onclick="openConsultationModal('83854')">
+                <div class="location-pin-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                </div>
+                <h3>Post Falls, ID</h3>
+                <p>COACHING ZONE</p>
+            </div>
+
+            <div class="location-card brutalist-card" onclick="openConsultationModal('99019')">
+                <div class="location-pin-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                </div>
+                <h3>Liberty Lake</h3>
+                <p>MEALS & DIET</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SLIDER SECTION -->
+    <section class="ffp-reviews-section" id="reviews">
+        <div class="ffp-section-header">
+            <span>Success Stories</span>
+            <h2>Over 100+ 5-Star Spokane Reviews</h2>
+            <p>See how our integrated nutrition and training concierge system changes busy lives.</p>
+        </div>
+
+        <!-- Carousel wrapper -->
+        <div class="carousel-outer">
+            <div class="carousel-track" id="review-track">
+                
+                <!-- Card 1: Duane -->
+                <div class="carousel-card brutalist-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-body">"Daniel Wee was my personal trainer for five years. My goal was to lose weight and get back into shape. Daniel developed a workout program and diet plan that helped me successfully achieve my goals and dropping from 295 down to 220. I would highly recommend using workout programs and meals designed by Daniel Wee."</div>
+                    <div class="reviewer-name">— Duane B., Spokane</div>
+                </div>
+                
+                <!-- Card 2: Khaled -->
+                <div class="carousel-card brutalist-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-body">"Since moving here, this service has been such a big help with my busy schedule. Daniel, the owner, is awesome - he really makes you feel like family, and the meals delivered are always fresh, healthy, and packed with protein. They’ve made a huge difference in my gym progress."</div>
+                    <div class="reviewer-name">— Khaled O., Spokane</div>
+                </div>
+
+                <!-- Card 3: Sergio -->
+                <div class="carousel-card brutalist-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-body">"The convenience is unmatched—no more stressing over meal prep or cooking during busy weeks. Daniel is first class and takes customer service seriously, he’s always asking for feedback and listens. If you’re looking for a hassle-free way to eat healthy and stay on track, Kairos Meal Prep is the way to go!"</div>
+                    <div class="reviewer-name">— Sergio R., Spokane</div>
+                </div>
+
+                <!-- Card 4: Matthew -->
+                <div class="carousel-card brutalist-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-body">"I've had 15+ meals with Kairos already and they have all been delicious with the right macros. If you’re trying to focus on your diet/macro intake, give them a try and you won’t be disappointed. Meals are affordable and delivery is easy."</div>
+                    <div class="reviewer-name">— Matthew D., Post Falls</div>
+                </div>
+
+                <!-- Card 5: Lidiya -->
+                <div class="carousel-card brutalist-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-body">"As a busy mom of 4, I don't have time to plan workouts or meal prep for myself all while cooking separately for the rest of the family. Try out the Finally Fit Project. 4 weeks in and I was already seeing results. 8 weeks in and I feel the difference. Daniel is easy to work with & will adjust to your diet."</div>
+                    <div class="reviewer-name">— Lidiya E., Spokane</div>
+                </div>
+
+            </div>
+
+            <!-- Navigation dots & buttons -->
+            <div class="carousel-nav">
+                <button class="carousel-btn" id="carousel-prev" aria-label="Previous Review">
+                    <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                </button>
+                <div class="carousel-dots" id="carousel-dots-container"></div>
+                <button class="carousel-btn" id="carousel-next" aria-label="Next Review">
+                    <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMUNITY / GIVING BACK SECTION -->
+    <section class="ffp-community-section">
+        <div class="ffp-alt-row">
+            <div class="ffp-alt-col-image">
+                <div class="ffp-alt-image-box" style="background-color: var(--ffp-slate); display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; padding: 40px; text-align: center;">
+                    <div style="width: 70px; height: 70px; border-radius: 50%; background: var(--ffp-gold); border: 3px solid #fff; display:flex; align-items:center; justify-content:center; box-shadow: 4px 4px 0px var(--ffp-border); margin-bottom: 20px;">
+                        <svg viewBox="0 0 24 24" style="width: 36px; height: 36px; fill:#fff;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    </div>
+                    <span style="font-family: var(--ffp-font-display); font-size: 1.8rem; margin-bottom: 5px;">FFP GIVES BACK</span>
+                    <span style="font-family: var(--ffp-font-heading); font-weight: 800; font-size: 0.75rem; color: var(--ffp-red); letter-spacing: 1px; text-transform: uppercase;">Community Fitness</span>
+                </div>
+            </div>
+
+            <div class="ffp-alt-col-text">
+                <span>FFP in the Community</span>
+                <h2>Supporting Local Health & Fitness Initiatives</h2>
+                <p>We believe that strong, healthy neighborhoods create happy, energetic families. That's why The Finally Fit Project is committed to giving back locally. We regularly volunteer for charity runs, partner with youth sports organizations in Coeur d'Alene, and donate healthy macro-balanced meals to Spokane front-line healthcare workers.</p>
+                <button class="ffp-cta-btn" onclick="openConsultationModal('', true)">Claim Free Consultation</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREMIUM FOOTER -->
+    <footer class="ffp-footer">
+        <div class="ffp-footer-inner">
+            <div class="ffp-footer-logo">
+                KAIROS NUTRITION
+                <span>Finally Fit Project</span>
+            </div>
+            
+            <ul class="ffp-footer-links">
+                <li><a href="#promises">Promises</a></li>
+                <li><a href="#about">How it Works</a></li>
+                <li><a href="#features">Services</a></li>
+                <li><a href="#comparison">Comparison</a></li>
+                <li><a href="#locations">Locations</a></li>
+                <li><a href="#reviews">Testimonials</a></li>
+            </ul>
+
+            <div class="ffp-footer-copyright">
+                © 2026 KAIROS NUTRITION. SPOKANE / COEUR D'ALENE. ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </footer>
+
+    <!-- GLASSMORPHIC LEAD CONSULTATION POPUP MODAL (Verifying / Success states) -->
+    <div class="modal-overlay" id="consultation-modal">
+        <div class="modal-container">
+            <button class="modal-close-btn" onclick="closeConsultationModal()">&times;</button>
+            
+            <div class="modal-header-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 4L12 14.01l-3-3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+
+            <h2 id="modal-headline">Claim Your FFP Consultation!</h2>
+            <p class="modal-subtext" id="modal-desc">Great news! Your zip code is in our service area. Enter your contact details below to claim your free fitness consultation and unlock up to $240 in Kairos meal credits!</p>
+
+            <!-- Custom lead submission form preserving webhook endpoint -->
+            <form class="ffp-lead-form quick-info-form" id="modal-lead-form">
+                
+                <input type="hidden" name="zip_code" id="modal-hidden-zip" value="" />
+
+                <div class="form-row-split">
+                    <div class="ffp-input-group">
+                        <label for="lead-first-name">First Name</label>
+                        <input type="text" id="lead-first-name" name="first_name" placeholder="First Name" required />
+                    </div>
+                    <div class="ffp-input-group">
+                        <label for="lead-last-name">Last Name</label>
+                        <input type="text" id="lead-last-name" name="last_name" placeholder="Last Name" required />
+                    </div>
+                </div>
+
+                <div class="ffp-input-group">
+                    <label for="lead-email">Email Address</label>
+                    <input type="email" id="lead-email" name="email" placeholder="you@example.com" required />
+                </div>
+
+                <div class="ffp-input-group">
+                    <label for="lead-phone">Phone Number</label>
+                    <input type="tel" id="lead-phone" name="phone_number" placeholder="509-555-0199" required />
+                </div>
+
+                <button type="submit" id="modal-submit-btn">Send Me Info & Claim Promo</button>
+                
+                <div class="form-feedback-alert success form-success-msg">
+                    🎉 Success! We have received your request. Our FFP Concierge will contact you shortly to schedule your free consult!
+                </div>
+                <div class="form-feedback-alert error form-error-msg">
+                    ✕ Oops! Something went wrong while saving. Please check your network and try again.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- WALKTHROUGH INTERACTIVE SLIDES TOUR MODAL -->
+    <div class="modal-overlay" id="walkthrough-modal">
+        <div class="modal-container" style="max-width: 600px;">
+            <button class="modal-close-btn" onclick="closeWalkthroughModal()">&times;</button>
+            
+            <div class="modal-header-icon" style="background-color: var(--ffp-slate); color: #ffffff;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+
+            <h2>How Finally Fit Works in Real Life</h2>
+            <p class="modal-subtext">Take a quick 3-step interactive tour to see how FFP streamlines your fitness journey.</p>
+
+            <div class="tour-slide-container">
+                <!-- Slide content box -->
+                <div class="tour-graphic" id="tour-slide-graphic">
+                    <!-- Graphic content injected dynamically -->
+                </div>
+                
+                <h3 id="tour-slide-title" style="margin-top: 10px;">Step 1: Your Nutrition Handled</h3>
+                <p id="tour-slide-desc" style="font-size: 0.95rem; min-height: 50px;">We deliver chef-prepped, macro-optimized delicious protein meals directly to your Spokane or Coeur d'Alene doorstep, ready to eat in 2 minutes. No grocery shopping, cooking, or cleanup.</p>
+                
+                <div class="tour-slide-controls">
+                    <button class="ffp-cta-btn" id="tour-prev-btn" style="padding: 6px 14px; font-size: 0.75rem;">Back</button>
+                    <div style="font-family: var(--ffp-font-heading); font-weight: 800; font-size: 0.85rem;" id="tour-counter">1 / 3</div>
+                    <button class="ffp-cta-btn" id="tour-next-btn" style="padding: 6px 14px; font-size: 0.75rem;">Next</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <section class="section-padding" style="text-align: center; padding-top: var(--space-xl); padding-bottom: var(--space-sm);">
-        <div class="container" data-reveal>
-            <div class="badge-invitation">
-                <div class="badge-dot"></div>
-                Kairos Meal Preps Presents
+    <!-- GLASSMORPHIC CHAT WIDGET UI -->
+    <div class="chat-widget">
+        <div class="chat-window" id="chat-window" style="background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); border: 3px solid var(--ffp-border); box-shadow: 6px 6px 0px var(--ffp-border);">
+            <div class="chat-header" style="background: rgba(255, 255, 255, 0.05); border-bottom: 2.5px solid var(--ffp-border);">
+                <span class="font-heading" style="font-size: 0.8rem; font-family: var(--ffp-font-heading); font-weight: 800; color: #ffffff;">FFP Fitness Advisor</span>
+                <button id="close-chat" style="background: none; border: none; color: white; cursor: pointer; font-size: 1.5rem; font-weight: bold; line-height: 1;">&times;</button>
             </div>
-            
-            <h1 class="font-heading headline-dark">The Finally Fit Project</h1>
-            <p class="subheadline-dark" style="max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.6; margin-bottom: 0;">
-                Spokane and CDA's First All-in-One Fitness Concierge System
-            </p>
-            
-
-
-
-
-        </div>
-    </section>
-
-    <section class="section-padding" style="background-color: var(--color-gray-100); padding-top: var(--space-md);">
-        <div class="container">
-            <style>
-                .main-feature-box {
-                    background-color: var(--color-white); 
-                    border: 2px solid var(--color-red); 
-                    border-radius: 12px; 
-                    padding: var(--space-xl); 
-                    max-width: 900px; 
-                    margin: 0 auto; 
-                    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-                }
-                .main-feature-title {
-                    color: var(--color-black); 
-                    font-size: 2.5rem; 
-                    margin-bottom: var(--space-md); 
-                    text-transform: none;
-                }
-                .what-you-get-box {
-                    background-color: var(--color-gray-100); 
-                    padding: var(--space-lg); 
-                    border-radius: 8px;
-                }
-                .sms-cta-box {
-                    text-align: center; 
-                    margin-top: var(--space-lg); 
-                    padding: 40px 24px; 
-                    background: rgba(225, 29, 72, 0.05); 
-                    border-radius: 12px; 
-                    border: 1px solid rgba(225, 29, 72, 0.1);
-                }
-                .sms-cta-title {
-                    font-size: 1.75rem; 
-                    font-weight: 800; 
-                    color: var(--color-black); 
-                    margin-bottom: 16px;
-                    line-height: 1.3;
-                }
-                .sms-cta-text {
-                    font-size: 1.25rem; 
-                    color: var(--color-black); 
-                    margin: 0;
-                }
-                .promo-box {
-                    text-align: center;
-                    font-size: 2.5rem;
-                    color: var(--color-red);
-                    margin: 1rem 0 2rem 0;
-                    padding: 1.5rem;
-                    background-color: #f5f5f5;
-                    border-radius: 12px;
-                    line-height: 1.2;
-                }
-                @media (max-width: 768px) {
-                    .main-feature-box {
-                        padding: var(--space-lg);
-                    }
-                    .main-feature-title {
-                        font-size: 2rem;
-                    }
-                    .promo-box {
-                        font-size: 2rem;
-                        padding: 1.25rem;
-                    }
-                }
-                @media (max-width: 480px) {
-                    .main-feature-box {
-                        padding: var(--space-md);
-                    }
-                    .main-feature-title {
-                        font-size: 1.75rem;
-                    }
-                    .what-you-get-box {
-                        padding: var(--space-md);
-                    }
-                    .sms-cta-box {
-                        padding: 24px 16px;
-                    }
-                    .sms-cta-title {
-                        font-size: 1.3rem;
-                        margin-bottom: 12px;
-                    }
-                    .sms-cta-text {
-                        font-size: 1rem;
-                    }
-                    .promo-box {
-                        font-size: 1.5rem;
-                        padding: 1rem;
-                    }
-                }
-            </style>
-            <div class="main-feature-box">
-                <div style="color: var(--color-red); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: var(--space-sm);">WHY THE FFP FITS YOUR LIFE</div>
-                
-                <h2 class="font-heading main-feature-title">Done-For-You Health and Fitness</h2>
-                
-                <p style="color: rgba(0,0,0,0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: var(--space-xl);">
-                    Since Kairos began, we’ve served people with demanding lives.<br><br>
-                    Long hours, packed schedules, responsibilities that don’t stop.<br><br>
-                    Often, these are the people who know exactly what to do to get in shape… but can’t make it fit into their reality.<br><br>
-                    They need a system that works for those putting in 50+ hours a week.<br><br>
-                    After a long day, you feel exhausted but still want to be there for everything else in life.<br><br>
-                    That’s exactly who we built The Finally Fit Project for.<br><br>
-                    A simple yet effective system that helps Spokane's busiest people lose weight.
-                </p>
-                <div class="promo-box">
-                    <strong>Sign up for 6 weeks and save up to $240 on Kairos meals!</strong>
-                </div>
-                
-                <div class="what-you-get-box">
-                    <div style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(0,0,0,0.5); margin-bottom: var(--space-md);">WHAT YOU GET IN THE FINALLY FIT PROJECT:</div>
-                    
-                    <div style="display: flex; flex-direction: column; gap: var(--space-md);">
-                        <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 1rem; color: var(--color-black);">
-                            <div style="color: var(--color-red); font-weight: bold; margin-top: 2px;">✓</div>
-                            <div>
-                                <strong>Fully Personalized Meal Plan:</strong> A customized nutritional plan mapped out.
-                            </div>
-                        </div>
-                        <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 1rem; color: var(--color-black);">
-                            <div style="color: var(--color-red); font-weight: bold; margin-top: 2px;">✓</div>
-                            <div>
-                                <strong>Cooked-For-You Meals:</strong> Your actual weekly meals prepped and ready so you literally don't have to cook.
-                            </div>
-                        </div>
-                        <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 1rem; color: var(--color-black);">
-                            <div style="color: var(--color-red); font-weight: bold; margin-top: 2px;">✓</div>
-                            <div>
-                                <strong>Fast and Custom Workouts:</strong> An efficient training program that respects your busy schedule, getting you in and out and burning fat in less than 30 minutes a day.
-                            </div>
-                        </div>
-                        <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 1rem; color: var(--color-black);">
-                            <div style="color: var(--color-red); font-weight: bold; margin-top: 2px;">✓</div>
-                            <div>
-                                <strong>Organized Tracking App:</strong> Keep everything centralized on your phone so you always know exactly what to do and stay easily accountable.
-                            </div>
-                        </div>
-                        <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 1rem; color: var(--color-black); font-style: italic;">
-                            <div style="color: var(--color-red); font-weight: bold; margin-top: 2px;">+</div>
-                            <div>
-                                <strong>PLUS</strong> bonus dining guides, family playbooks, personalized travel guides, and more!
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- SMS CTA -->
-                    <style>
-                        .quick-info-form .form-row {
-                            display: flex;
-                            gap: 10px;
-                            margin-bottom: 10px;
-                        }
-                        .quick-info-form input {
-                            flex: 1;
-                            padding: 12px;
-                            border: 1px solid #e2e8f0;
-                            border-radius: 8px;
-                            font-family: var(--font-body);
-                            font-size: 1rem;
-                            width: 100%;
-                            box-sizing: border-box;
-                        }
-                        @media (max-width: 600px) {
-                            .quick-info-form .form-row {
-                                flex-direction: column;
-                            }
-                        }
-                    </style>
-                    <div class="sms-cta-box" style="padding: 2rem;">
-                        <p class="font-heading" style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--color-black);">Want to see how we can put this together for you?</p>
-                        <p style="font-size: 0.95rem; margin-bottom: 1.5rem; color: rgba(0,0,0,0.6);">Fill out this quick form and we'll reach out to you with details!</p>
-                        <form class="quick-info-form">
-                            <div class="form-row">
-                                <input type="text" name="first_name" placeholder="First Name" required>
-                                <input type="text" name="last_name" placeholder="Last Name" required>
-                            </div>
-                            <div class="form-row" style="margin-bottom: 15px;">
-                                <input type="email" name="email" placeholder="Email Address" required>
-                                <input type="tel" name="phone_number" placeholder="Phone Number" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer;">Send Me Info</button>
-                            <p class="form-success-msg" style="display: none; color: #16a34a; font-weight: 600; margin-top: 15px; font-size: 0.95rem;">Thanks! We'll be in touch soon.</p>
-                            <p class="form-error-msg" style="display: none; color: #dc2626; font-weight: 600; margin-top: 15px; font-size: 0.95rem;">Oops! Something went wrong. Please try again.</p>
-                        </form>
-                    </div>
-
+            <div class="chat-messages" style="padding: 15px; color: #fff;">
+                <div class="chat-message message-ai" style="background: rgba(255, 255, 255, 0.1); border-radius: 8px; border: 1.5px solid rgba(255,255,255,0.1); line-height: 1.5;">
+                    Hello! I'm your Finally Fit Advisor. Want to see how we handle your meal preps and workouts? Enter your zip code in the hero section to see if you qualify for our 6-week Save $240 promo!
                 </div>
             </div>
-
-
-
-
-        </div>
-    </section>
-
-    <section class="section-padding">
-        <div class="container">
-            <h2 class="font-heading" style="color: var(--color-black); text-align: center; font-size: 2.5rem; margin-bottom: 8px;">A Unified System Where Everything Is Done For You</h2>
-
-
-            <div class="comparison-container">
-                <!-- Left Card -->
-                <div class="comparison-card">
-                    <h3 class="card-title">STANDARD FITNESS APPROACH</h3>
-                    <div class="card-subtitle">Multiple Apps, Plans & Chores</div>
-                    
-                    <div class="compare-row">
-                        <span>✕ Generic workout programs</span>
-                    </div>
-                    <div class="compare-row">
-                        <span>✕ Grocery shopping & meal prep every week</span>
-                    </div>
-                    <div class="compare-row">
-                        <span>✕ Multiple subscriptions and tracking apps</span>
-                    </div>
-                    <div class="compare-row">
-                        <span>✕ Trying to stay consistent on your own</span>
-                    </div>
-                    <div class="compare-row">
-                        <span>✕ Hours spent planning fitness around your schedule</span>
-                    </div>
-                </div>
-
-                <!-- Right Card -->
-                <div class="comparison-card highlight">
-                    <h3 class="card-title">THE FINALLY FIT PROJECT</h3>
-                    <div class="card-subtitle">One Simple Integrated System</div>
-                    
-                    <div class="compare-row">
-                        <span style="color: var(--color-black);">✓ Personalized plan built around your life</span>
-                    </div>
-                    <div class="compare-row">
-                        <span style="color: var(--color-black);">✓ Ready-to-eat meals delivered to your door</span>
-                    </div>
-                    <div class="compare-row">
-                        <span style="color: var(--color-black);">✓ Efficient workouts for busy schedules</span>
-                    </div>
-                    <div class="compare-row">
-                        <span style="color: var(--color-black);">✓ Built-in accountability and support</span>
-                    </div>
-                    <div class="compare-row">
-                        <span style="color: var(--color-black);">✓ A system designed to help you stay consistent</span>
-                    </div>
-                </div>
+            <div class="chat-input-area" style="border-top: 2.5px solid var(--ffp-border); padding: 10px;">
+                <input type="text" class="chat-input" placeholder="Ask about chef meals..." style="background: rgba(255, 255, 255, 0.05); border: 2px solid var(--ffp-border); border-radius: 6px;" />
+                <button class="chat-send" style="background: var(--ffp-red); border: 2px solid var(--ffp-border); font-family: var(--ffp-font-heading); font-weight: 800; font-size: 0.8rem; text-transform: uppercase;">Send</button>
             </div>
         </div>
-    </section>
-
-
-
-    <section class="section-padding" style="padding-top: var(--space-sm);">
-        <div class="container">
-            <!-- SMS CTA -->
-            <div class="sms-cta-box" style="padding: 2rem; margin-top: 0; margin-bottom: var(--space-xl);">
-                <p class="font-heading" style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--color-black);">Want to see how we can put this together for you?</p>
-                <p style="font-size: 0.95rem; margin-bottom: 1.5rem; color: rgba(0,0,0,0.6);">Fill out this quick form and we'll reach out to you with details!</p>
-                <form class="quick-info-form">
-                    <div class="form-row">
-                        <input type="text" name="first_name" placeholder="First Name" required>
-                        <input type="text" name="last_name" placeholder="Last Name" required>
-                    </div>
-                    <div class="form-row" style="margin-bottom: 15px;">
-                        <input type="email" name="email" placeholder="Email Address" required>
-                        <input type="tel" name="phone_number" placeholder="Phone Number" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer;">Send Me Info</button>
-                    <p class="form-success-msg" style="display: none; color: #16a34a; font-weight: 600; margin-top: 15px; font-size: 0.95rem;">Thanks! We'll be in touch soon.</p>
-                    <p class="form-error-msg" style="display: none; color: #dc2626; font-weight: 600; margin-top: 15px; font-size: 0.95rem;">Oops! Something went wrong. Please try again.</p>
-                </form>
-            </div>
-
-            <h2 class="font-heading" style="color: var(--color-black); text-align: center; font-size: 2.5rem; margin-bottom: var(--space-xl);">See What Others Are Saying</h2>
-            
-            <style>
-                .reviews-grid {
-                    display: flex !important;
-                    flex-wrap: wrap;
-                    justify-content: center;
-                    gap: var(--space-md);
-                }
-                .reviews-grid > div {
-                    flex: 1 1 300px;
-                    max-width: calc(33.333% - var(--space-md));
-                    min-width: 300px;
-                }
-                @media (max-width: 992px) {
-                    .reviews-grid > div {
-                        max-width: calc(50% - var(--space-md));
-                    }
-                }
-                @media (max-width: 650px) {
-                    .reviews-grid > div {
-                        max-width: 100%;
-                    }
-                }
-            </style>
-            <div class="reviews-grid">
-                <!-- Review 1 -->
-                <div style="background-color: var(--color-gray-100); padding: var(--space-md); border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
-                    <div style="color: #FFD700; margin-bottom: 12px; font-size: 1.2rem;">★★★★★</div>
-                    <p style="font-weight: 500; font-style: italic; margin-bottom: var(--space-md); line-height: 1.5;">"Daniel Wee was my personal trainer for five years. My goal was to lose weight and get back into shape. Daniel developed a workout program and diet plan that helped me successfully achieve my goals and dropping from 295 down to 220.<br><br>I would highly recommend using workout programs and meals designed by Daniel Wee."</p>
-                    <p style="font-weight: 700; font-size: 0.9rem;">— Duane B., Spokane</p>
-                </div>
-                <!-- Review 2 -->
-                <div style="background-color: var(--color-gray-100); padding: var(--space-md); border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
-                    <div style="color: #FFD700; margin-bottom: 12px; font-size: 1.2rem;">★★★★★</div>
-                    <p style="font-weight: 500; font-style: italic; margin-bottom: var(--space-md); line-height: 1.5;">"Since moving here, this service has been such a big help with my busy schedule. Daniel, the owner, is awesome - he really makes you feel like family, and the meals delivered are always fresh, healthy, and packed with protein. They’ve made a huge difference in my gym progress and I love that there’s such a good variety of options."</p>
-                    <p style="font-weight: 700; font-size: 0.9rem;">— Khaled O., Spokane</p>
-                </div>
-                <!-- Review 3 -->
-                <div style="background-color: var(--color-gray-100); padding: var(--space-md); border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
-                    <div style="color: #FFD700; margin-bottom: 12px; font-size: 1.2rem;">★★★★★</div>
-                    <p style="font-weight: 500; font-style: italic; margin-bottom: var(--space-md); line-height: 1.5;">"The convenience is unmatched—no more stressing over meal prep or cooking during busy weeks. Daniel is first class and takes customer service seriously, he’s always asking for feedback and listens. If you’re looking for a hassle-free way to eat healthy and stay on track, Kairos Meal Prep is the way to go!"</p>
-                    <p style="font-weight: 700; font-size: 0.9rem;">— Sergio R., Spokane</p>
-                </div>
-                <!-- Review 4 -->
-                <div style="background-color: var(--color-gray-100); padding: var(--space-md); border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
-                    <div style="color: #FFD700; margin-bottom: 12px; font-size: 1.2rem;">★★★★★</div>
-                    <p style="font-weight: 500; font-style: italic; margin-bottom: var(--space-md); line-height: 1.5;">"I've had 15+ meals with Kairos already and they have all been delicious with the right macros. If you’re trying to focus on your diet/macro intake, give them a try and you won’t be disappointed. Meals are affordable and delivery is easy."</p>
-                    <p style="font-weight: 700; font-size: 0.9rem;">— Matthew D., Post Falls</p>
-                </div>
-                <!-- Review 5 -->
-                <div style="background-color: var(--color-gray-100); padding: var(--space-md); border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
-                    <div style="color: #FFD700; margin-bottom: 12px; font-size: 1.2rem;">★★★★★</div>
-                    <p style="font-weight: 500; font-style: italic; margin-bottom: var(--space-md); line-height: 1.5;">"As a super busy mom of 4, I don't have time to plan out my workouts or meal prep for myself all while cooking separately for the rest of the family. Getting back on track after having my youngest was hard. A friend recommended I give Kairos Meal Preps a try and that's when I decided to try out the Finally Fit Project. 4 weeks in & I was already seeing results. 8 weeks in and I feel the difference. Daniel is easy to work with, easy to communicate with & will work with you on dietary needs. So thankful to find a local company to support while getting healthy & fit."</p>
-                    <p style="font-weight: 700; font-size: 0.9rem;">— Lidiya E., Spokane</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="section-padding" style="text-align: center; border-top: 1px solid rgba(0,0,0,0.05); margin-top: auto; background-color: var(--color-white);">
-        <div class="container">
-            <img src="/assets/kairos_logo.png" class="logo-footer" alt="Kairos Logo Small" style="filter: invert(1);" />
-            <p style="margin-top: var(--space-lg); color: rgba(0,0,0,0.4); font-size: 0.8rem; font-weight: 600;">© 2026 KAIROS NUTRITION. SPOKANE / CDA.</p>
-        </div>
-    </footer>
-        <!-- Chatbox UI -->
-    <div class="chat-widget" style="display: none;">
-        <div class="chat-window" id="chat-window">
-            <div class="chat-header">
-                <span class="font-heading" style="font-size: 0.8rem;">Kairos Advisor</span>
-                <button id="close-chat"
-                    style="background: none; border: none; color: white; cursor: pointer; font-size: 1.2rem;">&times;</button>
-            </div>
-            <div class="chat-messages">
-                <div class="chat-message message-ai">
-                    Hello! I'm your Kairos Nutrition Advisor. How can I help you reach your goals today?
-                </div>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" class="chat-input" placeholder="Ask about programs..." />
-                <button class="chat-send">Send</button>
-            </div>
-        </div>
-        <div class="chat-button" id="chat-button">
+        <div class="chat-button" id="chat-button" style="border: 3px solid var(--ffp-border); box-shadow: 4px 4px 0px var(--ffp-border);">
             <svg viewBox="0 0 24 24">
-                <path
-                    d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z" />
+                <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z" />
             </svg>
         </div>
     </div>
 
+    <!-- ==========================================================================
+       INTERACTIVE JAVASCRIPT LOGIC
+       ========================================================================== -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const forms = document.querySelectorAll('.quick-info-form');
-            forms.forEach(form => {
-                form.addEventListener('submit', async (e) => {
+            
+            // ----------------------------------------------------
+            // 1. Serviced Zip Codes List (Spokane & Coeur d'Alene)
+            // ----------------------------------------------------
+            const SERVICED_ZIPS = [
+                '99201', '99202', '99203', '99204', '99205', '99206', '99207', '99208',
+                '99212', '99216', '99217', '99218', '99223', '99224', '99019', '99027',
+                '83814', '83815', '83816', '83854', '83877', '83835', '83858'
+            ];
+
+            // ----------------------------------------------------
+            // 2. Lead Modal Open / Close Handler
+            // ----------------------------------------------------
+            const leadModal = document.getElementById('consultation-modal');
+            const hiddenZipInput = document.getElementById('modal-hidden-zip');
+            const modalHeadline = document.getElementById('modal-headline');
+            const modalDesc = document.getElementById('modal-desc');
+
+            window.openConsultationModal = function(zip = '', isManualClick = false) {
+                hiddenZipInput.value = zip;
+                
+                if (isManualClick || !zip) {
+                    modalHeadline.textContent = "Book Your Free FFP Consultation!";
+                    modalDesc.textContent = "Enter your contact details below to learn more about the Finally Fit Project concierge system and lock in your $240 chef-prepped meal credit!";
+                } else {
+                    const isServiced = SERVICED_ZIPS.includes(zip.trim());
+                    if (isServiced) {
+                        modalHeadline.textContent = `🎉 Zip ${zip} is Serviced!`;
+                        modalDesc.textContent = `Great news! Your neighborhood is within our Spokane/CDA active delivery zone. Complete your contact details below to claim your consultation and save $240 on chef meals!`;
+                    } else {
+                        modalHeadline.textContent = `📍 Out of Service Zone`;
+                        modalDesc.textContent = `We haven't expanded to zip code ${zip} yet, but we are expanding rapidly! Complete the form below to join our Spokane/CDA waitlist and receive a free healthy recipe guide instantly!`;
+                    }
+                }
+
+                leadModal.classList.add('active');
+            };
+
+            window.closeConsultationModal = function() {
+                leadModal.classList.remove('active');
+                // Reset lead form alerts
+                const successMsg = leadModal.querySelector('.form-success-msg');
+                const errorMsg = leadModal.querySelector('.form-error-msg');
+                if (successMsg) successMsg.style.display = 'none';
+                if (errorMsg) errorMsg.style.display = 'none';
+            };
+
+            // ----------------------------------------------------
+            // 3. Zip Checker Bar Buttons Submission
+            // ----------------------------------------------------
+            const setupZipForm = (inputId, buttonId) => {
+                const input = document.getElementById(inputId);
+                const button = document.getElementById(buttonId);
+                
+                if (input && button) {
+                    button.addEventListener('click', () => {
+                        const zip = input.value.trim();
+                        if (zip.length >= 3 && /^\d+$/.test(zip)) {
+                            openConsultationModal(zip, false);
+                        } else {
+                            alert("Please enter a valid 5-digit zip code.");
+                        }
+                    });
+
+                    input.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') {
+                            button.click();
+                        }
+                    });
+                }
+            };
+
+            setupZipForm('hero-zip-input', 'hero-zip-submit');
+            setupZipForm('promo-zip-input', 'promo-zip-submit');
+
+            // ----------------------------------------------------
+            // 4. Dynamic 7-Minute Urgency Countdown Timer
+            // ----------------------------------------------------
+            const timerDisplays = [
+                document.getElementById('nav-timer'),
+                document.getElementById('promo-timer')
+            ];
+
+            let totalSeconds = 7 * 60; // 7 minutes
+
+            const updateTimerDisplay = () => {
+                const minutes = Math.floor(totalSeconds / 60);
+                const seconds = totalSeconds % 60;
+                const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                timerDisplays.forEach(display => {
+                    if (display) {
+                        display.textContent = formattedTime;
+                    }
+                });
+            };
+
+            const countdownInterval = setInterval(() => {
+                if (totalSeconds <= 0) {
+                    // Reset to 7 minutes for mockup consistency
+                    totalSeconds = 7 * 60;
+                } else {
+                    totalSeconds--;
+                }
+                updateTimerDisplay();
+            }, 1000);
+
+            updateTimerDisplay();
+
+            // ----------------------------------------------------
+            // 5. Testimonials sliding carousel logic
+            // ----------------------------------------------------
+            const track = document.getElementById('review-track');
+            const prevBtn = document.getElementById('carousel-prev');
+            const nextBtn = document.getElementById('carousel-next');
+            const dotsContainer = document.getElementById('carousel-dots-container');
+            const cards = Array.from(track ? track.children : []);
+            
+            let currentIndex = 0;
+            let cardsVisible = window.innerWidth > 992 ? 3 : window.innerWidth > 768 ? 2 : 1;
+            let maxIndex = Math.max(0, cards.length - cardsVisible);
+
+            // Re-calculate visible cards on resize
+            window.addEventListener('resize', () => {
+                const oldVisible = cardsVisible;
+                cardsVisible = window.innerWidth > 992 ? 3 : window.innerWidth > 768 ? 2 : 1;
+                if (oldVisible !== cardsVisible) {
+                    maxIndex = Math.max(0, cards.length - cardsVisible);
+                    currentIndex = Math.min(currentIndex, maxIndex);
+                    updateCarousel();
+                    setupDots();
+                }
+            });
+
+            const setupDots = () => {
+                if (!dotsContainer) return;
+                dotsContainer.innerHTML = '';
+                // Number of slide stops
+                const totalSteps = cards.length - cardsVisible + 1;
+                if (totalSteps <= 1) return;
+                
+                for (let i = 0; i < totalSteps; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('carousel-dot');
+                    if (i === currentIndex) dot.classList.add('active');
+                    dot.addEventListener('click', () => {
+                        currentIndex = i;
+                        updateCarousel();
+                    });
+                    dotsContainer.appendChild(dot);
+                }
+            };
+
+            const updateCarousel = () => {
+                if (!track || cards.length === 0) return;
+                const cardWidth = cards[0].offsetWidth;
+                const gap = 30; // matching CSS gap
+                const shift = currentIndex * (cardWidth + gap);
+                track.style.transform = `translateX(-${shift}px)`;
+                
+                // Update active dot
+                const dots = Array.from(dotsContainer ? dotsContainer.children : []);
+                dots.forEach((dot, idx) => {
+                    if (idx === currentIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            };
+
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateCarousel();
+                    } else {
+                        currentIndex = maxIndex; // Wrap around to end
+                        updateCarousel();
+                    }
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    if (currentIndex < maxIndex) {
+                        currentIndex++;
+                        updateCarousel();
+                    } else {
+                        currentIndex = 0; // Wrap around to start
+                        updateCarousel();
+                    }
+                });
+            }
+
+            setupDots();
+
+            // ----------------------------------------------------
+            // 6. Interactive Walkthrough Slides Tour
+            // ----------------------------------------------------
+            const walkthroughModal = document.getElementById('walkthrough-modal');
+            const tourGraphic = document.getElementById('tour-slide-graphic');
+            const tourTitle = document.getElementById('tour-slide-title');
+            const tourDesc = document.getElementById('tour-slide-desc');
+            const tourCounter = document.getElementById('tour-counter');
+            const tourPrevBtn = document.getElementById('tour-prev-btn');
+            const tourNextBtn = document.getElementById('tour-next-btn');
+
+            const TOUR_SLIDES = [
+                {
+                    title: "Step 1: Your Nutrition Handled",
+                    desc: "No grocery shopping, no cooking, and zero cleanup. Our culinary team prepares gourmet, high-protein meals formulated exactly to your macronutrient profile. Delivered fresh to your doorstep.",
+                    emoji: "🥗",
+                    color: "var(--ffp-slate)",
+                    innerHtml: `
+                        <div style="background-color: var(--ffp-slate); width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff;">
+                            <span style="font-size: 3rem; margin-bottom: 5px;">🍛</span>
+                            <span style="font-family: var(--ffp-font-heading); font-weight: 800; font-size: 0.95rem; color: var(--ffp-gold);">CHEF-COOKED MEALS</span>
+                            <span style="font-size: 0.75rem; opacity: 0.7; margin-top: 4px;">Macro-Optimized, High Protein</span>
+                        </div>
+                    `
+                },
+                {
+                    title: "Step 2: Fast 30-Minute Gym Workouts",
+                    desc: "No hours wasted in the gym. We design efficient, high-impact workout calendars built to match your calendar. It gets you in, out, and fat-burning in less than 30 minutes a day.",
+                    emoji: "🏋️‍♂️",
+                    color: "var(--ffp-red)",
+                    innerHtml: `
+                        <div style="background-color: var(--ffp-red); width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff;">
+                            <span style="font-size: 3rem; margin-bottom: 5px;">⚡</span>
+                            <span style="font-family: var(--ffp-font-heading); font-weight: 800; font-size: 0.95rem; color: #ffffff;">FAST 30-MIN SESSIONS</span>
+                            <span style="font-size: 0.75rem; opacity: 0.8; margin-top: 4px;">Burn Fat & Build Strength</span>
+                        </div>
+                    `
+                },
+                {
+                    title: "Step 3: Centralized Mobile App Tracking",
+                    desc: "Your entire fitness system is at your fingertips. Log workouts, check your macro delivery, and message your dedicated personal trainer 1-on-1 directly through our mobile dashboard.",
+                    emoji: "📱",
+                    color: "var(--ffp-slate-light)",
+                    innerHtml: `
+                        <div style="background-color: var(--ffp-slate-light); width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff;">
+                            <span style="font-size: 3rem; margin-bottom: 5px;">📱</span>
+                            <span style="font-family: var(--ffp-font-heading); font-weight: 800; font-size: 0.95rem; color: var(--ffp-gold);">KAIROS MOBILE APP</span>
+                            <span style="font-size: 0.75rem; opacity: 0.7; margin-top: 4px;">Daily Accountability & Check-ins</span>
+                        </div>
+                    `
+                }
+            ];
+
+            let tourCurrentIndex = 0;
+
+            const updateTourSlide = () => {
+                const slide = TOUR_SLIDES[tourCurrentIndex];
+                if (tourGraphic) tourGraphic.innerHTML = slide.innerHtml;
+                if (tourTitle) tourTitle.textContent = slide.title;
+                if (tourDesc) tourDesc.textContent = slide.desc;
+                if (tourCounter) tourCounter.textContent = `${tourCurrentIndex + 1} / ${TOUR_SLIDES.length}`;
+            };
+
+            window.openWalkthroughModal = function() {
+                tourCurrentIndex = 0;
+                updateTourSlide();
+                if (walkthroughModal) walkthroughModal.classList.add('active');
+            };
+
+            window.closeWalkthroughModal = function() {
+                if (walkthroughModal) walkthroughModal.classList.remove('active');
+            };
+
+            if (tourPrevBtn && tourNextBtn) {
+                tourPrevBtn.addEventListener('click', () => {
+                    if (tourCurrentIndex > 0) {
+                        tourCurrentIndex--;
+                        updateTourSlide();
+                    } else {
+                        tourCurrentIndex = TOUR_SLIDES.length - 1;
+                        updateTourSlide();
+                    }
+                });
+
+                tourNextBtn.addEventListener('click', () => {
+                    if (tourCurrentIndex < TOUR_SLIDES.length - 1) {
+                        tourCurrentIndex++;
+                        updateTourSlide();
+                    } else {
+                        closeWalkthroughModal();
+                        // Open the lead consultation signup automatically on completing tour! Amazing flow.
+                        openConsultationModal('', true);
+                    }
+                });
+            }
+
+            // ----------------------------------------------------
+            // 7. Mobile Hamburger Menu Toggle
+            // ----------------------------------------------------
+            const mobileBtn = document.getElementById('mobile-hamburger');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            const mobileOverlay = document.getElementById('mobile-menu-overlay');
+
+            window.toggleMobileMenu = function() {
+                if (mobileOverlay) {
+                    mobileOverlay.classList.toggle('active');
+                }
+            };
+
+            if (mobileBtn) {
+                mobileBtn.addEventListener('click', toggleMobileMenu);
+            }
+            if (mobileMenuClose) {
+                mobileMenuClose.addEventListener('click', toggleMobileMenu);
+            }
+
+            // ----------------------------------------------------
+            // 8. Chat Box Window Toggle (Glassmorphic Widget)
+            // ----------------------------------------------------
+            const chatBtn = document.getElementById('chat-button');
+            const chatWindow = document.getElementById('chat-window');
+            const chatClose = document.getElementById('close-chat');
+
+            if (chatBtn && chatWindow) {
+                chatBtn.addEventListener('click', () => {
+                    chatWindow.classList.toggle('active');
+                });
+            }
+
+            if (chatClose && chatWindow) {
+                chatClose.addEventListener('click', () => {
+                    chatWindow.classList.remove('active');
+                });
+            }
+
+            // ----------------------------------------------------
+            // 9. Lead Consultation Webhook Submission (Preserved endpoint)
+            // ----------------------------------------------------
+            const leadForm = document.getElementById('modal-lead-form');
+            if (leadForm) {
+                leadForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
                     
-                    const btn = form.querySelector('button[type="submit"]');
-                    const successMsg = form.querySelector('.form-success-msg');
-                    const errorMsg = form.querySelector('.form-error-msg');
+                    const btn = document.getElementById('modal-submit-btn');
+                    const successMsg = leadForm.querySelector('.form-success-msg');
+                    const errorMsg = leadForm.querySelector('.form-error-msg');
                     const originalBtnText = btn.textContent;
                     
-                    btn.textContent = 'Sending...';
+                    btn.textContent = 'Submitting Request...';
                     btn.disabled = true;
                     successMsg.style.display = 'none';
                     errorMsg.style.display = 'none';
                     
-                    const formData = new FormData(form);
+                    const formData = new FormData(leadForm);
                     const data = {
                         first_name: formData.get('first_name'),
                         last_name: formData.get('last_name'),
                         email: formData.get('email'),
                         phone_number: formData.get('phone_number'),
-                        source: 'Finally Fit Info Request'
+                        zip_code: formData.get('zip_code') || 'Spokane/CDA area',
+                        source: 'Finally Fit Mockup Request'
                     };
                     
                     try {
@@ -438,20 +2529,24 @@
                         });
                         
                         if (response.ok) {
-                            form.reset();
+                            leadForm.reset();
                             successMsg.style.display = 'block';
+                            // Dynamic fade out after successful booking
+                            setTimeout(() => {
+                                closeConsultationModal();
+                            }, 5000);
                         } else {
-                            throw new Error('Network response was not ok.');
+                            throw new Error('Server response not ok');
                         }
                     } catch (error) {
-                        console.error('Submission error:', error);
+                        console.error('Webhook error:', error);
                         errorMsg.style.display = 'block';
                     } finally {
                         btn.textContent = originalBtnText;
                         btn.disabled = false;
                     }
                 });
-            });
+            }
         });
     </script>
     <script type="module" src="/main.js"></script>
