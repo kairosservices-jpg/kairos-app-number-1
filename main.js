@@ -416,8 +416,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 console.log('Successfully sent to Make webhook. Response:', data);
                 
-                // Redirect to Bottle checkout
-                window.location.href = "https://kairosmealpreps.bottle.com";
+                // Redirect to Finally Fit program page
+                window.location.href = "/finally-fit";
             })
             .catch(error => {
                 console.error('Error sending to Make webhook:', error);
@@ -445,7 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         function showSuccessStep() {
             console.log("Redirecting to fallback success page...");
-            window.location.href = "https://kairosmealpreps.bottle.com";
+            window.location.href = "/finally-fit";
         }
       });
     }
