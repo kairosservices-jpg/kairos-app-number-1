@@ -331,6 +331,82 @@ document.addEventListener('DOMContentLoaded', () => {
         if (hasScore) {
             userAnswers['totalScore'] = totalScore;
         }
+
+        // Mifflin-St Jeor Calculations for Finally Fit Page auto-load
+        const userAge = parseInt(userAnswers['How old are you?']) || 35;
+        const userWeight = parseFloat(userAnswers['What is your current weight?']) || 170;
+        const heightFeet = parseInt(userAnswers['Height (Feet)']) || 5;
+        const heightInches = parseInt(userAnswers['Height (Inches)']) || 9;
+        const gender = userAnswers['3. Are you:'] || 'Female';
+        const activityText = userAnswers['6. Which best describes your activity level?'] || 'Lightly active';
+
+        const weightKg = userWeight * 0.45359237;
+        const totalHeightInches = (heightFeet * 12) + heightInches;
+        const heightCm = totalHeightInches * 2.54;
+
+        let BMR = 0;
+        if (gender === 'Male') {
+            BMR = (10 * weightKg) + (6.25 * heightCm) - (5 * userAge) + 5;
+        } else {
+            BMR = (10 * weightKg) + (6.25 * heightCm) - (5 * userAge) - 161;
+        }
+
+        let activityMultiplier = 1.375;
+        if (activityText.includes('sitting') || activityText.includes('desk')) {
+            activityMultiplier = 1.2;
+        } else if (activityText.includes('Lightly')) {
+            activityMultiplier = 1.375;
+        } else if (activityText.includes('Moderately')) {
+            activityMultiplier = 1.55;
+        } else if (activityText.includes('Very')) {
+            activityMultiplier = 1.725;
+        }
+
+        const TDEE = Math.round(BMR * activityMultiplier);
+
+        let targetCalories = Math.round(TDEE - 500);
+        if (gender === 'Female' && targetCalories < 1200) targetCalories = 1200;
+        if (gender === 'Male' && targetCalories < 1500) targetCalories = 1500;
+
+        let proteinGrams = Math.round(userWeight);
+        if (gender === 'Male') {
+            if (proteinGrams > 220) proteinGrams = 220;
+        } else {
+            if (proteinGrams > 160) proteinGrams = 160;
+        }
+        if (proteinGrams * 4 > targetCalories * 0.4) {
+            proteinGrams = Math.round((targetCalories * 0.4) / 4);
+        }
+        const fatGrams = Math.round((targetCalories * 0.275) / 9);
+        const proteinCal = proteinGrams * 4;
+        const fatCal = fatGrams * 9;
+        const carbCal = targetCalories - proteinCal - fatCal;
+        const carbGrams = Math.max(20, Math.round(carbCal / 4));
+
+        let calculatedTier = 'L';
+        if (targetCalories < 1700) {
+            calculatedTier = 'S';
+        } else if (targetCalories > 2300) {
+            calculatedTier = 'XL';
+        }
+
+        const calculatedPlan = {
+            calories: targetCalories,
+            protein: proteinGrams,
+            carbs: carbGrams,
+            fat: fatGrams,
+            bmr: Math.round(BMR),
+            tdee: TDEE,
+            tier: calculatedTier
+        };
+
+        localStorage.setItem('ffp_user_answers', JSON.stringify({
+            'First Name': userAnswers["What's your first name?"] || 'Athlete',
+            'Last Name': userAnswers["What's your last name?"] || '',
+            'Email': email,
+            'Phone': phone
+        }));
+        localStorage.setItem('ffp_macro_plan', JSON.stringify(calculatedPlan));
         
         console.log('Quiz completed. Data captured:', userAnswers);
         
