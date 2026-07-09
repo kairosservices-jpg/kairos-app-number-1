@@ -328,11 +328,121 @@ document.addEventListener('DOMContentLoaded', () => {
                 hasScore = true;
             }
         }
-        if (hasScore) {
-            userAnswers['totalScore'] = totalScore;
+        // Ported Portions Database and Logic from finally-fit.js
+        const INGREDIENTS = {
+            'tri_tip': { name: "Tri-Tip", category: "protein", price_per_oz: 0.606, protein_per_oz: 7.5, carbs_per_oz: 0, fat_per_oz: 4.0, calories_per_oz: 66 },
+            'ground_turkey': { name: "Ground Turkey", category: "protein", price_per_oz: 0.271, protein_per_oz: 7.0, carbs_per_oz: 0, fat_per_oz: 2.5, calories_per_oz: 51 },
+            'chicken_breast': { name: "Chicken Breast", category: "protein", price_per_oz: 0.165, protein_per_oz: 8.5, carbs_per_oz: 0, fat_per_oz: 1.0, calories_per_oz: 43 },
+            'pork_shoulder': { name: "Pork Shoulder", category: "protein", price_per_oz: 0.118, protein_per_oz: 7.5, carbs_per_oz: 0, fat_per_oz: 4.5, calories_per_oz: 71 },
+            'chicken_thigh': { name: "Chicken Thigh", category: "protein", price_per_oz: 0.107, protein_per_oz: 7.0, carbs_per_oz: 0, fat_per_oz: 3.0, calories_per_oz: 55 },
+            'eggs': { name: "Whole Eggs", category: "protein", price_per_oz: 0.180, protein_per_oz: 3.6, carbs_per_oz: 0.3, fat_per_oz: 2.8, calories_per_oz: 41 },
+            'greek_yogurt': { name: "Greek Yogurt", category: "protein", price_per_oz: 0.150, protein_per_oz: 3.0, carbs_per_oz: 1.0, fat_per_oz: 0, calories_per_oz: 16 },
+            'cottage_cheese': { name: "Cottage Cheese", category: "protein", price_per_oz: 0.120, protein_per_oz: 3.5, carbs_per_oz: 1.0, fat_per_oz: 0.5, calories_per_oz: 23 },
+            'chopped_potato': { name: "Chopped Potato", category: "carb", price_per_oz: 0.150, protein_per_oz: 0.7, carbs_per_oz: 6.0, fat_per_oz: 0.5, calories_per_oz: 31 },
+            'mashed_potato': { name: "Mashed Potato", category: "carb", price_per_oz: 0.103, protein_per_oz: 0.6, carbs_per_oz: 5.0, fat_per_oz: 1.0, calories_per_oz: 31 },
+            'sweet_potato': { name: "Sweet Potato", category: "carb", price_per_oz: 0.083, protein_per_oz: 0.6, carbs_per_oz: 6.0, fat_per_oz: 0, calories_per_oz: 26 },
+            'jasmine_rice': { name: "Jasmine Rice", category: "carb", price_per_oz: 0.021, protein_per_oz: 0.7, carbs_per_oz: 8.0, fat_per_oz: 0, calories_per_oz: 35 },
+            'pasta': { name: "Spaghetti Pasta", category: "carb", price_per_oz: 0.036, protein_per_oz: 1.5, carbs_per_oz: 8.0, fat_per_oz: 0.2, calories_per_oz: 40 },
+            'granola': { name: "Granola/Fruit", category: "carb", price_per_oz: 0.100, protein_per_oz: 0.5, carbs_per_oz: 6.0, fat_per_oz: 1.0, calories_per_oz: 35 },
+            'broccoli': { name: "Broccoli", category: "veg", price_per_oz: 0.133, protein_per_oz: 0.8, carbs_per_oz: 2.0, fat_per_oz: 0, calories_per_oz: 11 },
+            'green_beans': { name: "Green Beans", category: "veg", price_per_oz: 0.099, protein_per_oz: 0.5, carbs_per_oz: 2.0, fat_per_oz: 0, calories_per_oz: 10 }
+        };
+
+        const MEAL_TEMPLATES = {
+            'Steak and Eggs': { protein_id: 'tri_tip', carb_id: 'chopped_potato', veg_id: 'broccoli' },
+            'Yogurt Parfait': { protein_id: 'greek_yogurt', carb_id: 'granola', veg_id: 'broccoli' },
+            'Honey Sweet Cottage Cheese': { protein_id: 'cottage_cheese', carb_id: 'granola', veg_id: 'green_beans' },
+            'Morning Grand Slam': { protein_id: 'eggs', carb_id: 'sweet_potato', veg_id: 'broccoli' },
+            'Meat & Cheese-To-Go': { protein_id: 'pork_shoulder', carb_id: 'mashed_potato', veg_id: 'green_beans' },
+            'Steak n Mash': { protein_id: 'tri_tip', carb_id: 'mashed_potato', veg_id: 'broccoli' },
+            'Teriyaki Chicken': { protein_id: 'chicken_breast', carb_id: 'jasmine_rice', veg_id: 'broccoli' },
+            'Chicken Fried Rice': { protein_id: 'chicken_breast', carb_id: 'jasmine_rice', veg_id: 'green_beans' },
+            'Chili Margarita': { protein_id: 'chicken_breast', carb_id: 'jasmine_rice', veg_id: 'green_beans' },
+            'BBQ Chicken Thigh': { protein_id: 'chicken_thigh', carb_id: 'mashed_potato', veg_id: 'green_beans' },
+            'Sweet Chili Chicken Thigh': { protein_id: 'chicken_thigh', carb_id: 'jasmine_rice', veg_id: 'green_beans' },
+            'Asian Zing Chicken Thigh': { protein_id: 'chicken_thigh', carb_id: 'jasmine_rice', veg_id: 'green_beans' },
+            'Spaghetti and Meatballs': { protein_id: 'ground_turkey', carb_id: 'pasta', veg_id: 'broccoli' },
+            'Chicken Pesto Pasta': { protein_id: 'chicken_breast', carb_id: 'pasta', veg_id: 'broccoli' }
+        };
+
+        const BASE_PREP_FEE = 5.00;
+        const INGREDIENT_MARKUP = 1.0;
+
+        function calculateMealPortionsAndPricing(mealName, targetMealProtein, targetMealCarbs, targetMealFat) {
+            if (mealName === 'Homemade Meal') {
+                return {
+                    name: "Homemade Meal",
+                    price: 0.00,
+                    protein: Math.round(targetMealProtein),
+                    carbs: Math.round(targetMealCarbs),
+                    fat: Math.round(targetMealFat),
+                    calories: Math.round((targetMealProtein * 4) + (targetMealCarbs * 4) + (targetMealFat * 9)),
+                    portions: {
+                        protein: { name: "Prepare at home", oz: 0 },
+                        carb: { name: "", oz: 0 },
+                        veg: { name: "", oz: 0 }
+                    },
+                    detailsHtml: "Prepare at home"
+                };
+            }
+
+            const template = MEAL_TEMPLATES[mealName];
+            if (!template) {
+                return { name: mealName, price: 9.95, protein: 30, carbs: 30, fat: 10, calories: 330, detailsHtml: "" };
+            }
+
+            const pIng = INGREDIENTS[template.protein_id];
+            const cIng = INGREDIENTS[template.carb_id];
+            const vIng = INGREDIENTS[template.veg_id];
+
+            let pOz = Math.round(targetMealProtein / pIng.protein_per_oz);
+            const fitnessGoalText = userAnswers['2. What is your primary fitness goal?'] || 'Fat Loss / Toning';
+            let fitnessGoal = 'Maintain';
+            if (fitnessGoalText.includes('Fat Loss')) {
+                fitnessGoal = 'Fat Loss';
+            } else if (fitnessGoalText.includes('Build Muscle')) {
+                fitnessGoal = 'Muscle Gain';
+            }
+            
+            const cOzRaw = targetMealCarbs / cIng.carbs_per_oz;
+            let cOz = Math.round(cOzRaw);
+            if (fitnessGoal === 'Fat Loss') {
+                cOz = Math.floor(cOzRaw);
+            } else if (fitnessGoal === 'Muscle Gain') {
+                cOz = Math.ceil(cOzRaw);
+            }
+
+            let vOz = 2;
+            pOz = Math.max(4, Math.min(8, pOz));
+            cOz = Math.max(3, Math.min(10, cOz));
+
+            const mealP = Math.round((pOz * pIng.protein_per_oz) + (cOz * cIng.protein_per_oz) + (vOz * vIng.protein_per_oz));
+            const mealC = Math.round((pOz * pIng.carbs_per_oz) + (cOz * cIng.carbs_per_oz) + (vOz * vIng.carbs_per_oz));
+            const mealF = Math.round((pOz * pIng.fat_per_oz) + (cOz * cIng.fat_per_oz) + (vOz * vIng.fat_per_oz));
+            const mealCal = Math.round((mealP * 4) + (mealC * 4) + (mealF * 9));
+
+            const pCost = pOz * pIng.price_per_oz * INGREDIENT_MARKUP;
+            const cCost = cOz * cIng.price_per_oz * INGREDIENT_MARKUP;
+            const vCost = vOz * vIng.price_per_oz * INGREDIENT_MARKUP;
+            const totalPrice = Math.round((BASE_PREP_FEE + pCost + cCost + vCost) * 100) / 100;
+
+            return {
+                name: mealName,
+                price: totalPrice,
+                protein: mealP,
+                carbs: mealC,
+                fat: mealF,
+                calories: mealCal,
+                portions: {
+                    protein: { name: pIng.name, oz: pOz },
+                    carb: { name: cIng.name, oz: cOz },
+                    veg: { name: vIng.name, oz: vOz }
+                },
+                detailsHtml: `${pOz}oz ${pIng.name}, ${cOz}oz ${cIng.name}, ${vOz}oz ${vIng.name}`
+            };
         }
 
-        // Mifflin-St Jeor Calculations for Finally Fit Page auto-load
+        // Mifflin-St Jeor Calculations for Onboarding Quiz
         const userAge = parseInt(userAnswers['How old are you?']) || 35;
         const userWeight = parseFloat(userAnswers['What is your current weight?']) || 170;
         const heightFeet = parseInt(userAnswers['Height (Feet)']) || 5;
@@ -364,9 +474,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const TDEE = Math.round(BMR * activityMultiplier);
 
-        let targetCalories = Math.round(TDEE - 500);
-        if (gender === 'Female' && targetCalories < 1200) targetCalories = 1200;
-        if (gender === 'Male' && targetCalories < 1500) targetCalories = 1500;
+        const fitnessGoalText = userAnswers['2. What is your primary fitness goal?'] || 'Fat Loss / Toning';
+        let fitnessGoal = 'Maintain';
+        if (fitnessGoalText.includes('Fat Loss')) {
+            fitnessGoal = 'Fat Loss';
+        } else if (fitnessGoalText.includes('Build Muscle')) {
+            fitnessGoal = 'Muscle Gain';
+        }
+
+        let targetCalories = TDEE;
+        if (fitnessGoal === 'Fat Loss') {
+            targetCalories = Math.round(TDEE - 500);
+            if (gender === 'Female' && targetCalories < 1200) targetCalories = 1200;
+            if (gender === 'Male' && targetCalories < 1500) targetCalories = 1500;
+        } else if (fitnessGoal === 'Muscle Gain') {
+            targetCalories = Math.round(TDEE + 300);
+        }
 
         let proteinGrams = Math.round(userWeight);
         if (gender === 'Male') {
@@ -400,6 +523,48 @@ document.addEventListener('DOMContentLoaded', () => {
             tier: calculatedTier
         };
 
+        const mealTargetP = (proteinGrams - 25) / 4;
+        const mealTargetC = (carbGrams - 20) / 4;
+        const mealTargetF = (fatGrams - 10) / 4;
+
+        const eggsDetails = calculateMealPortionsAndPricing('Morning Grand Slam', mealTargetP, mealTargetC, mealTargetF);
+        const steakDetails = calculateMealPortionsAndPricing('Steak n Mash', mealTargetP, mealTargetC, mealTargetF);
+        const chickenDetails = calculateMealPortionsAndPricing('Teriyaki Chicken', mealTargetP, mealTargetC, mealTargetF);
+
+        // Build integrated calculations payload
+        const payload = {
+            ...userAnswers,
+            ...calculatedPlan,
+            lead_status: "quiz-completed",
+            pipeline_stage: "Quiz Completed",
+            source: "Kairos Nutrition Onboarding Quiz",
+            studio: userAnswers['Gym'] || userAnswers['Studio'] || 'At Home',
+            gym: userAnswers['Gym'] || userAnswers['Studio'] || 'At Home',
+            
+            eggs_meal_name: eggsDetails.name,
+            eggs_meal_portions: eggsDetails.detailsHtml,
+            eggs_meal_protein: eggsDetails.protein,
+            eggs_meal_carbs: eggsDetails.carbs,
+            eggs_meal_fat: eggsDetails.fat,
+            eggs_meal_calories: eggsDetails.calories,
+            
+            steak_meal_name: steakDetails.name,
+            steak_meal_price: steakDetails.price,
+            steak_meal_portions: steakDetails.detailsHtml,
+            steak_meal_protein: steakDetails.protein,
+            steak_meal_carbs: steakDetails.carbs,
+            steak_meal_fat: steakDetails.fat,
+            steak_meal_calories: steakDetails.calories,
+            
+            chicken_meal_name: chickenDetails.name,
+            chicken_meal_price: chickenDetails.price,
+            chicken_meal_portions: chickenDetails.detailsHtml,
+            chicken_meal_protein: chickenDetails.protein,
+            chicken_meal_carbs: chickenDetails.carbs,
+            chicken_meal_fat: chickenDetails.fat,
+            chicken_meal_calories: chickenDetails.calories
+        };
+
         localStorage.setItem('ffp_user_answers', JSON.stringify({
             'First Name': userAnswers["What's your first name?"] || 'Athlete',
             'Last Name': userAnswers["What's your last name?"] || '',
@@ -408,7 +573,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }));
         localStorage.setItem('ffp_macro_plan', JSON.stringify(calculatedPlan));
         
-        console.log('Quiz completed. Data captured:', userAnswers);
+        console.log('Quiz completed. Data captured:', payload);
         
         // Send data to Klaviyo
         const klaviyoPublicKey = 'QWmkMT'; // Hardcoded for production
@@ -426,7 +591,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         metric: {
                             name: 'Completed Quiz'
                         },
-                        properties: userAnswers,
+                        properties: payload,
                         time: new Date().toISOString()
                     }
                 }
@@ -470,7 +635,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(userAnswers)
+                body: JSON.stringify(payload)
             })
             .then(async response => {
                 if (!response.ok) {
