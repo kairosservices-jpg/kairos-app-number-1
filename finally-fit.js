@@ -461,20 +461,54 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('ffp_user_answers', JSON.stringify(userAnswers));
             localStorage.setItem('ffp_macro_plan', JSON.stringify(calculatedPlan));
 
-            // Show loading state on submission button
-            const submitBtn = leadForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Calculating Plan & Opening Offers...';
+            // Hide quiz step 9 and show loading step pane
+            const step9 = document.getElementById('quiz-step-9');
+            const loadingPane = document.getElementById('quiz-step-loading');
+            if (step9) step9.style.display = 'none';
+            if (loadingPane) loadingPane.style.display = 'block';
+
+            let currentProgress = 0;
+            const progressBar = document.getElementById('loading-bar-progress');
+            const progressText = document.getElementById('loading-step-text');
+            
+            const loadingStages = [
+                { limit: 20, text: "Analyzing your daily calorie needs..." },
+                { limit: 40, text: "Calculating macronutrient splits (Protein/Carbs/Fat)..." },
+                { limit: 60, text: "Creating customized meal portion guides..." },
+                { limit: 80, text: "Syncing with your local kitchen database..." },
+                { limit: 99, text: "Generating your 12-week roadmap plan..." }
+            ];
+
+            const progressInterval = setInterval(() => {
+                if (currentProgress < 99) {
+                    currentProgress += 1;
+                    if (progressBar) progressBar.style.width = currentProgress + '%';
+                    
+                    const stage = loadingStages.find(s => currentProgress <= s.limit);
+                    if (stage && progressText) {
+                        progressText.textContent = stage.text;
+                    }
+                }
+            }, 45); // Reaches 99% in about 4.5 seconds
+
+            function finishProgressAndReveal() {
+                clearInterval(progressInterval);
+                if (progressBar) progressBar.style.width = '100%';
+                if (progressText) progressText.textContent = "Plan generated! Opening your results...";
+                
+                setTimeout(() => {
+                    if (loadingPane) loadingPane.style.display = 'none';
+                    revealDashboardResults();
+                }, 350);
+            }
 
             try {
-                // Calculate target macros for the 4 daily meals (divided evenly)
+                // Determine target macro profile details
                 const mealTargetP = proteinGrams / 4;
                 const mealTargetC = carbGrams / 4;
                 const mealTargetF = fatGrams / 4;
-
-                // Calculate dynamic portions for signature meals for webhook mapping
-                const eggsDetails = calculateMealPortionsAndPricing('Steak and Eggs', mealTargetP, mealTargetC, mealTargetF);
+                
+                const eggsDetails = calculateMealPortionsAndPricing('Morning Grand Slam', mealTargetP, mealTargetC, mealTargetF);
                 const steakDetails = calculateMealPortionsAndPricing('Steak n Mash', mealTargetP, mealTargetC, mealTargetF);
                 const chickenDetails = calculateMealPortionsAndPricing('Teriyaki Chicken', mealTargetP, mealTargetC, mealTargetF);
 
@@ -523,11 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Graceful fallback logging so checkout isn't blocked by CORS or network drops
                 console.warn('Webhook transmission error, proceeding with UI reveal:', err);
             } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalText;
-
-                // Hide Quiz Widget & Show Custom Tiers / Pricing
-                revealDashboardResults();
+                finishProgressAndReveal();
             }
         });
     }

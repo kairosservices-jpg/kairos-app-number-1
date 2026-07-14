@@ -637,12 +637,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const makeWebhookUrl = 'https://hook.us2.make.com/2p5li29o1by9kjksn4h0lnpgghjma3qa'; // Hardcoded for production
         
-        // Show loading state
-        const submitBtn = quizForm.querySelector('button[type="submit"]');
-        const originalBtnText = submitBtn ? submitBtn.textContent : 'Get My Plan';
-        if (submitBtn) {
-            submitBtn.textContent = 'Processing...';
-            submitBtn.disabled = true;
+        // Hide contact info step and show loading progress step
+        const emailStep = document.getElementById('quiz-step-email');
+        const loadingStep = document.getElementById('quiz-step-loading');
+        if (emailStep) emailStep.style.display = 'none';
+        if (loadingStep) loadingStep.style.display = 'block';
+
+        let currentProgress = 0;
+        const progressBar = document.getElementById('loading-bar-progress');
+        const progressText = document.getElementById('loading-step-text');
+        
+        const loadingStages = [
+            { limit: 20, text: "Analyzing your daily calorie needs..." },
+            { limit: 40, text: "Calculating macronutrient splits (Protein/Carbs/Fat)..." },
+            { limit: 60, text: "Creating customized meal portion guides..." },
+            { limit: 80, text: "Syncing with your local kitchen database..." },
+            { limit: 99, text: "Generating your 12-week roadmap plan..." }
+        ];
+
+        const progressInterval = setInterval(() => {
+            if (currentProgress < 99) {
+                currentProgress += 1;
+                if (progressBar) progressBar.style.width = currentProgress + '%';
+                
+                const stage = loadingStages.find(s => currentProgress <= s.limit);
+                if (stage && progressText) {
+                    progressText.textContent = stage.text;
+                }
+            }
+        }, 45); // Reaches 99% in about 4.5 seconds
+
+        function finishProgressAndRedirect(redirectUrl) {
+            clearInterval(progressInterval);
+            if (progressBar) progressBar.style.width = '100%';
+            if (progressText) progressText.textContent = "Plan generated! Opening your results...";
+            
+            setTimeout(() => {
+                window.location.href = redirectUrl;
+            }, 350);
         }
 
         if (makeWebhookUrl) {
@@ -672,9 +704,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(data => {
                 console.log('Successfully sent to Make webhook. Response:', data);
-                
-                // Redirect to Finally Fit program page
-                window.location.href = "/finally-fit";
+                finishProgressAndRedirect("/finally-fit");
             })
             .catch(error => {
                 console.error('Error sending to Make webhook:', error);
@@ -684,25 +714,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert("DEBUG INFO: The browser blocked the Make.com response! This is usually a CORS error, an adblocker, or network drop.\n\nError: " + error.message + "\n\nPlease screenshot this popup!");
                 }
                 showSuccessStep(); // Fallback if Webhook fails
-            })
-            .finally(() => {
-                 if (submitBtn) {
-                    submitBtn.textContent = originalBtnText;
-                    submitBtn.disabled = false;
-                 }
             });
         } else {
              console.warn('VITE_MAKE_WEBHOOK_URL is not set. Falling back to success screen.');
              showSuccessStep();
-             if (submitBtn) {
-                 submitBtn.textContent = originalBtnText;
-                 submitBtn.disabled = false;
-             }
         }
         
         function showSuccessStep() {
             console.log("Redirecting to fallback success page...");
-            window.location.href = "/finally-fit";
+            finishProgressAndRedirect("/finally-fit");
         }
       });
     }
