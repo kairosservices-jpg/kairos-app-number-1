@@ -317,6 +317,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = emailInput ? emailInput.value.trim() : '';
         const phone = phoneInput ? phoneInput.value.trim() : '';
         
+        // Phone number validation (digits must be between 10 and 15)
+        const cleanPhone = phone.replace(/\D/g, '');
+        if (cleanPhone.length < 10 || cleanPhone.length > 15) {
+            alert('Please enter a valid phone number (minimum 10 digits).');
+            if (phoneInput) phoneInput.focus();
+            return;
+        }
+        
         userAnswers['email'] = email;
         userAnswers['phone_number'] = phone;
         
