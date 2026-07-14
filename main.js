@@ -577,7 +577,15 @@ document.addEventListener('DOMContentLoaded', () => {
             'First Name': userAnswers["What's your first name?"] || 'Athlete',
             'Last Name': userAnswers["What's your last name?"] || '',
             'Email': email,
-            'Phone': phone
+            'Phone': phone,
+            'Weight': parseFloat(userAnswers["What is your current weight?"]) || 170,
+            'Age': parseInt(userAnswers["How old are you?"]) || 35,
+            'Gender': userAnswers["3. Are you:"] || 'Female',
+            'Height Feet': parseInt(userAnswers["Height (Feet)"]) || 5,
+            'Height Inches': parseInt(userAnswers["Height (Inches)"]) || 9,
+            'Goal': userAnswers["2. What is your primary fitness goal?"] || 'Fat Loss',
+            'Weight Goal': userAnswers["7. How much weight would you like to lose?"] || '10-20 lbs',
+            'Activity': activityMultiplier
         }));
         localStorage.setItem('ffp_macro_plan', JSON.stringify(calculatedPlan));
         
