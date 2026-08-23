@@ -1,3 +1,33 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/about", "destination": "/", "permanent": true },
+    { "source": "/about.html", "destination": "/", "permanent": true },
+    { "source": "/contact", "destination": "/", "permanent": true },
+    { "source": "/contact.html", "destination": "/", "permanent": true },
+    { "source": "/apply", "destination": "/", "permanent": true },
+    { "source": "/apply.html", "destination": "/", "permanent": true },
+    { "source": "/finally-fit", "destination": "/", "permanent": true },
+    { "source": "/finally-fit.html", "destination": "/", "permanent": true },
+    { "source": "/ai-advisor", "destination": "/", "permanent": true },
+    { "source": "/ai-advisor.html", "destination": "/", "permanent": true },
+    { "source": "/links", "destination": "/", "permanent": true },
+    { "source": "/links.html", "destination": "/", "permanent": true },
+    { "source": "/local-unqualified", "destination": "/", "permanent": true },
+    { "source": "/local-unqualified.html", "destination": "/", "permanent": true },
+    { "source": "/meal-plan-dashboard", "destination": "/", "permanent": true },
+    { "source": "/meal-plan-dashboard.html", "destination": "/", "permanent": true },
+    { "source": "/meal-quiz", "destination": "/", "permanent": true },
+    { "source": "/meal-quiz.html", "destination": "/", "permanent": true },
+    { "source": "/non-local", "destination": "/", "permanent": true },
+    { "source": "/non-local.html", "destination": "/", "permanent": true },
+    { "source": "/not-qualified", "destination": "/", "permanent": true },
+    { "source": "/not-qualified.html", "destination": "/", "permanent": true },
+    { "source": "/out-of-range", "destination": "/", "permanent": true },
+    { "source": "/out-of-range.html", "destination": "/", "permanent": true },
+    { "source": "/premium", "destination": "/", "permanent": true },
+    { "source": "/premium.html", "destination": "/", "permanent": true },
+    { "source": "/standard", "destination": "/", "permanent": true },
+    { "source": "/standard.html", "destination": "/", "permanent": true }
+  ]
 }

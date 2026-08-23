@@ -1,84 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us - Kairos</title>
-    <link rel="stylesheet" href="/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | Kairos Meal Preps</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-bg: #000000;
+            --color-card: #0A0A0A;
+            --color-text-primary: #FFFFFF;
+            --color-text-secondary: rgba(255, 255, 255, 0.7);
+            --brand-red: #D90429;
+            --brand-red-glow: rgba(217, 4, 41, 0.15);
+            --font-primary: 'Outfit', sans-serif;
+            --font-secondary: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text-primary);
+            font-family: var(--font-secondary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            line-height: 1.8;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            background-image: 
+                radial-gradient(circle at 50% 15%, rgba(217, 4, 41, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 85%, rgba(217, 4, 41, 0.03) 0%, transparent 50%);
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .logo-container {
+            margin-bottom: 40px;
+        }
+
+        .logo-img {
+            height: 100px;
+            width: auto;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 6px;
+            background: rgba(255, 255, 255, 0.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(217, 4, 41, 0.2);
+            border-color: rgba(217, 4, 41, 0.4);
+        }
+
+        .announcement-card {
+            background-color: var(--color-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 48px 40px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 50px rgba(217, 4, 41, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .announcement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--brand-red), #ff5e3a);
+            box-shadow: 0 2px 20px rgba(217, 4, 41, 0.4);
+        }
+
+        h1 {
+            font-family: var(--font-primary);
+            font-weight: 800;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            line-height: 1.2;
+            margin-bottom: 28px;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E0E0E0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            font-size: clamp(1.05rem, 2.5vw, 1.15rem);
+            color: var(--color-text-secondary);
+            font-weight: 300;
+            margin-bottom: 24px;
+            text-align: justify;
+            text-align-last: center;
+        }
+
+        p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .announcement-card {
+                padding: 32px 24px;
+            }
+            .logo-img {
+                height: 80px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Sticky Navigation -->
-    <nav id="main-nav" class="main-nav">
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <a href="/" style="display: flex; align-items: center; text-decoration: none;">
-                <img src="/assets/kairos_logo.png" class="logo-nav" alt="Kairos Logo" style="height: 100px;" />
-            </a>
-            <div class="desktop-only" style="display: flex; gap: var(--space-md); align-items: center;">
-                <a href="https://kairosmealpreps.bottle.com" target="_blank" rel="noopener noreferrer" class="nav-link">Order Weekly Meals</a>
-                <a href="/about.html" class="nav-link">About Us</a>
 
-                <a href="/contact.html" class="nav-link">Contact</a>
-                <a href="/#build" class="btn btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.8rem; margin-left: 1rem;">Get My Free Meal Plan</a>
-            </div>
+    <div class="container">
+        <div class="logo-container">
+            <img src="/assets/kairos_logo.png" alt="Kairos Logo" class="logo-img" onerror="this.src='assets/kairos_logo.png'">
         </div>
-    </nav>
 
-    <main class="contact-content" style="padding-top: 150px; padding-bottom: 80px; min-height: 100vh; display: flex; align-items: center;">
-        <div class="container" style="max-width: 600px; width: 100%;">
-            <div style="background: rgba(17, 17, 17, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 3rem; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
-                <h1 class="font-heading" style="font-size: 3rem; margin-bottom: 1rem; text-align: center;">Contact Us</h1>
-                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">Have a question? Fill out the form below and our team will get back to you shortly.</p>
-                
-                <form id="contact-form" style="display: flex; flex-direction: column; gap: 1.5rem;">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                        <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
-                            <label for="firstName" style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary);">First Name</label>
-                            <input type="text" id="firstName" name="firstName" required style="padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: white; font-family: inherit; font-size: 1rem; width: 100%;">
-                        </div>
-                        <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
-                            <label for="lastName" style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary);">Last Name</label>
-                            <input type="text" id="lastName" name="lastName" required style="padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: white; font-family: inherit; font-size: 1rem; width: 100%;">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <label for="email" style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary);">Email</label>
-                        <input type="email" id="email" name="email" required style="padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: white; font-family: inherit; font-size: 1rem; width: 100%;">
-                    </div>
-                    
-                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <label for="phone" style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary);">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" required style="padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: white; font-family: inherit; font-size: 1rem; width: 100%;">
-                    </div>
-                    
-                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <label for="message" style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary);">Message</label>
-                        <textarea id="message" name="message" rows="5" required style="padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: white; font-family: inherit; font-size: 1rem; width: 100%; resize: vertical;"></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem; width: 100%; margin-top: 1rem; border: none; cursor: pointer; border-radius: 8px; transition: transform 0.2s ease, opacity 0.2s ease;">Send Message</button>
-                    <div id="form-status" style="text-align: center; margin-top: 1rem; font-weight: bold; min-height: 1.5rem;"></div>
-                </form>
-            </div>
-        </div>
-    </main>
-    
-    <script>
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // TODO: Connect this to a backend or webhook (e.g., Make.com, Formspree)
-            const statusDiv = document.getElementById('form-status');
-            statusDiv.textContent = 'Submitting...';
-            statusDiv.style.color = 'white';
+        <div class="announcement-card">
+            <h1>Thank You for Everything</h1>
             
-            // Simulating a network request
-            setTimeout(() => {
-                statusDiv.textContent = 'Message sent successfully! We will get back to you soon.';
-                statusDiv.style.color = '#10B981'; // Success green
-                this.reset();
-            }, 1000);
-        });
-    </script>
+            <p>After a lot of thought, we’ve made the difficult decision to close Kairos Meal Preps.</p>
+            
+            <p>We are incredibly grateful to every customer, client, athlete, business, and organization that trusted us over the years. What started as an idea grew into something much bigger because of the people who supported us, ordered meals, referred friends, and allowed us to be part of their lives.</p>
+            
+            <p>Thank you for supporting a local business and for being part of our journey.</p>
+        </div>
+    </div>
+
 </body>
 </html>

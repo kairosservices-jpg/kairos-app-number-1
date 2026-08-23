@@ -1,71 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Plan Sent | Kairos Nutrition</title>
-    <link rel="stylesheet" href="./style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | Kairos Meal Preps</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-bg: #000000;
+            --color-card: #0A0A0A;
+            --color-text-primary: #FFFFFF;
+            --color-text-secondary: rgba(255, 255, 255, 0.7);
+            --brand-red: #D90429;
+            --brand-red-glow: rgba(217, 4, 41, 0.15);
+            --font-primary: 'Outfit', sans-serif;
+            --font-secondary: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text-primary);
+            font-family: var(--font-secondary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            line-height: 1.8;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            background-image: 
+                radial-gradient(circle at 50% 15%, rgba(217, 4, 41, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 85%, rgba(217, 4, 41, 0.03) 0%, transparent 50%);
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .logo-container {
+            margin-bottom: 40px;
+        }
+
+        .logo-img {
+            height: 100px;
+            width: auto;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 6px;
+            background: rgba(255, 255, 255, 0.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(217, 4, 41, 0.2);
+            border-color: rgba(217, 4, 41, 0.4);
+        }
+
+        .announcement-card {
+            background-color: var(--color-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 48px 40px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 50px rgba(217, 4, 41, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .announcement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--brand-red), #ff5e3a);
+            box-shadow: 0 2px 20px rgba(217, 4, 41, 0.4);
+        }
+
+        h1 {
+            font-family: var(--font-primary);
+            font-weight: 800;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            line-height: 1.2;
+            margin-bottom: 28px;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E0E0E0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            font-size: clamp(1.05rem, 2.5vw, 1.15rem);
+            color: var(--color-text-secondary);
+            font-weight: 300;
+            margin-bottom: 24px;
+            text-align: justify;
+            text-align-last: center;
+        }
+
+        p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .announcement-card {
+                padding: 32px 24px;
+            }
+            .logo-img {
+                height: 80px;
+            }
+        }
+    </style>
 </head>
-<body style="background-color: var(--color-black); color: var(--color-white); padding-top: 80px;">
-    <!-- Sticky Navigation -->
-    <nav id="main-nav" class="main-nav">
-        <div class="container" style="display: flex; justify-content: flex-between; align-items: center;">
-            <a href="/" style="text-decoration: none;">
-                <img src="/assets/kairos_logo.png" class="logo-nav" alt="Kairos Logo" style="height: 40px;" />
-            </a>
-            <div style="display: flex; gap: var(--space-md); align-items: center; margin-left: auto;">
-                <a href="https://kairosmealpreps.bottle.com" target="_blank" style="color: var(--color-white); text-decoration: none; font-family: var(--font-primary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Order Weekly Meals</a>
+<body>
 
-            </div>
+    <div class="container">
+        <div class="logo-container">
+            <img src="/assets/kairos_logo.png" alt="Kairos Logo" class="logo-img" onerror="this.src='assets/kairos_logo.png'">
         </div>
-    </nav>
 
-    <section class="section-padding" style="min-height: calc(100vh - 200px); display: flex; align-items: center; justify-content: center; text-align: center;">
-        <div class="container" data-reveal>
-            <div style="font-size: 4rem; margin-bottom: 1rem;">✅</div>
-            <h1 class="hero-title" style="font-size: clamp(2rem, 5vw, 3.5rem);">Your Weight Loss Plan Has Been Sent To Your Email</h1>
-            <p class="hero-subtitle" style="margin-bottom: var(--space-lg);">
-                Thank you for taking the time to share your goals with us. Check your inbox (and spam folder) for access to your free individualized plan.
-            </p>
-            <a href="/" class="btn btn-secondary">
-                Return Home
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer CTA -->
-    <footer class="section-padding" style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05); margin-top: auto;">
-        <div class="container" data-reveal>
-            <img src="/assets/kairos_logo.png" class="logo-footer" alt="Kairos Logo Small" />
-            <p style="margin-top: var(--space-lg); opacity: 0.3; font-size: 0.8rem;">© 2026 KAIROS NUTRITION. SPOKANE / CDA.</p>
-        </div>
-    </footer>
-        <!-- Chatbox UI -->
-    <div class="chat-widget">
-        <div class="chat-window" id="chat-window">
-            <div class="chat-header">
-                <span class="font-heading" style="font-size: 0.8rem;">Kairos Advisor</span>
-                <button id="close-chat"
-                    style="background: none; border: none; color: white; cursor: pointer; font-size: 1.2rem;">&times;</button>
-            </div>
-            <div class="chat-messages">
-                <div class="chat-message message-ai">
-                    Hello! I'm your Kairos Nutrition Advisor. How can I help you reach your goals today?
-                </div>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" class="chat-input" placeholder="Ask about programs..." />
-                <button class="chat-send">Send</button>
-            </div>
-        </div>
-        <div class="chat-button" id="chat-button">
-            <svg viewBox="0 0 24 24">
-                <path
-                    d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z" />
-            </svg>
+        <div class="announcement-card">
+            <h1>Thank You for Everything</h1>
+            
+            <p>After a lot of thought, we’ve made the difficult decision to close Kairos Meal Preps.</p>
+            
+            <p>We are incredibly grateful to every customer, client, athlete, business, and organization that trusted us over the years. What started as an idea grew into something much bigger because of the people who supported us, ordered meals, referred friends, and allowed us to be part of their lives.</p>
+            
+            <p>Thank you for supporting a local business and for being part of our journey.</p>
         </div>
     </div>
 
-    <script type="module" src="/main.js"></script>
 </body>
 </html>

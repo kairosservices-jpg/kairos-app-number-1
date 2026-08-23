@@ -1,145 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kairos Links</title>
-    <link rel="stylesheet" href="/style.css" />
-    <!-- Fonts -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | Kairos Meal Preps</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
     <style>
-        .links-container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
+        :root {
+            --color-bg: #000000;
+            --color-card: #0A0A0A;
+            --color-text-primary: #FFFFFF;
+            --color-text-secondary: rgba(255, 255, 255, 0.7);
+            --brand-red: #D90429;
+            --brand-red-glow: rgba(217, 4, 41, 0.15);
+            --font-primary: 'Outfit', sans-serif;
+            --font-secondary: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text-primary);
+            font-family: var(--font-secondary);
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            text-align: center;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            line-height: 1.8;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            background-image: 
+                radial-gradient(circle at 50% 15%, rgba(217, 4, 41, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 85%, rgba(217, 4, 41, 0.03) 0%, transparent 50%);
         }
-        .links-logo {
-            width: 120px;
-            margin: 0 auto 2rem;
-            display: block;
-        }
-        .link-btn {
-            display: block;
+
+        .container {
+            max-width: 600px;
             width: 100%;
-            padding: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            background: transparent;
-            color: var(--color-white);
-            text-decoration: none;
-            font-family: var(--font-heading);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: var(--transition-fast);
-            border-radius: 4px;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
         }
-        .link-btn:hover {
-            background: var(--color-white);
-            color: var(--color-black);
+
+        .logo-container {
+            margin-bottom: 40px;
+        }
+
+        .logo-img {
+            height: 100px;
+            width: auto;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 6px;
+            background: rgba(255, 255, 255, 0.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo-img:hover {
             transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(217, 4, 41, 0.2);
+            border-color: rgba(217, 4, 41, 0.4);
         }
-        .form-section {
-            margin-top: 3rem;
-            text-align: left;
+
+        .announcement-card {
+            background-color: var(--color-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 48px 40px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 50px rgba(217, 4, 41, 0.05);
+            position: relative;
+            overflow: hidden;
         }
-        .form-section h3 {
+
+        .announcement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--brand-red), #ff5e3a);
+            box-shadow: 0 2px 20px rgba(217, 4, 41, 0.4);
+        }
+
+        h1 {
             font-family: var(--font-primary);
-            font-size: 1.1rem;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            line-height: 1.4;
-            color: var(--color-white);
-            text-align: center;
-        }
-        .links-input {
-            width: 100%;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 4px;
-            border: none;
-            font-family: var(--font-secondary);
-            font-size: 1rem;
-            background: #fff;
-            color: #000;
-        }
-        .links-submit {
-            width: 100%;
-            padding: 1rem;
-            background-color: var(--color-red);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            line-height: 1.2;
+            margin-bottom: 28px;
             text-transform: uppercase;
-            font-size: 1rem;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            transition: var(--transition-fast);
-            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E0E0E0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .links-submit:hover {
-            background-color: #d31e1e;
+
+        p {
+            font-size: clamp(1.05rem, 2.5vw, 1.15rem);
+            color: var(--color-text-secondary);
+            font-weight: 300;
+            margin-bottom: 24px;
+            text-align: justify;
+            text-align-last: center;
         }
-        .links-disclaimer {
-            font-family: var(--font-secondary);
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.5);
-            text-align: center;
-            line-height: 1.4;
-            margin-bottom: 1.5rem;
+
+        p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .announcement-card {
+                padding: 32px 24px;
+            }
+            .logo-img {
+                height: 80px;
+            }
         }
     </style>
 </head>
-<body style="background-color: var(--color-black); color: var(--color-white); min-height: 100vh;">
+<body>
 
-    <div class="links-container">
-        <!-- Logo -->
-        <a href="/">
-            <img src="/assets/kairos_logo.png" alt="Kairos Fitness" class="links-logo" />
-        </a>
+    <div class="container">
+        <div class="logo-container">
+            <img src="/assets/kairos_logo.png" alt="Kairos Logo" class="logo-img" onerror="this.src='assets/kairos_logo.png'">
+        </div>
 
-        <!-- Links -->
-        <a href="/apply" class="link-btn">Receive Your FREE Fat Loss Meal Plan + Grocery List</a>
-        <a href="/finally-fit" class="link-btn">Join the Finally Fit Project</a>
-        <a href="https://kairosmealpreps.bottle.com" class="link-btn">Order Weekly Meals</a>
-        <a href="/about" class="link-btn">About Kairos Meal Preps</a>
-
-        <!-- Form Section -->
-        <div class="form-section">
-            <h3>Sign up to receive information about new offers, services, and events for Kairos</h3>
+        <div class="announcement-card">
+            <h1>Thank You for Everything</h1>
             
-            <!-- Replace YOUR_KAIROS_GMAIL@gmail.com with your actual email -->
-            <form action="https://formsubmit.co/kairosmealpreps@gmail.com" method="POST">
-                
-                <!-- Anti-spam honeypot (optional, highly recommended) -->
-                <input type="text" name="_honey" style="display:none">
-                <!-- Disable Captcha (optional) -->
-                <input type="hidden" name="_captcha" value="false">
-                <!-- Success Page Redirect (optional, sending them back to /links or a thank you page) -->
-                <input type="hidden" name="_next" value="https://kairosmealpreps.com/links?success=true">
-
-                <input type="text" name="First Name" class="links-input" placeholder="Enter your first name..." required />
-                <input type="email" name="Email" class="links-input" placeholder="Enter your email address..." required />
-                <input type="tel" name="Phone" class="links-input" placeholder="Enter your phone number..." required />
-                
-                <p class="links-disclaimer">
-                    By clicking SUBMIT, you agree to receive marketing text messages from Kairos 
-                    at the number provided. Consent is not a condition of any purchase. 
-                    Message and data rates may apply.
-                </p>
-
-                <button type="submit" class="links-submit">Submit</button>
-
-                <p class="links-disclaimer">
-                    I will never share your information with anyone. I can't stand it when other people do that either.
-                </p>
-            </form>
+            <p>After a lot of thought, we’ve made the difficult decision to close Kairos Meal Preps.</p>
+            
+            <p>We are incredibly grateful to every customer, client, athlete, business, and organization that trusted us over the years. What started as an idea grew into something much bigger because of the people who supported us, ordered meals, referred friends, and allowed us to be part of their lives.</p>
+            
+            <p>Thank you for supporting a local business and for being part of our journey.</p>
         </div>
     </div>
 
